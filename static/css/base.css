@@ -26,3 +26,16 @@
     margin: 30px auto;
     background-color: rgb(236, 228, 217);
 }
+
+/* Product detail page */
+.product-img {
+    width: 60vw;
+    margin: 0 auto;
+}
+
+/* Screens larger than 768px */
+@media screen and (min-width: 768px) {
+    .product-img {
+        width: 400px;
+    }
+}
