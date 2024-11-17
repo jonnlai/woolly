@@ -2,57 +2,57 @@
 {% load static %}
 
 {% block content %}
-<main>
-    <div class="container jumbotron">
-        <div class="jumbotron-content">
-            <h1 class="text-center">Hand-made sustainable woollen products</h1>
-            <h4 class="text-center">with Finnish inspired design</h4>
-            <a class="btn btn-light" href="{% url 'products' %}" role="button">View products</a>
-        </div>
+<!-- Jumbotron-->
+<div class="container jumbotron">
+    <div class="jumbotron-content">
+        <h1 class="text-center">Hand-made sustainable woollen products</h1>
+        <h4 class="text-center">with Finnish inspired design</h4>
+        <a class="btn btn-light" href="{% url 'products' %}" role="button">View products</a>
     </div>
-    <div class="product-container">
-        <h3 class="text-center pt-5">Featured Products</h3>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 d-flex justify-content-center text-center">
-            <!-- Display maximum of three sale items -->
-            {% for product in products|slice:"3" %}
-                {% if product.on_sale %}
-                    <div class="col mt-5 d-flex justify-content-center">
-                        <div class="card h-50 w-50">
-                            {% if product.image %}
-                                <a href="{% url 'product_detail' product.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                                </a>
-                            {% else %}
-                                <a href="{% url 'product_detail' product.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image.png"
-                                        alt="{{ product.name }}">
-                                </a>
-                            {% endif %}
-                            <div class="card-body pb-1 bg--white">
-                                <p class="mb-0">{{ product.name }}</p>
-                            </div>
-                            <div class="card-footer bg-white pt-0 border-0 text-left">
-                                <div class="row">
-                                    <div class="col">
-                                        {% if product.on_sale %}
-                                            <p class="lead mb-0 pb-1 text-left font-weight-bold"><s>£{{ product.price }}</s> £{{ product.sale_price }}</p>
-                                        {% else %}
-                                            <p class="lead mb-0 pb-1 text-left font-weight-bold">£{{ product.price }}</p>
-                                        {% endif %}
-                                        {% if product.rating %}
-                                            <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} /
-                                                5</small>
-                                        {% else %}
-                                            <small class="text-muted">No Rating</small>
-                                        {% endif %}
-                                    </div>
+</div>
+<!-- Featured products -->
+<div class="product-container">
+    <h3 class="text-center pt-5">Featured Products</h3>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 d-flex justify-content-center text-center">
+        <!-- Display maximum of three sale items -->
+        {% for product in products|slice:"3" %}
+            {% if product.on_sale %}
+                <div class="col mt-5 d-flex justify-content-center">
+                    <div class="card h-50 w-50">
+                        {% if product.image %}
+                            <a href="{% url 'product_detail' product.id %}">
+                                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </a>
+                        {% else %}
+                            <a href="{% url 'product_detail' product.id %}">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image.png"
+                                    alt="{{ product.name }}">
+                            </a>
+                        {% endif %}
+                        <div class="card-body pb-1 bg--white">
+                            <p class="mb-0">{{ product.name }}</p>
+                        </div>
+                        <div class="card-footer bg-white pt-0 border-0 text-left">
+                            <div class="row">
+                                <div class="col">
+                                    {% if product.on_sale %}
+                                        <p class="lead mb-0 pb-1 text-left font-weight-bold"><s>£{{ product.price }}</s> £{{ product.sale_price }}</p>
+                                    {% else %}
+                                        <p class="lead mb-0 pb-1 text-left font-weight-bold">£{{ product.price }}</p>
+                                    {% endif %}
+                                    {% if product.rating %}
+                                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} /
+                                            5</small>
+                                    {% else %}
+                                        <small class="text-muted">No Rating</small>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
-</main>
+</div>
 {% endblock %}

@@ -5,6 +5,22 @@
     box-sizing: border-box;
 }
 
+/* General */
+
+main {
+    padding-top: 154px;
+}
+
+header {
+    overflow: hidden;
+    background-color: #f7f6f5;
+    padding-bottom: 20px;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 9999;
+}
+
 /* Home page */
 .jumbotron {
     background: url('/media/woollen-blanket.jpg') no-repeat center center/cover;
@@ -35,7 +51,17 @@
 
 /* Screens larger than 768px */
 @media screen and (min-width: 768px) {
+    main {
+        padding-top: 194px;
+    }
     .product-img {
         width: 400px;
+    }
+}
+
+/* Screens larger than 992px */
+@media screen and (min-width: 992px) {
+    main {
+        padding-top: 178px;
     }
 }

@@ -42,9 +42,11 @@
     <div class="messages-container"></div>
     {% endif %}
 
-    {% block content %}
-    <!-- Content of the page -->
-    {% endblock %}
+    <main>
+      {% block content %}
+      <!-- Content of the page -->
+      {% endblock %}
+    </main>
 
     {% block postloadjs %}
     {% endblock %}
