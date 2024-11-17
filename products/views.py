@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q
-from .models import Product
+from .models import Product, Category
 
 def all_products(request):
     """
@@ -20,12 +20,26 @@ def all_products(request):
     products = Product.objects.all()
 
     query = None
-    # Search function taken from CodeInstitute's Boutique Ado walkthrough project
+    category = None
+    on_sale = None
+
+    # Search function and filtering taken from CodeInstitute's 
+    # Boutique Ado walkthrough project
     if request.GET:
+        # Filter by category
+        if 'category' in request.GET:
+            category = request.GET['category'].split(',')
+            products = products.filter(category__name__in=category)
+            category = Category.objects.filter(name__in=category)
+        # Filter products that are on sale
+        if 'on_sale' in request.GET:
+            products = products.filter(on_sale=True)
+            on_sale = True
+        # Search function
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(request, "Please enter search criteria")
                 return redirect(reverse('products'))
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
@@ -34,7 +48,10 @@ def all_products(request):
         request,
         'products/products.html',
         {'products': products,
-         'search_term': query}
+         'search_term': query,
+         'category': category,
+         'on_sale': on_sale,
+         }
         )
 
 

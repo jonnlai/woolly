@@ -63,10 +63,13 @@
             <a class="nav-link" href="{% url 'products' %}">All Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Clothes</a>
+            <a class="nav-link" href="{% url 'products' %}?category=Clothing">Clothing</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Homeware</a>
+            <a class="nav-link" href="{% url 'products' %}?category=Homeware">Homeware</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products' %}?on_sale">Sale</a>
           </li>
         </ul>
       </div>
