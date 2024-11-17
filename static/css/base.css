@@ -43,6 +43,22 @@ header {
     background-color: rgb(236, 228, 217);
 }
 
+/* Products page */
+
+/* Back to top button */
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: sticky;
+    bottom: 20px;
+    left: 95%;
+    margin-right: 10px;
+}
+
+.btt-link {
+    cursor: pointer;
+}
+
 /* Product detail page */
 .product-img {
     width: 60vw;
