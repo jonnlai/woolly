@@ -39,7 +39,21 @@
     </header>
     
     {% if messages %}
-    <div class="messages-container"></div>
+        <div class="message-container">
+            {% for message in messages %}
+                {% with message.level as level %}
+                    {% if level == 40 %}
+                        {% include 'includes/toasts/toast_error.html' %}
+                    {% elif level == 30 %}
+                        {% include 'includes/toasts/toast_warning.html' %}
+                    {% elif level == 25 %}
+                        {% include 'includes/toasts/toast_success.html' %}
+                    {% else %}
+                        {% include 'includes/toasts/toast_info.html' %}
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+        </div>
     {% endif %}
 
     <main>
@@ -49,6 +63,16 @@
     </main>
 
     {% block postloadjs %}
+      <script type="text/javascript">
+        let toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        let toastList = toastElList.map(function (toastEl) {
+          let option = {
+            animation: true,
+            autohide: false,
+          }
+          new bootstrap.Toast(toastEl, option).show();
+        })
+      </script>
     {% endblock %}
 
   </body>
