@@ -23,14 +23,15 @@ header {
 
 /* Bootstrap toasts */
 .message-container {
+    max-width: 100vw;
     position: fixed;
     top: 72px;
-    right: 15px;
+    right: 0;
     z-index: 99999999999;
 }
-.custom-toast {
+/* .custom-toast {
     overflow: visible;
-}
+} */
 .toast-capper {
     height: 2px;
 }
@@ -123,6 +124,16 @@ header {
 .product-img {
     width: 60vw;
     margin: 0 auto;
+}
+
+/* Media Queries */
+
+/* Screens larger than 576px */
+@media screen and (min-width: 576px) {
+    .message-container {
+        top: 80px;
+        right: 15px;
+    }
 }
 
 /* Screens larger than 768px */
