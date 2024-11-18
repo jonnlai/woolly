@@ -65,6 +65,8 @@ header {
     margin: 0 auto;
 }
 
+
+
 /* Screens larger than 768px */
 @media screen and (min-width: 768px) {
     main {
