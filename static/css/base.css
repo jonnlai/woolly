@@ -55,8 +55,14 @@ header {
     margin-right: 10px;
 }
 
-.btt-link {
+.btt-link,
+.update-qty,
+.remove-item  {
     cursor: pointer;
+}
+
+.update-qty {
+    
 }
 
 /* Product detail page */
@@ -64,8 +70,6 @@ header {
     width: 60vw;
     margin: 0 auto;
 }
-
-
 
 /* Screens larger than 768px */
 @media screen and (min-width: 768px) {
