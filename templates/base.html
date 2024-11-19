@@ -62,6 +62,34 @@
       {% endblock %}
     </main>
 
+  <!-- Footer -->
+  <footer class="footer container-fluid pt-3">
+    <div class="row text-center">
+      <h6 class="text-uppercase">Let's stay in touch!</h6>
+      <div class="col-12 text-center">
+        <a href="https://www.facebook.com/" target="_blank" 
+          rel="nofollow"><i class="fab fa-facebook-square text-dark"></i></a>
+        <p class="d-inline">&nbsp &nbsp Say hi to us on Facebook</p>
+      </div>
+
+      <div class="col-12 mt-2 text-center">
+        <p>Sign up to our newsletter to receive some woolly good news!</p>
+        <form method="POST" action="" id="newsletter-form" class="text-muted form"
+          enctype="multipart/form-data">
+          <div class="my-2">
+              <button class="btn button-paper" type="submit">Subscribe!</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-12 text-center">
+        <p><small>Woolly Copyright &copy; 2024.</small></p>
+      </div>
+
+
+    </div>
+  </footer>
+
     {% block postloadjs %}
       <script type="text/javascript">
         let toastElList = [].slice.call(document.querySelectorAll('.toast'))
