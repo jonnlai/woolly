@@ -192,6 +192,12 @@ footer {
 
 /* Products page */
 
+.badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
 /* Back to top button */
 .btt-button {
     height: 42px;

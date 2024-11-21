@@ -62,6 +62,8 @@
             {% for product in products %}
                 <div class="col-sm-6 col-lg-4 col-xl-3 mb-5">
                     <div class="card h-100">
+                        <!-- On sale badge -->
+                         <div class="badge bg-light text-dark">Sale</div>
                         {% if product.image %}
                             <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">

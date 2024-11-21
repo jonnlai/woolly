@@ -26,6 +26,8 @@
             {% if product.on_sale %}
                 <div class="col mt-5 d-flex justify-content-center">
                     <div class="card h-50 w-50">
+                        <!-- On sale badge -->
+                        <div class="badge bg-light text-dark">Sale</div>
                         {% if product.image %}
                             <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
