@@ -214,6 +214,16 @@ footer {
     margin: 0 auto;
 }
 
+/* Allauth styles */
+
+.login-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 5vh auto 13vh;
+    padding-bottom: 30px;
+    border-radius: 5px;
+}
+
 /* Media Queries */
 
 /* Screens larger than 576px */
