@@ -21,11 +21,16 @@ h6 {
 }
 
 body {
-    font-family: Poppins, sans-serif; 
+    font-family: Poppins, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
     padding-top: 154px;
+    /* Main section to take up any leftover space and to push footer down */
+    flex: 1 0 auto;
 }
 
 header {
@@ -39,7 +44,8 @@ header {
     z-index: 9999;
 }
 
-footer {
+/* Footer */
+.footer {
     background-color: #f7f6f3;
 }
 
