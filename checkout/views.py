@@ -28,5 +28,7 @@ def checkout(request):
     return render(
         request,
         'checkout/checkout.html',
-        {'order_form': order_form,}
+        {'order_form': order_form,
+         'stripe_public_key': 'pk_test_51QOdM02NHaXwRfMSv0eYmmvXeObJWbfevDYVy9AOdgF03U3O0Yk2NSfUfdvpLOpa1EyfrTrfQBqwV52n4EKqcWK900smYyEhNm',
+         'client_secret': 'test client secret',}
         )

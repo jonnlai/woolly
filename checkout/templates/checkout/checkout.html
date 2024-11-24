@@ -122,3 +122,12 @@
         </div>
     </div>
 {% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!--  Render the necessary template variables using json_script filter to make them available in external js file -->
+    {{ stripe_public_key|json_script:"id_stripe_public_key"}}
+    {{ client_secret|json_script:"id_client_secret"}} 
+
+
+{% endblock %}
