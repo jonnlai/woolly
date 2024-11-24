@@ -34,7 +34,7 @@ class Order(models.Model):
         null=True,
         blank=True
     )
-    postcode = models.CharField(max_length=20, null=True, blank=True)
+    postcode = models.CharField(max_length=20, null=False, blank=False)
     town_or_city = models.CharField(
         max_length=40,
         null=False,
