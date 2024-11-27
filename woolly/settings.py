@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3w$t9e+1*eb^q=ocs2s@c2ns!$2^%a%w)a^(x17k251!786yup'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-jonnlai-woolly-vy4sesjkc2e.ws.codeinstitute-ide.net',]
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'checkout',
+    'profiles'
     'crispy_forms',
 ]
 
