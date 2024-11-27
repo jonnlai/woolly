@@ -35,3 +35,16 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    # How to use property decorator taken from:
+    #https://stackoverflow.com/questions/58558989/what-does-djangos-property-do
+    @property
+    def product_price(self):
+        '''
+        Return the product price taking into considaration
+        whether it is on sale
+        '''
+        if self.on_sale and self.sale_price < self.price:
+            return self.sale_price
+        else:
+            return self.price
