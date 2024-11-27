@@ -37,9 +37,9 @@ class StripeWH_Handler:
             intent.latest_charge
         )
 
-        billing_details = intent.charges.data[0].billing_details
+        billing_details = stripe_charge.billing_details
         shipping_details = intent.shipping
-        grand_total = round(intent.charges.data[0].amount / 100, 2)
+        grand_total = round(stripe_charge.amount / 100, 2)
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
@@ -57,7 +57,8 @@ class StripeWH_Handler:
                     country__iexact=shipping_details.address.country,
                     postcode__iexact=shipping_details.address.postal_code,
                     town_or_city__iexact=shipping_details.address.city,
-                    street_address__iexact=shipping_details.address.line1,
+                    street_address1__iexact=shipping_details.address.line1,
+                    street_address2__iexact=shipping_details.address.line2,
                     grand_total=grand_total,
                     original_bag=bag,
                     stripe_pid=pid,
@@ -69,7 +70,8 @@ class StripeWH_Handler:
                 time.sleep(1)
         if order_exists:
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                content=f'Webhook received: {event["type"]} \
+                    | SUCCESS: Verified order already in database',
                 status=200)
         else:
             order = None
@@ -81,26 +83,29 @@ class StripeWH_Handler:
                     country=shipping_details.address.country,
                     postcode=shipping_details.address.postal_code,
                     town_or_city=shipping_details.address.city,
-                    street_address=shipping_details.address.line1,
+                    street_address1=shipping_details.address.line1,
+                    street_address2=shipping_details.address.line2,
                     original_bag=bag,
                     stripe_pid=pid,
                 )
-                for item_id, quantity in json.loads(bag).items():
+                for item_id, item_data in json.loads(bag).items():
                     product = Product.objects.get(id=item_id)
                     order_line_item = OrderLineItem(
                         order=order,
                         product=product,
-                        quantity=quantity,
+                        quantity=item_data,
                     )
                     order_line_item.save()
             except Exception as e:
                 if order:
                     order.delete()
                 return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | ERROR: {e}',
+                    content=f'Webhook received: {event["type"]} \
+                        | ERROR: {e}',
                     status=500)
         return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            content=f'Webhook received: {event["type"]} \
+                | SUCCESS: Created order in webhook',
             status=200
         )
 
