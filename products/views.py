@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 
@@ -95,7 +96,7 @@ def product_detail(request, product_id):
         {"product": product,}
     )
 
-
+@login_required
 def add_product(request):
     """
     Allow administrator to add a new product
@@ -109,6 +110,10 @@ def add_product(request):
 
     :template:`products/add_product.html`
     """
+    if not request.user.is_superuser:
+        messages.error(request,
+            'Sorry, only store owners can access this page')
+        return redirect(reverse('home'))
     if request.method == 'POST':
         product_form = ProductForm(request.POST, request.FILES)
         if product_form.is_valid():
@@ -116,7 +121,8 @@ def add_product(request):
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add product. \
+                Please ensure the form is valid.')
     else:
         product_form = ProductForm()
 
@@ -126,6 +132,8 @@ def add_product(request):
     }
     return render(request, template, context)
 
+
+@login_required
 def edit_product(request, product_id):
     """
     Display :form:`products.ProductForm` for edit.
@@ -141,6 +149,11 @@ def edit_product(request, product_id):
 
     :template:`products/edit_product.html`
     """
+    if not request.user.is_superuser:
+        messages.error(request,
+            'Sorry, only store owners can access this page')
+        return redirect(reverse('home'))
+
     product = get_object_or_404(Product, pk=product_id)
 
     if request.method == 'POST':
@@ -164,6 +177,7 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_product(request, product_id):
     """
     Delete a product
@@ -173,6 +187,11 @@ def delete_product(request, product_id):
     ``product``
         An instance of :model:`products.Product`
     """
+    if not request.user.is_superuser:
+        messages.error(request,
+            'Sorry, only store owners can access this page')
+        return redirect(reverse('home'))
+    
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted!')

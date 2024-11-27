@@ -2,8 +2,10 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
-
 class Category(models.Model):
+    """
+    Stores a single category
+    """
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -18,6 +20,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """
+    Stores a single product related to :model:`products.Category`
+    """
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
     sku = models.CharField(max_length=254, null=True, blank=True)
@@ -40,10 +45,10 @@ class Product(models.Model):
     #https://stackoverflow.com/questions/58558989/what-does-djangos-property-do
     @property
     def product_price(self):
-        '''
+        """
         Return the product price taking into considaration
         whether it is on sale
-        '''
+        """
         if self.on_sale and self.sale_price < self.price:
             return self.sale_price
         else:
