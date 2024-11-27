@@ -58,8 +58,7 @@ header {
 }
 
 /* From https://codepen.io/fabiocberg/pen/wvqpXqg */
-.button-paper,
-button {
+.button-paper {
     align-self: center;
     background-image: none;
     background-position: 0 90%;
@@ -197,7 +196,7 @@ button {
     color: #f7f6f3;
   }
 
-/* Products page */
+/* ---------------------------------- Products */
 
 .badge {
     position: absolute;
@@ -226,6 +225,15 @@ button {
     width: 60vw;
     margin: 0 auto;
 }
+
+/* Product form */
+.product-form-field {
+    color: #000;
+    border: 1px solid #000;
+    margin-top: 10px;
+    border-radius: 0px;
+}
+
 
 /* Allauth styles */
 
