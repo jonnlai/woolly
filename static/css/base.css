@@ -234,6 +234,10 @@ header {
     border-radius: 0px;
 }
 
+.modal-dialog {
+    z-index: 999999999;
+}
+
 
 /* Allauth styles */
 
