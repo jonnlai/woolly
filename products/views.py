@@ -4,6 +4,8 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import Product, Category
+from .forms import ProductForm
+
 
 def all_products(request):
     """
@@ -92,3 +94,24 @@ def product_detail(request, product_id):
         'products/product_detail.html',
         {"product": product,}
     )
+
+
+def add_product(request):
+    """
+    Allow administrator to add a new product
+
+    **Context**
+
+    ``product_form``
+        An instance of of :form:`products.ProductForm`
+
+    ** Template **
+
+    :template:`products/add_product.html`
+    """
+    product_form = ProductForm()
+    template = 'products/add_product.html'
+    context = {
+        'product_form': product_form,
+    }
+    return render(request, template, context)
