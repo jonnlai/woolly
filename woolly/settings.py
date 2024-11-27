@@ -180,5 +180,6 @@ STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+DEFAULT_FROM_EMAIL = 'woolly@example.com'
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-jonnlai-woolly-vy4sesjkc2e.ws.codeinstitute-ide.net']
