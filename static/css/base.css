@@ -58,7 +58,8 @@ header {
 }
 
 /* From https://codepen.io/fabiocberg/pen/wvqpXqg */
-.button-paper {
+.button-paper,
+button {
     align-self: center;
     background-image: none;
     background-position: 0 90%;
