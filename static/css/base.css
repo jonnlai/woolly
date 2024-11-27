@@ -229,8 +229,8 @@ header {
 /* Product form */
 .product-form-field {
     color: #000;
-    border: 1px solid #000;
-    margin-top: 10px;
+    border: 1px solid ;
+    margin-bottom: 10px;
     border-radius: 0px;
 }
 
