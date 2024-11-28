@@ -3,11 +3,23 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from products.models import Product
+from checkout.models import Order
 
 @login_required
 def admin_dashboard(request):
     """
     Admin dashboard to view products and orders.
+    
+    **Context**
+
+    ``orders``
+        All instances of :model:`checkout.Order`
+    ``products``
+        All instances of :model:`products.Product`
+
+    **Template**
+
+    :template:`dashboard/admin_dashboard.html`
     """
     if not request.user.is_superuser:
         messages.error(request,
@@ -15,9 +27,11 @@ def admin_dashboard(request):
         return redirect('home')
 
     products = Product.objects.all()
+    orders = Order.objects.all().order_by('-date')
 
     context = {
         'products': products,
+        'orders': orders
     }
 
     return render(request, 'dashboard/admin_dashboard.html', context)

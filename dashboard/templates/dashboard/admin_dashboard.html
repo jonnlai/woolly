@@ -9,12 +9,17 @@
 <div class="container-fluid mt-4">
     <div class="row">
         <div class="col text-center mt-3">
-            <h2 class="logo-font">Admin Dashboard</h2>
+            <h2>Admin Dashboard</h2>
             <hr class="w-100 mb-3">
         </div>
     </div>
-    <a href="{% url 'add_product' %}" class="btn button-paper">Add product</a>
-    <div class="row mt-3">
+    <div class="row d-flex justify-content-center my-3">
+        <div class="col-1 text-center"><a href="{% url 'add_product' %}" class="btn button-paper">Add product</a></div>
+        <div class="col-1 text-center"><a href="#products_list" class="btn button-paper">Products list</a></div>
+        <div class="col-1 text-center"><a href="#orders_list" class="btn button-paper">Orders list</a></div>
+    </div>
+    <hr>
+    <div class="row mt-5 text-center" id="products_list">
         <h6>Products</h6>
         <div class="col-12">
             <table class="w-100 w-sm-75 w-md-50">
@@ -34,6 +39,34 @@
                         <td class="mr-2"><a href="{% url 'edit_product' product.id %}" class="text-decoration-none">Edit</a></td>
                 {% endfor %}
             </table>
+        </div>
+    </div>
+    <div class="row mt-5 text-center" id="orders_list">
+        <h6>Orders</h6>
+        <div class="col-12">
+            <table class="w-100 w-sm-75 w-md-50">
+                {% for order in orders %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'order_history' order.order_number %}" 
+                            title="{{ order.order_number }}">
+                            {{ order.order_number|truncatechars:6 }}
+                            </a>
+                        </td>
+                        <td> {{ order.date }}</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                {% for item in order.lineitems.all %}
+                                <li class="small">
+                                    {{ item.product.name }} x{{ item.quantity }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>£{{ order.grand_total }}</td>
+                    </tr>
+                {% endfor %}
+            </table>   
         </div>
     </div>
 </div>
