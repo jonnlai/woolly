@@ -49,13 +49,7 @@ header {
     background-color: #f7f6f3;
 }
 
-/* Buttons */
-
-.btn {
-    font-family: Quicksand, sans-serif;
-    background-color: #F5F2E1;
-    font-weight: bold;
-}
+/* ----------------------------------------Buttons */
 
 /* From https://codepen.io/fabiocberg/pen/wvqpXqg */
 .button-paper {
@@ -70,10 +64,12 @@ header {
     box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
     box-sizing: border-box;
     color: #3c3c3c;
+    background-color: #F5F2E1;
     cursor: pointer;
     display: inline-block;
-    font-family: Neucha, sans-serif;
+    font-family: Quicksand, sans-serif;
     font-size: .8rem;
+    font-weight: bold;
     line-height: 23px;
     outline: none;
     padding: .70rem;
@@ -238,6 +234,20 @@ header {
     z-index: 999999999;
 }
 
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
 
 /* Allauth styles */
 
