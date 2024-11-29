@@ -26,7 +26,7 @@ def admin_dashboard(request):
         'Sorry, only store owners can access this page')
         return redirect('home')
 
-    products = Product.objects.all()
+    products = Product.objects.all().order_by('name')
     orders = Order.objects.all().order_by('-date')
 
     context = {
