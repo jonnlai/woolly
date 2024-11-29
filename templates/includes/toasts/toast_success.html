@@ -1,7 +1,7 @@
 <div class="toast custom-toast rounded-bottom border-top-0 " role="alert" aria-live="assertive" aria-atomic="true">
     <div class="arrow-up arrow-success"></div>
     <div class="w-100 toast-capper bg-success"></div>
-        <div class="toast-header c--dark-blue logo-text">
+        <div class="toast-header">
             <strong class="me-auto">Success!</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
@@ -13,7 +13,7 @@
                 </div>
             </div>
             {% if grand_total and not on_profile_page %}
-                <p class="logo-font bg-white text-black py-1">Your Bag ({{ product_count }}) - <a href="{% url 'view_bag' %}" class="text-decoration-none text-info">View bag</a></p>
+                <p class="bg-white text-black py-1">Your Bag ({{ product_count }}) - <a href="{% url 'view_bag' %}" class="text-decoration-none text-info">View bag</a></p>
                 <div class="bag-notification-wrapper">
                     {% for item in bag_items %}
                         <div class="row">
@@ -42,7 +42,7 @@
                                 Spend <strong>£{{ free_delivery_delta }}</strong> more to get free next day delivery!
                             </p>
                         {% endif %}
-                        <a href="{% url 'view_bag' %}" class="btn button-paper">
+                        <a href="{% url 'checkout' %}" class="btn button-paper mt-3">
                             <span class="text-uppercase">Go To Secure Checkout</span>
                             <span class="icon">
                                 <i class="fas fa-lock"></i>
