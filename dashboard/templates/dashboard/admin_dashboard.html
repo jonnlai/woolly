@@ -35,7 +35,7 @@
                         <td class="mr-2">{{ product.stock_amount }}</td>
                         <!-- comes from product_price property of Product model -->
                         <td class="mr-2">{{ product.product_price }}</td>
-                        <td class="mr-2">{% if on_sale %}Yes{% else %}No{% endif %}</td>
+                        <td class="mr-2">{% if product.on_sale %}Yes{% else %}No{% endif %}</td>
                         <td class="mr-2"><a href="{% url 'edit_product' product.id %}" class="text-decoration-none">Edit</a></td>
                 {% endfor %}
             </table>
