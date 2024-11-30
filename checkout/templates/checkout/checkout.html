@@ -57,8 +57,10 @@
                     </div>
                     <div class="col-3">
                         <p class="my-0">£{{ total | floatformat:2 }}</p>
-                        <p class="my-0">£{{ delivery | floatformat:2 }}</p>
-                        <p class="my-0 text-danger">-£{{ discount_amount }}</p>
+                        <p class="my-0">+£{{ delivery | floatformat:2 }}</p>
+                        {% if discount_amount %}
+                        <p class="my-0 text-danger">-£{{ discount_amount | floatformat:2 }}</p>
+                        {% endif %}
                         <p class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>

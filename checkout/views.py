@@ -74,6 +74,7 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
+
             for item_id, quantity in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -91,6 +92,7 @@ def checkout(request):
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
+
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',
@@ -191,6 +193,8 @@ def checkout_success(request, order_number):
 
     if 'bag' in request.session:
         del request.session['bag']
+    if 'discount_amount' in request.session:
+        del request.session['discount_amount']
 
     return render(
         request,

@@ -9,8 +9,14 @@ def bag_contents(request):
     bag_items = []
     total = 0
     product_count = 0
+    discount_amount = 0
 
     bag = request.session.get('bag', {})
+
+    # Get the discount amount of current session. From coupons.views.py
+    # Inspiration taken from https://medium.com/@ayoubennaoui20/
+    # integrating-a-coupon-system-into-our-e-commerce-website-700a9e699f2a
+    discount_amount = request.session.get('discount_amount')
     
     for item_id, item_data in bag.items():
         product = get_object_or_404(Product, pk=item_id)
@@ -28,8 +34,11 @@ def bag_contents(request):
     else: 
         delivery = 0
         free_delivery_delta = 0
-    
+
     grand_total = delivery + total
+
+    if discount_amount:
+        grand_total -= discount_amount
 
     context = {
         'bag_items': bag_items,
@@ -39,6 +48,7 @@ def bag_contents(request):
         'free_delivery_delta': free_delivery_delta,
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
         'grand_total': grand_total,
+        'discount_amount': discount_amount,
     }
 
     return context
