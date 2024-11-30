@@ -20,7 +20,7 @@
     </div>
     <hr>
     <div class="row mt-5 text-center" id="products_list">
-        <h6>Products</h6>
+        <h5>Products</h5>
         <div class="col-12">
             <table class="w-100 w-sm-75 w-md-50">
                 <tr>
@@ -31,7 +31,7 @@
                 </tr>
                 {% for product in products %}
                     <tr>
-                        <td class="mr-2">{{ product.name }}</td>
+                        <td class="mr-2"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
                         <td class="mr-2">{{ product.stock_amount }}</td>
                         <!-- comes from product_price property of Product model -->
                         <td class="mr-2">{{ product.product_price }}</td>
@@ -43,7 +43,7 @@
     </div>
     <hr class="d-sm-none">
     <div class="row mt-5 text-center" id="orders_list">
-        <h6>Orders</h6>
+        <h5>Orders</h5>
         <div class="col-12">
             <table class="w-100 w-sm-75 w-md-50">
                 {% for order in orders %}
