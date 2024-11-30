@@ -6,6 +6,7 @@ from django_countries.fields import CountryField
 
 from products.models import Product
 from profiles.models import UserProfile
+from coupons.models import CouponCode
 
 
 class Order(models.Model):
@@ -73,6 +74,12 @@ class Order(models.Model):
         decimal_places=2,
         null=False,
         default=0
+    )
+    coupon = models.ForeignKey(
+        CouponCode,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True
     )
     grand_total = models.DecimalField(
         max_digits=10,

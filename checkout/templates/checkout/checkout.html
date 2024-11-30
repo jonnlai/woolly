@@ -52,13 +52,25 @@
                     <div class="col-7 offset-2">
                         <p class="my-0">Order Total:</p>
                         <p class="my-0">Delivery:</p>
+                        <p class="my-0">Discount:</p>
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
                         <p class="my-0">£{{ total | floatformat:2 }}</p>
                         <p class="my-0">£{{ delivery | floatformat:2 }}</p>
+                        <p class="my-0 text-danger">-£{{ discount_amount }}</p>
                         <p class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></p>
                     </div>
+                </div>
+                <!-- Apply coupon code form -->
+                <hr class="my-3">
+                <div class="row">
+                    <form action="{% url 'apply_coupon' %}" method="POST">
+                        {% csrf_token %}
+                        <label for="coupon-code" class="small">Coupon code</label>
+                        <input class="w-50" type="text" name="coupon-code" id="coupon-code">
+                        <button type="submit" class="btn button-paper" aria-label="apply coupon code">Apply</button>
+                    </form>
                 </div>
             </div>
             <!-- Checkout form -->

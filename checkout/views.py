@@ -47,6 +47,11 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     
+    # Get the discount amount of current session. From coupons.views.py
+    # Inspiration taken from https://medium.com/@ayoubennaoui20/
+    # integrating-a-coupon-system-into-our-e-commerce-website-700a9e699f2a
+    discount_amount = request.session.get('discount_amount')
+
     if request.method == 'POST':
         bag = request.session.get('bag', {})
 
@@ -140,6 +145,7 @@ def checkout(request):
         {'order_form': order_form,
          'stripe_public_key': stripe_public_key,
          'client_secret': intent.client_secret,
+         'discount_amount': discount_amount,
          }
         )
 
