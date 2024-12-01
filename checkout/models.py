@@ -117,7 +117,16 @@ class Order(models.Model):
                 * settings.STANDARD_DELIVERY_PERCENTAGE / 100
         else:
             self.delivery_cost = 0
+
         self.grand_total = self.order_total + self.delivery_cost
+
+        # If Order has a coupon, deduct the discount amount
+        # from the grand total
+        if self.coupon:
+            self.discount = Order.objects.get(
+                pk=self.id).coupon.discount_amount
+            self.grand_total -= self.discount
+
         self.save()
 
     def save(self, *args, **kwargs):

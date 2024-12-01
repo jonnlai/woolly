@@ -8,6 +8,7 @@ from .models import Order, OrderLineItem
 from products.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
+from coupons.models import CouponCode
 from bag.contexts import bag_contents
 
 import stripe
@@ -47,10 +48,10 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     
-    # Get the discount amount of current session. From coupons.views.py
+    # Get the coupon_code of current session. Comes from coupons.views.py
     # Inspiration taken from https://medium.com/@ayoubennaoui20/
     # integrating-a-coupon-system-into-our-e-commerce-website-700a9e699f2a
-    discount_amount = request.session.get('discount_amount')
+    coupon_code = request.session.get('coupon_code')
 
     if request.method == 'POST':
         bag = request.session.get('bag', {})
@@ -92,6 +93,17 @@ def checkout(request):
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
+
+            if coupon_code:
+                # Update coupon field of this instance of the Order model
+                # to the coupon_code stored in the session
+                order.coupon = get_object_or_404(
+                    CouponCode,
+                    coupon_code=coupon_code)
+                order.save()
+                # Update the order total to reflect the discount
+                order.update_total()
+                order.save()
 
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
@@ -147,7 +159,6 @@ def checkout(request):
         {'order_form': order_form,
          'stripe_public_key': stripe_public_key,
          'client_secret': intent.client_secret,
-         'discount_amount': discount_amount,
          }
         )
 
