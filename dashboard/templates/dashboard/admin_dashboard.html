@@ -14,11 +14,33 @@
         </div>
     </div>
     <div class="row d-flex justify-content-center my-3">
-        <div class="col-1 text-center"><a href="{% url 'add_product' %}" class="btn button-paper">Add product</a></div>
-        <div class="col-1 text-center"><a href="#products_list" class="btn button-paper">Products list</a></div>
-        <div class="col-1 text-center"><a href="#orders_list" class="btn button-paper">Orders list</a></div>
+        <div class="col-1 text-center"><a href="{% url 'add_product' %}" class="btn button-paper">Add a product</a></div>
+        <div class="col-1 text-center"><a href="{% url 'add_coupon' %}" class="btn button-paper">Add a coupon</a></div>
     </div>
     <hr>
+    <div class="row mt-5 text-center" id="coupons_list">
+        <h5>Coupon Codes</h5>
+        <div class="col-12">
+            <table class="w-100 w-sm-75 w-md-50">
+                <tr>
+                    <th class="mr-5"><small class="text-muted">Code:</small></th>
+                    <th class="mr-2"><small class="text-muted">Discount amount:</small></th>
+                    <th class="mr-2"><small class="text-muted">Valid:</small></th>
+                </tr>
+                {% for coupon in coupon_codes %}
+                    <tr>
+                        <td class="mr-2">{{ coupon.coupon_code }}</td>
+                        <!-- comes from product_price property of Product model -->
+                        <td class="mr-2">£{{ coupon.discount_amount }}</td>
+                        <td class="mr-2">{% if coupon.active %}Yes{% else %}No{% endif %}</td>
+                        {% if coupon.active %}
+                            <td class="mr-2"><a href="{% url 'deactivate' coupon.coupon_code %}">Deactivate</a></td>
+                        {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <hr class="d-sm-none">
     <div class="row mt-5 text-center" id="products_list">
         <h5>Products</h5>
         <div class="col-12">
@@ -34,7 +56,7 @@
                         <td class="mr-2"><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
                         <td class="mr-2">{{ product.stock_amount }}</td>
                         <!-- comes from product_price property of Product model -->
-                        <td class="mr-2">{{ product.product_price }}</td>
+                        <td class="mr-2">£{{ product.product_price }}</td>
                         <td class="mr-2">{% if product.on_sale %}Yes{% else %}No{% endif %}</td>
                         <td class="mr-2"><a href="{% url 'edit_product' product.id %}" class="text-decoration-none">Edit</a></td>
                 {% endfor %}

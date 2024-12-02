@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from products.models import Product
 from checkout.models import Order
+from coupons.models import CouponCode
 
 @login_required
 def admin_dashboard(request):
@@ -28,10 +29,13 @@ def admin_dashboard(request):
 
     products = Product.objects.all().order_by('name')
     orders = Order.objects.all().order_by('-date')
+    coupon_codes = CouponCode.objects.all().order_by('-active')
 
     context = {
         'products': products,
-        'orders': orders
+        'orders': orders,
+        'coupon_codes': coupon_codes,
+        'on_dashboard_page': True,
     }
 
     return render(request, 'dashboard/admin_dashboard.html', context)

@@ -2,7 +2,7 @@ from django import forms
 from .models import CouponCode
 
 
-class ApplyCouponForm(forms.Form):
+class CouponForm(forms.ModelForm):
     class Meta:
-        model: CouponCode
-        fields = ('coupon_code', 'discount_amount', 'active')
+        model = CouponCode
+        fields = '__all__'

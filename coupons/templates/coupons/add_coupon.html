@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col text-center mt-3">
+            <h2>Add a Coupon</h2>
+            <hr class="w-100 mb-3">
+        </div>
+    </div>
+    <!-- Add a coupon form -->
+    <hr class="my-3">
+    <div class="row">
+        <form action="{% url 'add_coupon' %}" method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <button type="submit" class="btn button-paper" aria-label="add a new coupon code">Add</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
