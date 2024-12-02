@@ -8,7 +8,7 @@ from .forms import ApplyCouponForm
 
 def apply_coupon(request):
     """
-    Handle applying coupon codes     
+    Handle applying coupon codes
     """
     if request.method == 'POST':
         code = request.POST.get('coupon-code')
@@ -20,7 +20,7 @@ def apply_coupon(request):
             # Store the discount amount and coupon code in the session
             request.session['discount_amount'] = discount_amount
             request.session['coupon_code'] = coupon_code
-            messages.success(request, 'Coupon code applied!')
+            messages.success(request, 'Valid code! The discount has been applied if your order total was at least £10 + discount amount.')
         except ObjectDoesNotExist:
             messages.error(request, 'You have entered an invalid code.')
     return redirect('checkout')

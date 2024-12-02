@@ -39,8 +39,15 @@ def bag_contents(request):
 
     grand_total = delivery + total
 
-    if discount_amount:
+    if discount_amount and total > discount_amount + 10:
         grand_total -= discount_amount
+
+    # Delete discount_amount and coupon_code
+    # if total is less than discount_amount + 10
+    if 'discount_amount' in request.session \
+        and total < discount_amount + 10:
+            del request.session['discount_amount']
+            del request.session['coupon_code']
 
     context = {
         'bag_items': bag_items,
