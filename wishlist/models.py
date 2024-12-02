@@ -4,7 +4,7 @@ from profiles.models import UserProfile
 from products.models import Product
 
 
-class wishlist(models.Model):
+class Wishlist(models.Model):
     """ 
     Stores a single user's wishlist related to :model:`profiles.UserProfile`
     and :model:`products.Product`

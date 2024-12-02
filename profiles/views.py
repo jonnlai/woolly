@@ -6,6 +6,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 
 from checkout.models import Order
+from wishlist.models import Wishlist
 
 
 @login_required
@@ -17,12 +18,21 @@ def profile(request):
 
     ``profile``
         An instance of :model:`profiles.Profile`
+    ``wishlist``
+        An instace of :model:`wishlist.Wishlist`
+    ``form``
+        An instance of :form:`profiles.UserProfileForm`
+    ``orders``
+        All orders of the request user
+    ``on_profile_page``
+        Confirm that user is on profile page
 
     **Template**
 
     :template:`profiles/profile.html`
     """
     profile = get_object_or_404(UserProfile, user=request.user)
+    wishlist = list(Wishlist.objects.filter(user_profile=profile))
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -37,10 +47,12 @@ def profile(request):
     form = UserProfileForm(instance=profile)
     orders = profile.orders.all().order_by('-date')
 
+
     template = 'profiles/profile.html'
     context = {'profile': profile,
                'form': form,
                'orders': orders,
+               'wishlist': wishlist,
                'on_profile_page': True}
 
     return render(request, template, context)
