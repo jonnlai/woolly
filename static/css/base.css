@@ -9,6 +9,16 @@
     box-sizing: border-box;
 }
 
+:root {
+    --background: #F7F6F3;
+    --button: #F5F2E1;
+    --highlight-clay: #D9A37E;
+    --highlight-gray: #B2A99A;
+    --accent-green: #7D7F47;
+    --accent-orange: #C56F3A;
+    --text-charcoal: #3C3C3C;
+  }
+
 /* General */
 
 h1,
@@ -35,7 +45,7 @@ main {
 
 header {
     overflow: hidden;
-    background-color: #F7F6F3;
+    background-color: var(--background);
     padding-bottom: 20px;
     position: fixed;
     top: 0; /* Position the navbar at the top of the page */
@@ -46,7 +56,7 @@ header {
 
 /* Footer */
 .footer {
-    background-color: #f7f6f3;
+    background-color: var(--background);
 }
 
 /* ----------------------------------------Home */
@@ -75,8 +85,8 @@ header {
     border-width: 2px;
     box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
     box-sizing: border-box;
-    color: #3c3c3c;
-    background-color: #F5F2E1;
+    color: var(--text-charcoal);
+    background-color: var(--button);
     cursor: pointer;
     display: inline-block;
     font-family: Quicksand, sans-serif;
@@ -114,7 +124,7 @@ header {
     top: 72px;
     right: 0;
     z-index: 99999999999;
-    background-color: #f7f6f5;
+    background-color: #fff;
 }
 
 .custom-toast {
@@ -177,7 +187,7 @@ header {
 
 .jumbotron-content {
     border-radius: 5px;
-    color: #F5F2E1;
+    color: var(--button);
     vertical-align: middle;
 }
 
@@ -185,7 +195,7 @@ header {
     display: block;
     width: 150px;
     margin: 30px auto;
-    background-color: #F5F2E1;
+    background-color: var(--button);
 }
 
 .jumbotron-arrow {
@@ -197,12 +207,12 @@ header {
     z-index: 100;
     cursor:pointer;
     font-size: 60px;
-    color: #F5F2E1;
+    color: var(--button);
   }
 
   .jumbotron-arrow:hover {
     transform: translateY(16px);
-    color: #f7f6f3;
+    color: var(--highlight-clay);
   }
 
 /* ---------------------------------- Products */
@@ -233,6 +243,14 @@ header {
 .product-img {
     width: 60vw;
     margin: 0 auto;
+}
+
+.wishlist-link {
+    color: var(--highlight-clay);
+}
+
+.wishlist-link:hover {
+    color: var(--accent-orange);
 }
 
 /* Product form */
