@@ -7,7 +7,7 @@ from .models import Product
 
 
 @login_required
-def add_to_wishlist(request, product_id):
+def wishlist(request, product_id):
     """
     View to allow user to add and remove
     a product from their wishlist
@@ -35,6 +35,7 @@ def add_to_wishlist(request, product_id):
         messages.success(
             request,
             f'{product.name} has been removed from your wishlist')
+        return redirect('profile')
     # If the Wishlist does not exist, create it
     except Wishlist.DoesNotExist:
         Wishlist.objects.create(
