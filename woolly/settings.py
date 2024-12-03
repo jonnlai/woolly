@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'dashboard',
     'coupons',
     'wishlist',
+    'reviews',
     'crispy_forms',
 ]
 
