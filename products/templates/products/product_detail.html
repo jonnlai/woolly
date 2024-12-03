@@ -110,23 +110,31 @@
                             <p>{{ review.review_content }}</p>
                             <p><i class="fas fa-star rating-icon"></i>&nbsp {{ review.product_rating }} / 5</p>
                             <p class="text-muted d-inline small">by {{ review.review_author }} on {{ review.created_on|date:'d M Y' }}</p>
-                            {% if review.author == request.user %}
-                                <small class="ms-3 float-end">
-                                    <a href="{% url 'edit_review' review.id %}" class="">Edit</a> |
-                                    <a href="{% url 'delete_review' review.id %}" class="float-right" id="remove_{{ item.item_id }}">Delete</a>
+                            {% if review.review_author == request.user %}
+                                <small class="">
+                                    <a href="#" class="review-link text-decoration-none">Edit</a> |
+                                    <a href="#" class="text-danger text-decoration-none" id="">Delete</a>
                                 </small>
                             {% endif %}
                         </div>
                     {% endfor %}
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
-                    <form method="POST" class="form mb-2" enctype="multipart/form-data">
-                        <h5>Let us know what think!</h5>
-                        <br>
-                        {% csrf_token %}
-                        {{ review_form | crispy }}
-                        <button class="btn button-paper mt-3" type="submit">Submit</button>
-                    </form>
+                    <!-- Check that user is authenticated -->
+                    {% if request.user.is_authenticated %}
+                        <!-- Check that they have previously purchased the product -->
+                        {% if product.name in orders %}
+                        <form method="POST" class="form mb-2" enctype="multipart/form-data">
+                            <h5>Let us know what think!</h5>
+                            <br>
+                            {% csrf_token %}
+                            {{ review_form | crispy }}
+                            <button class="btn button-paper mt-3" type="submit">Submit</button>
+                        </form>
+                        {% endif %}
+                    {% else %}
+                        <p>Please <a href="{% url 'account_login' %}">login</a> to review products</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

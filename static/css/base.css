@@ -245,11 +245,13 @@ header {
     margin: 0 auto;
 }
 
-.wishlist-link {
+.wishlist-link,
+.review-link {
     color: var(--highlight-clay);
 }
 
-.wishlist-link:hover {
+.wishlist-link:hover,
+.review-link:hover {
     color: var(--accent-orange);
 }
 

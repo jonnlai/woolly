@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
-from django.http import HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Product, Category
 from .forms import ProductForm
@@ -12,6 +12,7 @@ from profiles.models import UserProfile
 from wishlist.models import Wishlist
 from reviews.models import Review
 from reviews.forms import ReviewForm
+from checkout.models import Order
 
 
 def all_products(request):
@@ -79,7 +80,6 @@ def all_products(request):
          'search_term': query,
          'category': category,
          'on_sale': on_sale,
-
          }
         )
 
@@ -89,7 +89,7 @@ def product_detail(request, product_id):
     Display an individual :model:`products.Product`
 
     **Context**
-    
+
         ``product``
             An instance of :model:`products.Product`
         ``profile``
@@ -106,12 +106,23 @@ def product_detail(request, product_id):
     :template:`products/product_detail.html`
     """
     product = get_object_or_404(Product, pk=product_id)
-    profile = get_object_or_404(UserProfile, user=request.user)
-    wishlist = list(Wishlist.objects.filter(
-        user_profile=profile).values_list(
-            "wished_product__name", flat="True"))
     reviews = Review.objects.filter(product=product)
-    
+
+    if request.user.is_authenticated:
+        # Get profile, wishlist and order if user is authenticated
+        profile = get_object_or_404(UserProfile, user=request.user)
+        wishlist = list(Wishlist.objects.filter(
+            user_profile=profile).values_list(
+                "wished_product__name", flat="True"))
+        orders = list(Order.objects.filter(
+            user_profile=profile).values_list(
+                "lineitems__product__name", flat="True"))
+    else:
+        # If user is not authenticated, set values to False
+        wishlist = False
+        profile = False
+        orders = False
+
     if request.method == 'POST':
         review_form = ReviewForm(data=request.POST)
         if review_form.is_valid():
@@ -120,8 +131,11 @@ def product_detail(request, product_id):
             review.product = product
             review.save()
             messages.success(request, 'Your review has been added')
-    else:
-        review_form = ReviewForm()
+        else:
+            messages.error(request, 'Unable to save your review. \
+                Please try again.')
+
+    review_form = ReviewForm()
 
     return render(
         request,
@@ -129,7 +143,8 @@ def product_detail(request, product_id):
         {"product": product,
          "wishlist": wishlist,
          "reviews": reviews,
-         "review_form": review_form,}
+         "review_form": review_form,
+         "orders": orders}
     )
 
 @login_required
