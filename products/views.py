@@ -3,12 +3,15 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.http import HttpResponseRedirect
 
 from .models import Product, Category
 from .forms import ProductForm
 
 from profiles.models import UserProfile
 from wishlist.models import Wishlist
+from reviews.models import Review
+from reviews.forms import ReviewForm
 
 
 def all_products(request):
@@ -86,6 +89,17 @@ def product_detail(request, product_id):
     Display an individual :model:`products.Product`
 
     **Context**
+    
+        ``product``
+            An instance of :model:`products.Product`
+        ``profile``
+            An instance of :model:`profiles.UserProfile`
+        ``wishlist``
+            An instance of :model:`wishlist.Wishlist`
+        ``reviews``
+            A list of reviews relating to ``product``
+        ``review_form``
+            A instance of :form:`reviews.ReviewForm`
 
     **Template**
 
@@ -96,12 +110,26 @@ def product_detail(request, product_id):
     wishlist = list(Wishlist.objects.filter(
         user_profile=profile).values_list(
             "wished_product__name", flat="True"))
+    reviews = Review.objects.filter(product=product)
+    
+    if request.method == 'POST':
+        review_form = ReviewForm(data=request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.review_author = request.user
+            review.product = product
+            review.save()
+            messages.success(request, 'Your review has been added')
+    else:
+        review_form = ReviewForm()
 
     return render(
         request,
         'products/product_detail.html',
         {"product": product,
-         "wishlist": wishlist}
+         "wishlist": wishlist,
+         "reviews": reviews,
+         "review_form": review_form,}
     )
 
 @login_required

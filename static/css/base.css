@@ -280,6 +280,10 @@ header {
     cursor: pointer;
 }
 
+.rating-icon {
+    color: var(--highlight-clay);
+}
+
 /* Allauth styles */
 
 .login-container {

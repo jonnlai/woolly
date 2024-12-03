@@ -38,7 +38,7 @@
                                 <p class="my-0 small text-muted">£{{ item.wished_product.product_price }}</p>
                             </div>
                             <div class="col-4 col-sm-2">
-                                <a href="{% url 'add_to_bag' item.wished_product.id %}" class="btn button-paper my-2">Buy</a>
+                                <a href="{% url 'product_detail' item.wished_product.id %}" class="btn button-paper my-2">Buy</a>
                             </div>
                             <div class="col-1 text-left">
                                 <a href="{% url 'wishlist' item.wished_product.id %}" aria-label="remove product from wishlist">
