@@ -286,9 +286,10 @@ header {
     color: var(--highlight-clay);
 }
 
-/* Allauth styles */
+/* Containers */
 
-.login-container {
+.login-container,
+.edit-container {
     width: 90%;
     max-width: 800px;
     margin: 5vh auto 13vh;

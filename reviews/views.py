@@ -1,31 +1,64 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse, redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+from django.contrib import messages
 
 from .models import Review
+from .forms import ReviewForm
 from products.models import Product
 
 
-@login_required
-def reviews(request, product_id):
+def edit_review(request, product_id, review_id):
     """
-    Returns all reviews from :model:`reviews.Review`
-    for the selected product
+    Edit a selected instance of :model:`reviews.Review`
 
     **Context**
 
-    ``products``
-        All instances of :model:`products.Product`
+    ``review``
+        An instance of :model:`reviews.Review`
+    ``product``
+        An instance of :model:`products.Product`
+    ``review_form``
+        An instance of :form:`reviews.ReviewForm`
 
     **Template**
 
-    :template:`products/all_products.html`
+    :template:`reviews/edit_review.html`
 
     """
-    product = Product.objects.filter(id=product_id)
-    reviews = Review.objects.filter(product=product)
+    review = get_object_or_404(Review, pk=review_id)
+    product = get_object_or_404(Product, pk=product_id)
+    review_form = ReviewForm(instance=review)
 
-    context = {
-        'reviews': reviews,
-    }
+    if request.method == "POST":
+        review_form = ReviewForm(data=request.POST or None, instance=review)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.product = product
+            review.save()
+            messages.success(request, 'Review updated!')
+            return redirect("product_detail", product_id)
+        else:
+            messages.error(request, 'Error updating review!')
+    return render(request,
+            "reviews/edit_review.html",
+            {"review": review,
+            "product": product,
+            "review_form": review_form})
 
-    return render(request, template, context)
+
+def delete_review(request, product_id, review_id):
+    """
+    Delete a review
+    """
+    review = get_object_or_404(Review, pk=review_id)
+    product = get_object_or_404(Product, pk=product_id)
+
+    if review.review_author == request.user:
+        review.delete()
+        messages.success(request, 'Your review has been deleted!')
+    else:
+        messages.error(request, 'You can only delete your own reviews!')
+
+    return redirect('product_detail', product_id)

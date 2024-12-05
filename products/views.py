@@ -107,6 +107,8 @@ def product_detail(request, product_id):
     """
     product = get_object_or_404(Product, pk=product_id)
     reviews = Review.objects.filter(product=product)
+    review_authors = list(reviews.values_list(
+        "review_author__username", flat="True"))
 
     if request.user.is_authenticated:
         # Get profile, wishlist and order if user is authenticated
@@ -144,6 +146,7 @@ def product_detail(request, product_id):
          "wishlist": wishlist,
          "reviews": reviews,
          "review_form": review_form,
+         "review_authors": review_authors,
          "orders": orders}
     )
 

@@ -107,13 +107,22 @@
                     {% for review in reviews %}
                         <div class="my-4">
                             <h6>{{ review.review_title }}</h6>
-                            <p>{{ review.review_content }}</p>
+                            <p id="review{{ review.id }}">{{ review.review_content }}</p>
                             <p><i class="fas fa-star rating-icon"></i>&nbsp {{ review.product_rating }} / 5</p>
                             <p class="text-muted d-inline small">by {{ review.review_author }} on {{ review.created_on|date:'d M Y' }}</p>
                             {% if review.review_author == request.user %}
                                 <small class="">
-                                    <a href="#" class="review-link text-decoration-none">Edit</a> |
-                                    <a href="#" class="text-danger text-decoration-none" id="">Delete</a>
+                                    <a href="{% url 'edit_review' product.id review.id %}"
+                                       class="review-link border-0 bg-white" 
+                                       id="edit-button" 
+                                       review_id="{{ review.id }}"
+                                       product_id="{{ product.id }}">Edit
+                                    </a> |
+                                    <a href="{% url 'delete_review' product.id review.id %}" id="delete-button" 
+                                            class="text-danger border-0"
+                                            review_id="{{ review.id }}"
+                                            product_id="{{ product.id }}">Delete
+                                    </a>
                                 </small>
                             {% endif %}
                         </div>
@@ -122,18 +131,22 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <!-- Check that user is authenticated -->
                     {% if request.user.is_authenticated %}
-                        <!-- Check that they have previously purchased the product -->
-                        {% if product.name in orders %}
-                        <form method="POST" class="form mb-2" enctype="multipart/form-data">
-                            <h5>Let us know what think!</h5>
-                            <br>
-                            {% csrf_token %}
-                            {{ review_form | crispy }}
-                            <button class="btn button-paper mt-3" type="submit">Submit</button>
-                        </form>
+                        {% if request.user.username not in review_authors %}
+                            {% if product.name in orders %}
+                                <form method="POST" class="form mb-2" id="review-form" enctype="multipart/form-data">
+                                    <h5>Let us know what think!</h5>
+                                    <br>
+                                    {% csrf_token %}
+                                    {{ review_form | crispy }}
+                                    <button class="btn button-paper mt-3" id="submit-button" type="submit">Submit</button>
+                                </form>
+                            {% endif %}
+                        {% else %}
+                            <h6>Thank You</h6>
+                            <p>You have already reviewed this product.</p>
                         {% endif %}
                     {% else %}
-                        <p>Please <a href="{% url 'account_login' %}">login</a> to review products</p>
+                        <p>Please <a href="{% url 'account_login' %}">login</a>to review this product.</p>
                     {% endif %}
                 </div>
             </div>
@@ -161,9 +174,35 @@
             </div>
         </div>
     </div>
+
+    <!-- Delete review modal -->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure that you want to delete this review?
+                        This action cannot be undone.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
     {% include 'products/includes/quantity_input_script.html' %}
+    <script src="{% static 'reviews/js/reviews.js' %}"></script>
+
+
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container edit-container">
+    <form method="POST" class="form mb-2" enctype="multipart/form-data">
+        <h5>You are editing your review for <a href="{% url 'product_detail' product.id %}" class="text-decoration-none ">{{ product.name }}</a></h5>
+        <br>
+        {% csrf_token %}
+        {{ review_form | crispy }}
+        <button class="btn button-paper mt-3" id="submit-review" type="submit">Submit</button>
+    </form>
+</div>
+
+
+{% endblock %}
