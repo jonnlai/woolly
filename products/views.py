@@ -133,6 +133,7 @@ def product_detail(request, product_id):
             review.product = product
             review.save()
             messages.success(request, 'Your review has been added')
+            return redirect('product_detail', product_id)
         else:
             messages.error(request, 'Unable to save your review. \
                 Please try again.')
