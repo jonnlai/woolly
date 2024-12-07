@@ -37,7 +37,8 @@
                 {% endif %}
                 <!-- Product rating -->
                 {% if product.avg_rating %}
-                    <div class="d-inline"><i class="fas fa-star rating-icon"></i>&nbsp {{ product.avg_rating }} / 5 </div>
+                    <div class="d-inline"><i class="fas fa-star rating-icon"></i>&nbsp {{ product.avg_rating|floatformat:1 }} / 5 </div>
+                    <br>
                 {% else %}
                     <div class="small text-muted">This product has not been reviewed yet</div>
                 {% endif %}
@@ -112,29 +113,34 @@
             <div class="row">
                 <div class="col-12 col-md-6 text-center">
                     <h5 class="text-center pt-3">Product reviews</h5>
-                    {% for review in reviews %}
-                        <div class="my-4 px-5">
-                            <div class="pb-3">
-                                <h6 class="d-inline">{{ review.review_title }} &nbsp &nbsp</h6>
-                                <p class="d-inline"><i class="fas fa-star rating-icon"></i>&nbsp {{ review.product_rating }} / 5</p> 
+                    <br>
+                    {% if reviews %}
+                        {% for review in reviews %}
+                            <div class="my-4 px-5">
+                                <div class="pb-3">
+                                    <h6 class="d-inline">{{ review.review_title }} &nbsp &nbsp</h6>
+                                    <p class="d-inline"><i class="fas fa-star rating-icon"></i>&nbsp {{ review.product_rating }} / 5</p> 
+                                </div>
+                                <p>{{ review.review_content }}</p>
+                                <p class="text-muted d-inline small">by {{ review.review_author }} on {{ review.created_on|date:'d M Y' }}</p>
+                                {% if review.review_author == request.user %}
+                                    <small class="">
+                                        <a href="{% url 'edit_review' product.id review.id %}"
+                                        class="review-link border-0 bg-white">Edit
+                                        </a> |
+                                        <button id="delete-button" 
+                                                class="text-danger border-0"
+                                                review_id="{{ review.id }}"
+                                                product_id="{{ product.id }}">Delete
+                                        </button>
+                                    </small>
+                                {% endif %}
                             </div>
-                            <p>{{ review.review_content }}</p>
-                            <p class="text-muted d-inline small">by {{ review.review_author }} on {{ review.created_on|date:'d M Y' }}</p>
-                            {% if review.review_author == request.user %}
-                                <small class="">
-                                    <a href="{% url 'edit_review' product.id review.id %}"
-                                       class="review-link border-0 bg-white">Edit
-                                    </a> |
-                                    <button id="delete-button" 
-                                            class="text-danger border-0"
-                                            review_id="{{ review.id }}"
-                                            product_id="{{ product.id }}">Delete
-                                    </button>
-                                </small>
-                            {% endif %}
-                        </div>
-                        <hr class="w-50 m-auto">
-                    {% endfor %}
+                            <hr class="w-50 m-auto">
+                        {% endfor %}
+                    {% else %}
+                        <p>This product has not been reviewed yet.</p>
+                    {% endif %}
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <h5 class="text-center pt-3">Let us know what think!</h5>
@@ -152,6 +158,8 @@
                                         <button class="btn button-paper mt-3" id="submit-button" type="submit">Submit</button>
                                     </form>
                                 </div>
+                            {% else %}
+                                <p class="text-center">Thinking of buying this product? Once you have made and received your purchase, please let us know what you think!</p>
                             {% endif %}
                         <!-- Message if the user has already reviewed the product -->
                         {% else %}

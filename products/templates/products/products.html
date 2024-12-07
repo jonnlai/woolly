@@ -92,7 +92,7 @@
                                     {% endif %}
                                     <!-- Average rating -->
                                     {% if product.avg_rating %}
-                                        <small class="text-muted"><i class="fas fa-star rating-icon"></i>&nbsp {{ product.avg_rating }} / 5 </small>
+                                        <small class="text-muted"><i class="fas fa-star rating-icon"></i>&nbsp {{ product.avg_rating|floatformat:1 }} / 5 </small>
                                     {% else %}
                                         <small class="text-muted">No Rating</small>
                                     {% endif %}
