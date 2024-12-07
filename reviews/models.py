@@ -4,6 +4,14 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from products.models import Product
 from django.contrib.auth.models import User
 
+STAR_RATING = (
+    ("", "How many stars would you give this product?"),
+    (1, "★ (Poor)"),
+    (2, "★★ (Fair)"),
+    (3, "★★★ (Average)"),
+    (4, "★★★★ (Good)"),
+    (5, "★★★★★ (Great)")
+)
 
 class Review(models.Model):
     """ 
@@ -21,9 +29,7 @@ class Review(models.Model):
     )
     review_title = models.CharField(max_length=150)
     review_content = models.TextField()
-    product_rating = models.IntegerField(
-        validators=[MinValueValidator(1),
-        MaxValueValidator(5)])
+    product_rating = models.IntegerField(choices=STAR_RATING, default=None)
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
