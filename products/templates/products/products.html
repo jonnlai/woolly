@@ -62,10 +62,11 @@
             {% for product in products %}
                 <div class="col-sm-6 col-lg-4 col-xl-3 mb-5">
                     <div class="card h-100">
+                        <!-- On sale badge -->
                         {% if product.on_sale %}
-                            <!-- On sale badge -->
                             <div class="badge bg-light text-dark">Sale</div>
                         {% endif %}
+                        <!-- Product image -->
                         {% if product.image %}
                             <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -76,20 +77,22 @@
                                     alt="{{ product.name }}">
                             </a>
                         {% endif %}
+                        <!-- Product name -->
                         <div class="card-body pb-1 bg--white">
                             <p class="mb-0">{{ product.name }}</p>
                         </div>
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div class="col">
+                                    <!-- Product price -->
                                     {% if product.on_sale %}
                                         <p class="lead mb-0 pb-1 text-left font-weight-bold"><s>£{{ product.price }}</s> £{{ product.sale_price }}</p>
                                     {% else %}
                                         <p class="lead mb-0 pb-1 text-left font-weight-bold">£{{ product.price }}</p>
                                     {% endif %}
-                                    {% if product.rating %}
-                                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} /
-                                            5</small>
+                                    <!-- Average rating -->
+                                    {% if product.avg_rating %}
+                                        <small class="text-muted"><i class="fas fa-star rating-icon"></i>&nbsp {{ product.avg_rating }} / 5 </small>
                                     {% else %}
                                         <small class="text-muted">No Rating</small>
                                     {% endif %}

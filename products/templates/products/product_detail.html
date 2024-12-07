@@ -28,11 +28,18 @@
                         {% endif %}
                     {% endif %}
                 </div>
+
                 <!-- Price -->
                 {% if product.on_sale %}
                     <p class="lead mb-0 pb-1 text-left font-weight-bold"><s>£{{ product.price }}</s> £{{ product.sale_price }}</p>
                 {% else %}
                     <p class="lead mb-0 pb-1 text-left font-weight-bold">£{{ product.price }}</p>
+                {% endif %}
+                <!-- Product rating -->
+                {% if product.avg_rating %}
+                    <div class="d-inline"><i class="fas fa-star rating-icon"></i>&nbsp {{ product.avg_rating }} / 5 </div>
+                {% else %}
+                    <div class="small text-muted">This product has not been reviewed yet</div>
                 {% endif %}
                 <!-- Check whether the user is authenticated -->
                 {% if request.user.is_authenticated %}
@@ -104,6 +111,7 @@
             <!-- Product rating -->
             <div class="row">
                 <div class="col-12 col-md-6 text-center">
+                    <h5 class="text-center pt-3">Product reviews</h5>
                     {% for review in reviews %}
                         <div class="my-4 px-5">
                             <div class="pb-3">
@@ -125,6 +133,7 @@
                                 </small>
                             {% endif %}
                         </div>
+                        <hr class="w-50 m-auto">
                     {% endfor %}
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">

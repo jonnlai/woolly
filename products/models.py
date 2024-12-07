@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
@@ -33,7 +34,6 @@ class Product(models.Model):
     on_sale = models.BooleanField(default=False)
     sale_price = models.DecimalField(
         decimal_places=2, max_digits=6, null=True, blank=True)
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     in_stock = models.BooleanField(default=True)
     stock_amount = models.IntegerField(default=1, validators=[MinValueValidator(0), MaxValueValidator(500)])
@@ -46,10 +46,34 @@ class Product(models.Model):
     @property
     def product_price(self):
         """
-        Return the product price taking into considaration
+        Return the product price taking into consideration
         whether it is on sale
         """
         if self.on_sale and self.sale_price < self.price:
             return self.sale_price
         else:
             return self.price
+
+
+    @property
+    def avg_rating(self):
+        """ 
+        Get the avarage rating for the selected product
+
+        Related name `product_reviews` from :model:`reviews.Review`
+        """
+        # Check whether the product has been reviewed 
+        # using the related name 'product_reviews'
+        
+        product_reviews = self.product_reviews.all()
+
+        if product_reviews:
+            # How to calculate average taken from
+            # https://stackoverflow.com/questions/28607727/
+            # how-to-calculate-average-in-django?rq=3
+            avg_rating = self.product_reviews.all().aggregate(Avg("product_rating"))
+            avg_rating_num = float(avg_rating['product_rating__avg'])
+            return avg_rating_num
+        else:
+            return False
+
