@@ -113,16 +113,13 @@
                             {% if review.review_author == request.user %}
                                 <small class="">
                                     <a href="{% url 'edit_review' product.id review.id %}"
-                                       class="review-link border-0 bg-white" 
-                                       id="edit-button" 
-                                       review_id="{{ review.id }}"
-                                       product_id="{{ product.id }}">Edit
+                                       class="review-link border-0 bg-white">Edit
                                     </a> |
-                                    <a href="{% url 'delete_review' product.id review.id %}" id="delete-button" 
+                                    <button id="delete-button" 
                                             class="text-danger border-0"
                                             review_id="{{ review.id }}"
                                             product_id="{{ product.id }}">Delete
-                                    </a>
+                                    </button>
                                 </small>
                             {% endif %}
                         </div>
@@ -133,20 +130,23 @@
                     {% if request.user.is_authenticated %}
                         {% if request.user.username not in review_authors %}
                             {% if product.name in orders %}
-                                <form method="POST" class="form mb-2" id="review-form" enctype="multipart/form-data">
-                                    <h5>Let us know what think!</h5>
-                                    <br>
-                                    {% csrf_token %}
-                                    {{ review_form | crispy }}
-                                    <button class="btn button-paper mt-3" id="submit-button" type="submit">Submit</button>
-                                </form>
+                                <div id="review-form">
+                                    <form method="POST" class="form mb-2" enctype="multipart/form-data">
+                                        <h5>Let us know what think!</h5>
+                                        <br>
+                                        {% csrf_token %}
+                                        {{ review_form | crispy }}
+                                        <button class="btn button-paper mt-3" id="submit-button" type="submit">Submit</button>
+                                    </form>
+                                </div>
+
                             {% endif %}
                         {% else %}
                             <h6>Thank You</h6>
                             <p>You have already reviewed this product.</p>
                         {% endif %}
                     {% else %}
-                        <p>Please <a href="{% url 'account_login' %}">login</a>to review this product.</p>
+                        <p>Please <a href="{% url 'account_login' %}">login</a> to review this product.</p>
                     {% endif %}
                 </div>
             </div>
@@ -177,7 +177,7 @@
 
     <!-- Delete review modal -->
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -190,7 +190,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+                        <a id="deleteReviewConfirm" href="" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
@@ -202,7 +202,27 @@
 {% block postloadjs %}
     {{ block.super }}
     {% include 'products/includes/quantity_input_script.html' %}
-    <script src="{% static 'reviews/js/reviews.js' %}"></script>
+    
+    <script type="text/javascript">
+
+        // Inspiration taken from Code Institute's "I think therefore I blog" walkthrough project
+
+        window.onload = function () {
+
+        const deleteReviewModal = new bootstrap.Modal(document.getElementById("deleteReviewModal"));
+        const deleteButton = document.getElementById("delete-button");
+        const deleteReviewConfirm = document.getElementById("deleteReviewConfirm");
+
+        if (deleteButton) {
+            deleteButton.addEventListener("click", (e) => {
+            let reviewId = e.target.getAttribute("review_id");
+            let productId = e.target.getAttribute("product_id");
+            deleteReviewConfirm.href = `${productId}/delete_review/${reviewId}`;
+            deleteReviewModal.show();
+            });
+        }
+        }
+    </script>
 
 
 {% endblock %}

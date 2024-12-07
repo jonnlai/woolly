@@ -41,24 +41,10 @@ def edit_review(request, product_id, review_id):
             return redirect("product_detail", product_id)
         else:
             messages.error(request, 'Error updating review!')
+
+
     return render(request,
             "reviews/edit_review.html",
             {"review": review,
             "product": product,
             "review_form": review_form})
-
-
-def delete_review(request, product_id, review_id):
-    """
-    Delete a review
-    """
-    review = get_object_or_404(Review, pk=review_id)
-    product = get_object_or_404(Product, pk=product_id)
-
-    if review.review_author == request.user:
-        review.delete()
-        messages.success(request, 'Your review has been deleted!')
-    else:
-        messages.error(request, 'You can only delete your own reviews!')
-
-    return redirect('product_detail', product_id)
