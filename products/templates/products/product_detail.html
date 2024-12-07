@@ -105,10 +105,12 @@
             <div class="row">
                 <div class="col-12 col-md-6 text-center">
                     {% for review in reviews %}
-                        <div class="my-4">
-                            <h6>{{ review.review_title }}</h6>
-                            <p id="review{{ review.id }}">{{ review.review_content }}</p>
-                            <p><i class="fas fa-star rating-icon"></i>&nbsp {{ review.product_rating }} / 5</p>
+                        <div class="my-4 px-5">
+                            <div class="pb-3">
+                                <h6 class="d-inline">{{ review.review_title }} &nbsp &nbsp</h6>
+                                <p class="d-inline"><i class="fas fa-star rating-icon"></i>&nbsp {{ review.product_rating }} / 5</p> 
+                            </div>
+                            <p>{{ review.review_content }}</p>
                             <p class="text-muted d-inline small">by {{ review.review_author }} on {{ review.created_on|date:'d M Y' }}</p>
                             {% if review.review_author == request.user %}
                                 <small class="">
@@ -126,25 +128,30 @@
                     {% endfor %}
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
+                    <h5 class="text-center pt-3">Let us know what think!</h5>
+                    <br>
                     <!-- Check that user is authenticated -->
                     {% if request.user.is_authenticated %}
+                        <!-- Check that the user has not review the product yet-->
                         {% if request.user.username not in review_authors %}
+                            <!-- Check that the user has purchased the product -->
                             {% if product.name in orders %}
                                 <div id="review-form">
                                     <form method="POST" class="form mb-2" enctype="multipart/form-data">
-                                        <h5>Let us know what think!</h5>
-                                        <br>
                                         {% csrf_token %}
                                         {{ review_form | crispy }}
                                         <button class="btn button-paper mt-3" id="submit-button" type="submit">Submit</button>
                                     </form>
                                 </div>
-
                             {% endif %}
+                        <!-- Message if the user has already reviewed the product -->
                         {% else %}
-                            <h6>Thank You</h6>
+                        <div class="p-2 text-center">
+                            <h6>Thank You!</h6>
                             <p>You have already reviewed this product.</p>
+                        </div>
                         {% endif %}
+                    <!-- If not logged in, ask the user to login in to review the product-->
                     {% else %}
                         <p>Please <a href="{% url 'account_login' %}">login</a> to review this product.</p>
                     {% endif %}
@@ -175,7 +182,7 @@
         </div>
     </div>
 
-    <!-- Delete review modal -->
+    <!-- Bootstrap delete review modal -->
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog">

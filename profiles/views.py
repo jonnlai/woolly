@@ -7,6 +7,7 @@ from .forms import UserProfileForm
 
 from checkout.models import Order
 from wishlist.models import Wishlist
+from reviews.models import Review
 
 
 @login_required
@@ -33,6 +34,10 @@ def profile(request):
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     wishlist = list(Wishlist.objects.filter(user_profile=profile))
+    form = UserProfileForm(instance=profile)
+    orders = profile.orders.all().order_by('-date')
+    reviews = Review.objects.filter(review_author = request.user)
+
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -44,8 +49,7 @@ def profile(request):
     else:
         form = UserProfileForm(instance=profile)
     
-    form = UserProfileForm(instance=profile)
-    orders = profile.orders.all().order_by('-date')
+
 
 
     template = 'profiles/profile.html'
@@ -53,6 +57,7 @@ def profile(request):
                'form': form,
                'orders': orders,
                'wishlist': wishlist,
+               'reviews': reviews,
                'on_profile_page': True}
 
     return render(request, template, context)

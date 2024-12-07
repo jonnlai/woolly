@@ -14,6 +14,7 @@
                 <hr>
             </div>
         </div>
+        <!-- Display Wishlist if user has added items -->
         <div class="row d-flex justify-content-center">
             {% if wishlist %}
             <div class="col-12 col-lg-6 mb-5">
@@ -37,9 +38,11 @@
                             <div class="col-2 text-right">
                                 <p class="my-0 small text-muted">£{{ item.wished_product.product_price }}</p>
                             </div>
+                            <!-- Go to product detail page to add the item to bag -->
                             <div class="col-4 col-sm-2">
                                 <a href="{% url 'product_detail' item.wished_product.id %}" class="btn button-paper my-2">Buy</a>
                             </div>
+                            <!-- Remove the product from the wishlist -->
                             <div class="col-1 text-left">
                                 <a href="{% url 'wishlist' item.wished_product.id %}" aria-label="remove product from wishlist">
                                     <i class="fa-regular fa-trash-can"></i>
@@ -48,10 +51,33 @@
                         </div>
                     {% endfor %}
                 </div>
-            {% endif %}  
+            {% endif %}
+            <!-- Display user's reviews if any -->
+            {% if reviews %}
+            <div class="col-12 col-lg-6 mb-5">
+                <p class="text-muted">My reviews</p>
+                {% for review in reviews %}
+                <div class="row d-flex align-items-center text-center">
+                    <div class="col-2">
+                        <a href="{% url 'product_detail' review.product.id %}" class="text-decoration-none text-info">{{ review.product }}</a>
+                    </div>
+                    <div class="col-2">
+                        {{ review.created_on|date:'d M Y' }}
+                    </div>
+                    <div class="col-3">
+                        {{ review.review_title|truncatechars:30 }}
+                    </div>
+                    <div class="col-5">
+                        {{ review.review_content|truncatechars:100 }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <hr>
         </div>
-
-        <div class="row">
+        <div class="row mt-2">
+            <!-- Default delivery information -->
             <div class="col-12 col-lg-6 mb-5">
                 <p class="text-muted">Default Delivery Information</p>
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
@@ -60,6 +86,7 @@
                     <button class="btn button-paper text-uppercase float-right mt-3">Update Information</button>
                 </form>
             </div>
+            <!-- Order history -->
             <div class="col-12 col-lg-6 mb-5">
                 <p class="text-muted">Order History</p>
                 <div class="order-history table-responsive">
@@ -86,7 +113,8 @@
                                         <ul class="list-unstyled">
                                             {% for item in order.lineitems.all %}
                                             <li class="small">
-                                                {{ item.product.name }} x{{ item.quantity }}
+                                                {{ item.product.name }} x{{ item.quantity }} - 
+                                                <a href="{% url 'product_detail' item.product.id %}" class="text-decoration-none text-info">Review</a>
                                             </li>
                                             {% endfor %}
                                         </ul>
