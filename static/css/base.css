@@ -302,7 +302,9 @@ header {
 /* Containers */
 
 .login-container,
-.edit-container {
+.edit-container,
+.coupon-container,
+.product-admin-container {
     width: 90%;
     max-width: 800px;
     margin: 5vh auto 13vh;

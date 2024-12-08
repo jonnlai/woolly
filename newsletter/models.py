@@ -1,6 +1,7 @@
 from django.db import models
 from django_summernote.fields import SummernoteTextField
 
+
 class Subscriber(models.Model):
     """
     Stores a single subscriber

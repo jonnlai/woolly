@@ -2,20 +2,23 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-4 coupon-container">
     <div class="row">
         <div class="col text-center mt-3">
-            <h2>Add a Coupon</h2>
+            <h3>Add a Coupon</h3>
             <hr class="w-100 mb-3">
         </div>
     </div>
     <!-- Add a coupon form -->
-    <hr class="my-3">
     <div class="row">
         <form action="{% url 'add_coupon' %}" method="POST">
             {% csrf_token %}
             {{ form | crispy }}
-            <button type="submit" class="btn button-paper" aria-label="add a new coupon code">Add</button>
+            <div class="text-right mt-3">
+                <a href="{% url 'dashboard' %}" class="btn button-paper rounded-0">Cancel</a>
+                <button type="submit" class="btn button-paper" aria-label="add a new coupon code">Add Coupon</button>   
+            </div>
+            
         </form>
     </div>
 </div>
