@@ -59,6 +59,19 @@ header {
     background-color: var(--background);
 }
 
+.footer h6 {
+    color: var(--accent-orange);
+}
+
+.footer i {
+    color: var(--accent-orange);
+    font-size: 26px;
+}
+
+.footer i:hover {
+    cursor: pointer;
+}
+
 /* ----------------------------------------Home */
 
 .products-container {

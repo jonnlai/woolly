@@ -86,6 +86,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'bag.contexts.bag_contents', # makes bag_contents available across all apps
+                'newsletter.contexts.subscriber_form', # makes newsletter form available across all apps
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',

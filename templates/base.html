@@ -64,33 +64,36 @@
       {% endblock %}
     </main>
 
-  <!-- Footer -->
-  <footer class="footer container-fluid pt-3">
-    <div class="row text-center">
-      <h6 class="text-uppercase">Let's stay in touch!</h6>
-      <div class="col-12 text-center">
-        <a href="https://www.facebook.com/" target="_blank" 
-          rel="nofollow"><i class="fab fa-facebook-square text-dark"></i></a>
-        <p class="d-inline">&nbsp &nbsp Say hi to us on Facebook</p>
+    <!-- Footer -->
+    <footer class="footer container-fluid pt-3">
+      <h6 class="text-uppercase text-center">Let's stay in touch!</h6>
+      <div class="row text-center">
+        <!-- Social Media links -->
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-2 mt-2">
+          <a href="https://www.facebook.com/" target="_blank" 
+            rel="nofollow"><i class="fab fa-facebook-square"></i></a>
+          <p class="d-inline">&nbsp &nbsp Say hi to us on Facebook</p>
+          <br class="d-md-none">
+          <hr class="d-md-none">
+        </div>
+        <!-- Newsletter -->
+        <div class="col-12 col-md-6  mt-2 d-flex flex-column align-items-center">
+          <p>Sign up to our newsletter to receive some woolly good news!</p>
+          <form method="POST" action="{% url 'subscribe' %}"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ subscriber_form | crispy }}
+            <div class="my-2">
+                <button class="btn button-paper" type="submit">Subscribe!</button>
+            </div>
+          </form>
+        </div>
+        <!-- Copyright -->
+        <div class="col-12 text-center pt-2">
+          <p><small>Woolly Copyright &copy; 2024.</small></p>
+        </div>
       </div>
-
-      <div class="col-12 mt-2 text-center">
-        <p>Sign up to our newsletter to receive some woolly good news!</p>
-        <form method="POST" action="" id="newsletter-form" class="text-muted form"
-          enctype="multipart/form-data">
-          <div class="my-2">
-              <button class="btn button-paper" type="submit">Subscribe!</button>
-          </div>
-        </form>
-      </div>
-
-      <div class="col-12 text-center">
-        <p><small>Woolly Copyright &copy; 2024.</small></p>
-      </div>
-
-
-    </div>
-  </footer>
+    </footer>
 
     {% block postloadjs %}
       <script type="text/javascript">
