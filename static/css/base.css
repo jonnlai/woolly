@@ -37,6 +37,10 @@ body {
     flex-direction: column;
 }
 
+.text-link {
+    color: var(--accent-orange);
+}
+
 main {
     padding-top: 154px;
     /* Main section to take up any leftover space and to push footer down */

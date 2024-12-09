@@ -6,10 +6,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             <div class="col">
-                <hr>
                 <h2 class="mb-4">My profile</h2>
                 <hr>
             </div>
@@ -17,8 +16,8 @@
         <!-- Display Wishlist if user has added items -->
         <div class="row d-flex justify-content-center">
             {% if wishlist %}
-            <div class="col-12 col-lg-6 mb-5">
-                <p class="text-muted">Wishlist</p>
+            <div class="col-12 col-lg-8 mb-5 mx-5 p-4">
+                <h6 class="mb-4">Wishlist</h6>
                     {% for item in wishlist %}
                         <div class="row d-flex align-items-center text-center">
                             <div class="d-none d-sm-block col-2 mb-1">
@@ -32,7 +31,7 @@
                             </div>
                             <div class="col-5 ">
                                 <p class="my-0"><strong>
-                                    <a href="{% url 'product_detail' item.wished_product.id %}" class="text-decoration-none text-info">{{ item.wished_product.name }}</a>
+                                    <a href="{% url 'product_detail' item.wished_product.id %}" class="text-decoration-none text-link">{{ item.wished_product.name }}</a>
                                 </strong></p>
                             </div>
                             <div class="col-2 text-right">
@@ -52,78 +51,76 @@
                     {% endfor %}
                 </div>
             {% endif %}
-            <!-- Display user's reviews if any -->
-            {% if reviews %}
-            <div class="col-12 col-lg-6 mb-5">
-                <p class="text-muted">My reviews</p>
-                {% for review in reviews %}
-                <div class="row d-flex align-items-center text-center">
-                    <div class="col-2">
-                        <a href="{% url 'product_detail' review.product.id %}" class="text-decoration-none text-info">{{ review.product }}</a>
-                    </div>
-                    <div class="col-2">
-                        {{ review.created_on|date:'d M Y' }}
-                    </div>
-                    <div class="col-3">
-                        {{ review.review_title|truncatechars:30 }}
-                    </div>
-                    <div class="col-5">
-                        {{ review.review_content|truncatechars:100 }}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-            <hr>
         </div>
+        <hr>
         <div class="row mt-2">
             <!-- Default delivery information -->
             <div class="col-12 col-lg-6 mb-5">
-                <p class="text-muted">Default Delivery Information</p>
+                <h6 class="mb-4">Default Delivery Information</h6>
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
                     {{ form|crispy }}
                     <button class="btn button-paper text-uppercase float-right mt-3">Update Information</button>
                 </form>
             </div>
-            <!-- Order history -->
+            <hr class="d-lg-none">
             <div class="col-12 col-lg-6 mb-5">
-                <p class="text-muted">Order History</p>
-                <div class="order-history table-responsive">
-                    <table class="table table-sm table-borderless">
-                        <thead>
-                            <tr>
-                                <th>Order Number</th>
-                                <th>Date</th>
-                                <th>Items</th>
-                                <th>Order Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for order in orders %}
-                                <tr>
-                                    <td>
-                                        <a href="{% url 'order_history' order.order_number %}" 
-                                        title="{{ order.order_number }}">
-                                        {{ order.order_number|truncatechars:6 }}
-                                        </a>
-                                    </td>
-                                    <td> {{ order.date }}</td>
-                                    <td>
-                                        <ul class="list-unstyled">
-                                            {% for item in order.lineitems.all %}
-                                            <li class="small">
-                                                {{ item.product.name }} x{{ item.quantity }} - 
-                                                <a href="{% url 'product_detail' item.product.id %}" class="text-decoration-none text-info">Review</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </td>
-                                    <td>£{{ order.grand_total }}</td>
-                                </tr>
+                <!-- Display user's reviews if any -->
+                <div>
+                    {% if reviews %}
+                        <h6 class="mb-4">My reviews</h6>
+                        {% for review in reviews %}
+                        <div class="row">
+                            <div class="col-4 col-sm-2">
+                                <strong>
+                                    <a href="{% url 'product_detail' review.product.id %}" class="text-decoration-none text-link">{{ review.product }}</a>
+                                </strong>
+                            </div>
+                            <div class="col-4 col-sm-3">
+                                {{ review.created_on|date:'d M Y' }}
+                            </div>
+                            <div class="col-4 col-sm-3">
+                                {{ review.review_title|truncatechars:30 }}
+                            </div>
+                            <div class="d-none d-sm-block col-sm-4">
+                                {{ review.review_content|truncatechars:100 }}
+                            </div>
+                        </div>
+                        <br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <hr>
+                <!-- Order history -->
+                <div>
+                    <h6 class="mb-4">Order History</h6>
+                    {% for order in orders %}
+                    <div class="row">
+                        <div class="col-3">
+                            <strong>
+                                <a href="{% url 'order_history' order.order_number %}" 
+                                title="{{ order.order_number }}"
+                                class="text-link text-decoration-none">
+                                {{ order.order_number|truncatechars:6 }}
+                                </a>
+                            </strong>
+                        </div>
+                        <div class="col-3">
+                            {{ order.date|date:'d M Y' }}
+                        </div>
+                        <div class="col-4">
+                            {% for item in order.lineitems.all %}
+                                <div class="small">
+                                    {{ item.product.name }} x{{ item.quantity }} - 
+                                    <a href="{% url 'product_detail' item.product.id %}" class="text-decoration-none text-link">Review</a>
+                                </div>
                             {% endfor %}
-                        </tbody>
-                    </table>
+                        </div>
+                        <div class="col-2">
+                            £{{ order.grand_total }}
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
