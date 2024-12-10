@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block content %}
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <!-- Product image -->
             <div class="col-12 col-md-6">
-                <div class="image-container my-5 d-flex justify-content-between">
+                <div class="image-container my-5 d-flex">
                     {% if product.image %}
                         <img class="product-img" src="{{ product.image.url }}" alt="{{ product.name }}">
                     {% else %}
@@ -15,20 +15,19 @@
                 </div>
             </div>
             <!-- Product details -->
-            <div class="col-12 col-md-6 mb-5 mt-md-5">
-                <div class="d-flex gap-5">
+            <div class="col-12 col-md-6 mb-5 mt-md-5 d-flex flex-column align-items-center align-items-lg-start">
+                <div class="d-flex gap-5 mb-3">
                     <h4 class="mb-0 d-inline mr-4">{{ product.name }}</h4>
                     <!-- Check whether the user is authenticated -->
                     {% if request.user.is_authenticated %}
-                        <!-- Display add to wishlist symbol if the product is not on the user's wishlist already -->
+                        <!-- Display add to wishlist symbol on small screens and above if the product is not on the user's wishlist already -->
                         {% if product.name not in wishlist %}
-                            <a href="{% url 'wishlist' product.id %}" class="d-inline text-decoration-none wishlist-link" aria-label="add to wishlist">
+                            <a href="{% url 'wishlist' product.id %}" class="d-none d-sm-inline text-decoration-none wishlist-link" aria-label="add to wishlist">
                                 <i aria-hidden="true" class="fa-solid fa-heart fa-xl"></i>
                             </a>
                         {% endif %}
                     {% endif %}
                 </div>
-
                 <!-- Price -->
                 {% if product.on_sale %}
                     <p class="lead mb-0 pb-1 text-left font-weight-bold"><s>£{{ product.price }}</s> £{{ product.sale_price }}</p>
@@ -38,7 +37,6 @@
                 <!-- Product rating -->
                 {% if product.avg_rating %}
                     <div class="d-inline"><i class="fas fa-star rating-icon"></i>&nbsp {{ product.avg_rating|floatformat:1 }} / 5 </div>
-                    <br>
                 {% else %}
                     <div class="small text-muted">This product has not been reviewed yet</div>
                 {% endif %}
@@ -51,6 +49,11 @@
                                 <a href="{% url 'profile' %}" class="text-decoration-none wishlist-link">wishlist</a>
                             </small>
                         </p>
+                    <!-- Display add to wishlist symbol on xs screens if the product is not on the user's wishlist already -->
+                    {% else %}
+                        <a href="{% url 'wishlist' product.id %}" class="d-sm-none text-decoration-none wishlist-link my-3" aria-label="add to wishlist">
+                            <i aria-hidden="true" class="fa-solid fa-heart fa-xl"></i>
+                        </a>
                     {% endif %}
                 {% endif %}
                 <!-- Display admin edit/delete buttons if the user is a superuser -->
@@ -67,12 +70,12 @@
                     {% csrf_token %}
                     <div class="form-row">
                         <!-- Select quantity -->
-                        <div class="col-12">
-                            <p class="mt-3"><strong>Quantity:</strong></p>
-                            <div class="form-group w-50">
+                        <div class="col-12 d-flex flex-column align-items-center align-items-lg-start">
+                            <p class="mt-3"><strong>Select quantity:</strong></p>
+                            <div class="form-group qty-form">
                                 <div class="input-group input-group-{{ product.id }}">
                                     <div class="input-group-prepend">
-                                        <button class="decrement-qty btn btn-black rounded-0 decrement-qty_{{ product.id }}" 
+                                        <button class="decrement-qty btn rounded-0 decrement-qty_{{ product.id }}" 
                                             data-item_id="{{ product.id }}">
                                             <span class="icon">
                                                 <i class="fas fa-minus"></i>
@@ -93,90 +96,93 @@
                                 </div>
                             </div>
                         </div>
+                        <p class="text-muted small text-center mt-1"> {{ product.stock_amount}} left in stock </p>
                         <div class="col-12">
                             <!-- Keep shopping button -->
-                            <a href="{% url 'products' %}" class="btn button-paper mt-5">
+                            <a href="{% url 'products' %}" class="btn button-paper mt-2">
                                 <span class="icon">
                                     <i class="fas fa-chevron-left"></i>
                                 </span>
                                 <span class="text-uppercase">Keep Shopping</span>
                             </a>
                             <!-- Add to bag button -->
-                            <input type="submit" class="btn button-paper text-uppercase mt-5" value="Add to Bag">
+                            <input type="submit"
+                                   class="btn button-paper text-uppercase mt-2 {% if not product.in_stock or product.stock_amount == 0 %}disabled{% endif %}"
+                                   value="Add to Bag">
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 </form>
+                
             </div>
+            
             <hr class="mb-3">
             <!-- Product rating -->
-            <div class="row">
-                <div class="col-12 col-md-6 text-center">
-                    <h5 class="text-center pt-3">Product reviews</h5>
-                    <br>
-                    {% if reviews %}
-                        {% for review in reviews %}
-                            <div class="my-4 px-5">
-                                <div class="pb-3">
-                                    <h6 class="d-inline">{{ review.review_title }} &nbsp &nbsp</h6>
-                                    <p class="d-inline"><i class="fas fa-star rating-icon"></i>&nbsp {{ review.product_rating }} / 5</p> 
-                                </div>
-                                <p>{{ review.review_content }}</p>
-                                <p class="text-muted d-inline small">by {{ review.review_author }} on {{ review.created_on|date:'d M Y' }}</p>
-                                {% if review.review_author == request.user %}
-                                    <small class="">
-                                        <a href="{% url 'edit_review' product.id review.id %}"
-                                        class="review-link border-0 bg-white">Edit
-                                        </a> |
-                                        <button id="delete-button" 
-                                                class="text-danger border-0"
-                                                review_id="{{ review.id }}"
-                                                product_id="{{ product.id }}">Delete
-                                        </button>
-                                    </small>
-                                {% endif %}
+            <div class="col-12 col-md-6 text-center">
+                <h4 class="text-center pt-5">Product reviews</h4>
+                {% if reviews %}
+                    {% for review in reviews %}
+                        <div class="my-4">
+                            <div class="pb-3">
+                                <p class="d-inline"><i class="fas fa-star rating-icon"></i>&nbsp {{ review.product_rating }}/5 - </p> 
+                                <h6 class="d-inline">{{ review.review_title }}</h6>
                             </div>
-                            <hr class="w-50 m-auto">
-                        {% endfor %}
-                    {% else %}
-                        <p>This product has not been reviewed yet.</p>
-                    {% endif %}
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <h5 class="text-center pt-3">Let us know what think!</h5>
-                    <br>
-                    <!-- Check that user is authenticated -->
-                    {% if request.user.is_authenticated %}
-                        <!-- Check that the user has not review the product yet-->
-                        {% if request.user.username not in review_authors %}
-                            <!-- Check that the user has purchased the product -->
-                            {% if product.name in orders %}
-                                <div id="review-form">
-                                    <form method="POST" class="form mb-2" enctype="multipart/form-data">
-                                        {% csrf_token %}
-                                        {{ review_form | crispy }}
-                                        <button class="btn button-paper mt-3" id="submit-button" type="submit">Submit</button>
-                                    </form>
-                                </div>
-                            {% else %}
-                                <p class="text-center">Thinking of buying this product? Once you have made and received your purchase, please let us know what you think!</p>
+                            <p>{{ review.review_content }}</p>
+                            <p class="text-muted d-inline small">by {{ review.review_author }} on {{ review.created_on|date:'d M Y' }}</p>
+                            {% if review.review_author == request.user %}
+                                <small>
+                                    <a href="{% url 'edit_review' product.id review.id %}"
+                                    class="review-link text-decoration-none bg-white">Edit
+                                    </a> |
+                                    <button id="delete-button" 
+                                            class="text-danger border-0 bg-white"
+                                            review_id="{{ review.id }}"
+                                            product_id="{{ product.id }}">Delete
+                                    </button>
+                                </small>
                             {% endif %}
-                        <!-- Message if the user has already reviewed the product -->
-                        {% else %}
-                        <div class="p-2 text-center">
-                            <h6>Thank You!</h6>
-                            <p>You have already reviewed this product.</p>
                         </div>
+                        <hr class="w-50 m-auto">
+                    {% endfor %}
+                {% else %}
+                    <p>This product has not been reviewed yet.</p>
+                {% endif %}
+            </div>
+            <!-- Review form -->
+            <div class="col-12 col-md-6">
+                <h4 class="text-center pt-5">Let us know what think!</h4>
+                <br>
+                <!-- Check that user is authenticated -->
+                {% if request.user.is_authenticated %}
+                    <!-- Check that the user has not review the product yet-->
+                    {% if request.user.username not in review_authors %}
+                        <!-- Check that the user has purchased the product -->
+                        {% if product.name in orders %}
+                            <div id="review-form">
+                                <form method="POST" class="form mb-2" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ review_form | crispy }}
+                                    <button class="btn button-paper mt-3" id="submit-button" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        <!-- Message if the user has not purchased the product yet -->
+                        {% else %}
+                            <p class="text-center">Thinking of buying this product? Once you have made and received your purchase, please let us know what you think!</p>
                         {% endif %}
-                    <!-- If not logged in, ask the user to login in to review the product-->
+                    <!-- Message if the user has already reviewed the product -->
                     {% else %}
-                        <p>Please <a href="{% url 'account_login' %}">login</a> to review this product.</p>
+                    <div class="p-2 text-center">
+                        <h6>Thank You!</h6>
+                        <p>You have already reviewed this product.</p>
+                    </div>
                     {% endif %}
-                </div>
+                <!-- If not logged in, ask the user to login in to review the product-->
+                {% else %}
+                    <p>Please <a href="{% url 'account_login' %}">login</a> to review this product.</p>
+                {% endif %}
             </div>
         </div>
     </div>
-
     <!-- Bootstrap admin delete product modal -->
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
@@ -198,7 +204,6 @@
             </div>
         </div>
     </div>
-
     <!-- Bootstrap delete review modal -->
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

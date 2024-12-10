@@ -272,6 +272,10 @@ header {
     color: var(--accent-orange);
 }
 
+.qty-form {
+    width: 150px;;
+}
+
 /* Product form */
 .product-form-field {
     color: #000;
