@@ -26,13 +26,32 @@ def add_to_bag(request, item_id):
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
+    stock_amount = product.stock_amount
 
     if item_id in list(bag.keys()):
-        bag[item_id] += quantity
-        messages.success(request, f'Updated {product.name} quantity to {bag[item_id]}')
+        # If product in bag check that the total amount requested
+        # is equal to or less than amount in stock
+        if bag[item_id] + quantity <= stock_amount:
+            bag[item_id] += quantity
+            messages.success(
+                request,
+                f'Updated {product.name} quantity to {bag[item_id]}'
+            )
+        else:
+            quantity = quantity
+            messages.error(
+            request,
+            f'Unable to process your request. \
+                Only  {stock_amount} x {product.name} left in stock')          
     else:
-        bag[item_id] = quantity
-        messages.success(request, f'Added {product.name} to your bag')
+        if quantity <= stock_amount:       
+            bag[item_id] = quantity
+            messages.success(request, f'Added {product.name} to your bag')
+        else:
+            messages.error(
+            request,
+            f'Unable to process your request. \
+                Only {stock_amount} x {product.name} left in stock')
 
     request.session['bag'] = bag
 
@@ -46,10 +65,23 @@ def adjust_bag(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     bag = request.session.get('bag', {})
+    stock_amount = product.stock_amount
 
     if quantity > 0:
-        bag[item_id] = quantity
-        messages.success(request, f'Updated {product.name} quantity to {bag[item_id]}')
+        # Check that total amount requested is less than
+        # or equal to the amount in stock
+        if bag[item_id] + quantity <= stock_amount:
+            bag[item_id] += quantity
+            messages.success(
+                request,
+                f'Updated {product.name} quantity to {bag[item_id]}'
+            )
+        else:
+            quantity = quantity
+            messages.error(
+            request,
+            f'Unable to process your request. \
+                Only  {stock_amount} x {product.name} left in stock')
     else:
         bag.pop(item_id)
         messages.success(request, f'Removed {product.name} from your bag')

@@ -96,7 +96,8 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-muted small text-center mt-1"> {{ product.stock_amount}} left in stock </p>
+                        <!-- Stock amount -->
+                        <p class="text-muted small text-center text-lg-start mt-1"> {{ product.stock_amount}} left in stock </p>
                         <div class="col-12">
                             <!-- Keep shopping button -->
                             <a href="{% url 'products' %}" class="btn button-paper mt-2">
@@ -178,7 +179,7 @@
                     {% endif %}
                 <!-- If not logged in, ask the user to login in to review the product-->
                 {% else %}
-                    <p>Please <a href="{% url 'account_login' %}">login</a> to review this product.</p>
+                    <p class="p-2 text-center">Please <a href="{% url 'account_login' %}">login</a> to review this product.</p>
                 {% endif %}
             </div>
         </div>
