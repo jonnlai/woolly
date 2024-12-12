@@ -41,7 +41,7 @@ def subscribe(request):
                 email_subject,
                 content,
                 settings.DEFAULT_FROM_EMAIL,
-                ['recipient'],
+                [recipient],
                 fail_silently=False,
             )
         else:
