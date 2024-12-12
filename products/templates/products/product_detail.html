@@ -113,10 +113,8 @@
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
-                </form>
-                
+                </form>     
             </div>
-            
             <hr class="mb-3">
             <!-- Product rating -->
             <div class="col-12 col-md-6 text-center">
@@ -143,12 +141,13 @@
                                 </small>
                             {% endif %}
                         </div>
-                        <hr class="w-50 m-auto">
+                        {% if not forloop.last %}<hr class="w-50 m-auto">{% endif %}
                     {% endfor %}
                 {% else %}
                     <p>This product has not been reviewed yet.</p>
                 {% endif %}
             </div>
+            <hr class="mb-3 d-md-none">
             <!-- Review form -->
             <div class="col-12 col-md-6">
                 <h4 class="text-center pt-5">Let us know what think!</h4>

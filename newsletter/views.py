@@ -42,6 +42,7 @@ def subscribe(request):
                 content,
                 settings.DEFAULT_FROM_EMAIL,
                 ['recipient'],
+                fail_silently=False,
             )
         else:
             messages.error(

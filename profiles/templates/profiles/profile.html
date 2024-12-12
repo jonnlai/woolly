@@ -95,7 +95,7 @@
                 <div>
                     <h6 class="mb-4">Order History</h6>
                     {% for order in orders %}
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-3">
                             <strong>
                                 <a href="{% url 'order_history' order.order_number %}" 

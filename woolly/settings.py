@@ -232,5 +232,5 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
-
-CSRF_TRUSTED_ORIGINS = ['https://8000-jonnlai-woolly-vy4sesjkc2e.ws.codeinstitute-ide.net']
+CSRF_TRUSTED_ORIGINS = ['https://8000-jonnlai-woolly-vy4sesjkc2e.ws.codeinstitute-ide.net',
+                        'https://woolly-5c60edcc9498.herokuapp.com',]
