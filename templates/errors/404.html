@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row py-4">
+        <div class="col text-center">
+            <h1>Oops! Page not found</h1>
+        </div>
+    </div>
+    <div class="row d-flex align-items-center">
+        <div class="col-6">
+            <img src="{{ MEDIA_URL }}404-sheep.webp" alt="Image of a friendly sheep looking towards the camera">
+        </div>
+        <div class="col-6">
+            <p class="mb-3">Sorry, we cannot seem to find the page that you are looking for!</p>
+            <p>Let me take you somewhere more interesting...</p>
+            <a href="{% url 'home' %}" class="btn button-paper">Home</a>
+            <a href="{% url 'products' %}" class="btn button-paper">Products</a>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
