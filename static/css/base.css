@@ -320,6 +320,12 @@ header {
     border-radius: 5px;
 }
 
+/* 404 page */
+
+.sheep {
+    max-width: 500px;
+}
+
 /* Media Queries */
 
 /* Screens larger than 576px */
