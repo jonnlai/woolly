@@ -322,8 +322,8 @@ header {
 
 /* 404 page */
 
-.sheep {
-    max-width: 500px;
+.sheep-404 {
+    max-width: 100vw;
 }
 
 /* Media Queries */
@@ -333,6 +333,9 @@ header {
     .message-container {
         top: 80px;
         right: 15px;
+    }
+    .sheep-404 {
+        max-width: 500px;
     }
 }
 
@@ -344,6 +347,7 @@ header {
     .product-img {
         width: 400px;
     }
+
 }
 
 /* Screens larger than 992px */
