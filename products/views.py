@@ -36,7 +36,7 @@ def all_products(request):
     on_sale = None
     sort = None
     direction = None
-
+    
     if request.GET:
         # Sort results
         if 'sort' in request.GET:
@@ -45,8 +45,8 @@ def all_products(request):
             if sort_value == 'name':
                 sort_value = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
-                if sort_value == 'category':
-                    sort_value = 'category__name'
+            if sort_value == 'category':
+                sort_value = 'category__name'
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
@@ -254,6 +254,7 @@ def delete_product(request, product_id):
     return redirect(reverse('products'))
 
 
+@login_required
 def delete_review(request, product_id, review_id):
     """
     Delete a review
