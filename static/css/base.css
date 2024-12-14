@@ -37,18 +37,6 @@ body {
     flex-direction: column;
 }
 
-.text-link {
-    color: var(--highlight-clay);
-}
-
-.text-link:hover {
-    color: var(--accent-orange);
-}
-
-.delete-link:hover {
-    color:#860d09 !important;
-}
-
 main {
     padding-top: 154px;
     /* Main section to take up any leftover space and to push footer down */
@@ -66,6 +54,17 @@ header {
     z-index: 9999;
 }
 
+.text-link {
+    color: var(--highlight-clay);
+}
+
+.text-link:hover {
+    color: var(--accent-orange);
+}
+
+.delete-link:hover {
+    color:#860d09 !important;
+}
 /* Footer */
 .footer {
     background-color: var(--background);
@@ -83,18 +82,6 @@ header {
 .footer i:hover {
     cursor: pointer;
 }
-
-/* ----------------------------------------Home */
-
-.products-container {
-    height: 600px;
-    margin: 0;
-    display: grid;
-    grid-template-rows: 500px 100px;
-    grid-template-columns: 1fr 30px 30px 30px 30px 30px 1fr;
-    align-items: center;
-    justify-items: center;
-  }
 
 /* ----------------------------------------Buttons */
 
@@ -208,6 +195,7 @@ header {
     background: url('/media/woollen-blanket.jpg') no-repeat center center/cover;
     min-width: 100%;
     height: 80vh;
+    padding: 0;
 }
 
 .jumbotron-content {
@@ -232,15 +220,36 @@ header {
     z-index: 100;
     cursor:pointer;
     font-size: 60px;
-    color: var(--button);
-  }
-
-  .jumbotron-arrow:hover {
-    transform: translateY(16px);
     color: var(--highlight-clay);
-  }
+}
+
+.jumbotron-arrow:hover {
+    transform: translateY(16px);
+    color: var(--accent-orange);
+}
+
+.about-container {
+    width: 90%;
+    max-width: 800px;
+}
+
+.wool-icon {
+    max-width: 30px;
+    margin: 60px auto;
+}
+
 
 /* ---------------------------------- Products */
+
+.products-container {
+    height: 600px;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 500px 100px;
+    grid-template-columns: 1fr 30px 30px 30px 30px 30px 1fr;
+    align-items: center;
+    justify-items: center;
+  }
 
 .badge {
     position: absolute;
@@ -328,6 +337,7 @@ header {
     border-radius: 5px;
 }
 
+
 /* 404 page */
 
 .sheep-404 {
@@ -343,7 +353,7 @@ header {
         right: 15px;
     }
     .sheep-404 {
-        max-width: 500px;
+        max-width: 300px;
     }
 }
 
@@ -355,13 +365,19 @@ header {
     .product-img {
         width: 400px;
     }
-
+    .wool-icon {
+        max-width: 60px;
+        margin: 80px auto;
+      }
 }
 
 /* Screens larger than 992px */
 @media screen and (min-width: 992px) {
     main {
         padding-top: 178px;
+    }
+    .sheep-404 {
+        max-width: 400px;
     }
 
     /* https://stackoverflow.com/questions/37287153/how-to-get-images-in-bootstraps-card-to-be-the-same-height-width */

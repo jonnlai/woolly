@@ -10,15 +10,42 @@
         <a class="btn button-paper text-uppercase" href="{% url 'products' %}" role="button">View Products</a>
     </div>
     <div class="row text-center">
-
-        <a href="#featured-products" class="text-decoration-none jumbotron-arrow">
+        <a href="#about-us" class="text-decoration-none jumbotron-arrow">
             <i class="fas fa-chevron-down"></i>
         </a>
-
+    </div>
+</div>
+<div class="container about-container" id="about-us">
+    <div class="row d-flex justify-content-center">
+        <div class="col-2 text-center"><img src="{{ MEDIA_URL}}ball-of-wool-1.png" class="wool-icon"  aria-hidden="true" alt="drawn image of a ball of wool"></div>
+        <div class="col-2 text-center"><img src="{{ MEDIA_URL}}ball-of-wool-2.png" class="wool-icon"  aria-hidden="true" alt="drawn image of a ball of wool"></div>
+        <div class="col-2 text-center"><img src="{{ MEDIA_URL}}ball-of-wool-3.png" class="wool-icon"  aria-hidden="true" alt="drawn image of a ball of wool"></div>
+    </div>
+    <h3 class="text-center pb-3">Why choose us?</h3>
+    <p class="text-center">Our Nordic-style woolen products are sustainably and ethically made from 100% natural, renewable wool, which is biodegradable and has a low carbon footprint. 
+       Sourced from responsible farms that prioritize animal welfare, our wool is produced with minimal environmental impact and without harmful chemicals. 
+       Wool's natural insulating properties ensure long-lasting durability, reducing the need for frequent replacements and contributing to a more sustainable, 
+       waste-free lifestyle. Additionally, wool can be recycled and repurposed, supporting a circular economy. By choosing our woolen products, 
+       you are supporting ethical practices, quality craftsmanship, and a greener future. 
+       We are committed to recycling and repurposing wool by transforming offcuts and pre-loved garments into new, high-quality products. 
+       This process helps reduce textile waste and contributes to a more sustainable production cycle.
+    </p>
+    <div class="row text-center">
+        <h5 class="mb-3">Learn more about Wool Sustainability:</h5>
+        <div class="col-12 col-sm-6">
+            <a href="https://iwto.org/sustainability/" target="_blank" rel="nofollow">
+                <img src="{{ MEDIA_URL }}iwto-logo.webp" alt="International Wool Textile Organisation logo">
+            </a>
+        </div>
+        <div class="col-12 col-sm-6">
+            <a href="https://www.woolmark.com/industry/sustainability/recycled-wool-the-ultimate-circular-solution/" target="_blank" rel="nofollow">
+                <img src="{{ MEDIA_URL }}woolmark-logo.png" alt="Woolmark logo">
+            </a>
+        </div>
     </div>
 </div>
 <!-- Featured products -->
-<div class="product-container" id="featured-products">
+<div class="product-container mt-5">
     <h3 class="text-center pt-5">Featured Products</h3>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 d-flex justify-content-center text-center">
         <!-- Display maximum of three featured items -->
