@@ -49,8 +49,9 @@ class Product(models.Model):
         Return the product price taking into consideration
         whether it is on sale
         """
-        if self.on_sale and self.sale_price < self.price:
-            return self.sale_price
+        if self.on_sale and self.sale_price:
+            if self.sale_price < self.price:
+                return self.sale_price
         else:
             return self.price
 
