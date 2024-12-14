@@ -43,7 +43,7 @@
                             </div>
                             <!-- Remove the product from the wishlist -->
                             <div class="col-1 text-left">
-                                <a href="{% url 'wishlist' item.wished_product.id %}" aria-label="remove product from wishlist">
+                                <a href="{% url 'wishlist' item.wished_product.id %}" aria-label="remove product from wishlist" class="text-danger delete-link">
                                     <i class="fa-regular fa-trash-can"></i>
                                 </a>
                             </div>

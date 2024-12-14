@@ -9,10 +9,9 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col">
-                <hr>
+            <div class="col text-center mt-3">
                 <h2 class="logo-font mb-4">Checkout</h2>
-                <hr>
+                <hr class="w-100 mb-3">
             </div>
         </div>
         <div class="row">
@@ -49,31 +48,33 @@
                 {% endfor %}
                 <hr class="my-3">
                 <div class="row text-right">
-                    <div class="col-7 offset-2">
+                    <div class="col-9 col-sm-7 offset-sm-2">
                         <p class="my-0">Order Total:</p>
                         <p class="my-0">Delivery:</p>
                         {% if discount_amount %}
-                            <p class="my-0">Discount ({{ coupon_code }}): </p>
+                            <p class="my-0">Discount (<small>{{ coupon_code }}</small>): </p>
                         {% endif %}
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
                         <p class="my-0">£{{ total | floatformat:2 }}</p>
-                        <p class="my-0">+£{{ delivery | floatformat:2 }}</p>
+                        <p class="my-0">£{{ delivery | floatformat:2 }}</p>
                         {% if discount_amount %}
-                            <p class="my-0 text-danger">-£{{ discount_amount | floatformat:2 }}</p>
+                            <p class="my-0 text-danger">£{{ discount_amount | floatformat:2 }}</p>
                         {% endif %}
                         <p class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></p>
                     </div>
                 </div>
                 <!-- Apply coupon code form -->
                 <hr class="my-3">
-                <div class="row">
+                <div class="row text-center">
                     <form action="{% url 'apply_coupon' %}" method="POST">
                         {% csrf_token %}
                         <label for="coupon-code" class="small">Coupon code</label>
                         <input class="w-50" type="text" name="coupon-code" id="coupon-code">
-                        <button type="submit" class="btn button-paper" aria-label="apply coupon code">Apply</button>
+                        <div class="text-center mt-3 d-sm-inline mx-sm-3">
+                            <button type="submit" class="btn button-paper" aria-label="apply coupon code">Apply</button>
+                        </div>
                     </form>
                     <div class="text-muted mt-2"><small>(Please note, coupons are only valid for orders over £10 + the value of the coupon.)</small></div>
                 </div>
@@ -83,13 +84,13 @@
                 <p class="text-muted">Please fill out the form below to complete your order</p>
                 <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                     {% csrf_token %}
-                    <fieldset class="rounded px-3 mb-5">
+                    <fieldset class="rounded px-2 mb-4">
                         <legend class="fieldset-label small px-2 w-auto">Details</legend>
                         {{ order_form.full_name | as_crispy_field }}
                         {{ order_form.email | as_crispy_field }}
                         {{ order_form.phone_number | as_crispy_field }}
                     </fieldset>
-                    <fieldset class="rounded px-3 mb-5">
+                    <fieldset class="rounded px-2 mb-4">
                         <legend class="fieldset-label small px-2 w-auto">Delivery</legend>
                         {{ order_form.street_address1 | as_crispy_field }}
                         {{ order_form.street_address2 | as_crispy_field }}
@@ -108,7 +109,7 @@
 							{% endif %}
 						</div>
                     </fieldset>
-                    <fieldset class="px-3">
+                    <fieldset class="px-2">
                         <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
                         <!-- A Stripe card element -->
                         <div class="mb-3" id="card-element"></div>
@@ -119,14 +120,14 @@
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
 
-                    <div class="submit-button text-right mt-5 mb-2">                    
-						<a href="{% url 'view_bag' %}" class="btn button-paper rounded-0">
+                    <div class="submit-button text-right mt-3 mb-5">                    
+						<a href="{% url 'view_bag' %}" class="btn button-paper mx-3">
 							<span class="icon">
 								<i class="fas fa-chevron-left"></i>
 							</span>
 							<span class="font-weight-bold">Adjust Bag</span>
 						</a>
-						<button id="submit-button" class="btn button-paper border-dark">
+						<button id="submit-button" class="btn button-paper">
 							<span class="font-weight-bold">Pay <strong>£{{ grand_total|floatformat:2 }}</strong></span>
 						</button>
 					</div>

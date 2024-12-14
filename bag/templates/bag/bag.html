@@ -5,18 +5,17 @@
 {% block content %}
     <div class="container mb-2">
         <div class="row">
-            <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4">Shopping Bag</h2>
-                <hr>
+            <div class="col text-center mt-5">
+                <h2 class="mb-4">Shopping Bag</h2>
+                <hr class="wh-100 mb-3">
             </div>
         </div>
         <div class="row justify-content-md-center">
-            <div class="col col-sm-10 col-md-8">
+            <div class="col col-md-10">
                 {% if bag_items %}
                     <div class="table-responsive rounded">
                         <table class="table table-sm table-borderless">
-                            <thead class="text-black">
+                            <thead>
                                 <tr class="border-bottom mb-2 text-center">
                                     <th scope="col">Product Info</th>
                                     <th scope="col" class="d-none d-sm-inline"></th>
@@ -27,16 +26,15 @@
                             </thead>
                             {% for item in bag_items %}
                                 <tr>
-                                    <td class="p-3 w-50 w-md-25 mt-2 d-none d-sm-flex justify-content-end">
+                                    <td class="p-3 w-50 w-md-25 mt-2 d-none d-sm-flex mx-auto">
                                         {% if item.product.image %}
-                                            <img src="{{ item.product.image.url }}" alt="" class="img-fluid rounded">
+                                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid rounded">
                                         {% else %}
                                             <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
                                         {% endif %}
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0"><a href="{% url 'product_detail' item.item_id %}" class="text-decoration-none text-info"><strong>{{ item.product.name }}</strong></a></p>
-                                        <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                                        <p class="my-0"><a href="{% url 'product_detail' item.item_id %}" class="text-decoration-none text-link"><strong>{{ item.product.name }}</strong></a></p>
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">£{{ item.product.product_price }}</p>
@@ -47,7 +45,7 @@
                                             <div class="form-group input-group-{{ item.item_id }}">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend d-none d-sm-inline">
-                                                        <button class="decrement-qty btn btn-sm btn-black rounded-0 decrement-qty_{{ item.item_id }}" 
+                                                        <button class="decrement-qty btn btn-sm rounded-0 decrement-qty_{{ item.item_id }}" 
                                                         data-item_id="{{ item.item_id }}">
                                                             <span>
                                                                 <i class="fas fa-minus fa-sm"></i>
@@ -58,7 +56,7 @@
                                                         name="quantity" value="{{ item.quantity }}" min="1" max="99" 
                                                         data-item_id="{{ item.item_id }}">
                                                     <div class="input-group-append d-none d-sm-inline">
-                                                        <button class="increment-qty btn btn-sm btn-black rounded-0 increment-qty_{{ item.item_id }}"
+                                                        <button class="increment-qty btn btn-sm rounded-0 increment-qty_{{ item.item_id }}"
                                                         data-item_id="{{ item.item_id }}">
                                                             <span>
                                                                 <i class="fas fa-plus fa-sm"></i>
@@ -68,8 +66,8 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <a class="update-qty text-info text-decoration-none"><small>Update</small></a>
-                                        <a class="remove-item text-danger text-decoration-none" id="remove_{{ item.item_id }}"><small>Remove</small></a> 
+                                        <a class="update-qty text-link text-decoration-none"><small>Update</small></a> |
+                                        <a class="remove-item text-danger text-decoration-none delete-link" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">£{{ item.product.product_price|calc_subtotal:item.quantity }}</p>
@@ -93,13 +91,13 @@
                             </tr>
                             <tr>
                                 <td colspan="5" class="text-end">
-                                    <a href="{% url 'products' %}" class="btn button-paper">
+                                    <a href="{% url 'products' %}" class="btn button-paper mb-3 mx-sm-3">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
                                         </span>
                                         <span class="text-uppercase">Keep Shopping</span>
                                     </a>
-                                    <a href="{% url 'checkout' %}" class="btn button-paper">
+                                    <a href="{% url 'checkout' %}" class="btn button-paper mb-3">
                                         <span class="text-uppercase">Secure Checkout</span>
                                         <span class="icon">
                                             <i class="fas fa-lock"></i>
@@ -110,6 +108,7 @@
                         </table>
                     </div>
                 {% else %}
+                <div class="text-center">
                     <p class="lead mb-5">Your bag is empty.</p>
                     <a href="{% url 'products' %}" class="btn button-paper">
                         <span class="icon">
@@ -117,6 +116,7 @@
                         </span>
                         <span class="text-uppercase">Keep Shopping</span>
                     </a>
+                </div>
                 {% endif %}
             </div>
         </div>

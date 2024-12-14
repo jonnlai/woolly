@@ -38,7 +38,15 @@ body {
 }
 
 .text-link {
+    color: var(--highlight-clay);
+}
+
+.text-link:hover {
     color: var(--accent-orange);
+}
+
+.delete-link:hover {
+    color:#860d09 !important;
 }
 
 main {

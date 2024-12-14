@@ -67,3 +67,15 @@ select option[value=""] {
   margin: 0;
   height: 100%;
 }
+
+.order-conf-title {
+  font-weight: bold;
+}
+
+.order-summary-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 2vh auto 2vh;
+  padding-bottom: 30px;
+  border-radius: 5px;
+}

@@ -2,10 +2,14 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid mt-4">
+<div class="container mt-4">
     <div class="row">
         <div class="col text-center mt-3">
-            <h2 class="logo-font">Products</h2>
+            <h2 class="logo-font">Products
+                {% if 'Clothing' in request.get_full_path %} - Clothing 
+                {% elif 'Homeware' in request.get_full_path %} - Homeware
+                {% elif 'on_sale' in request.get_full_path %} - Sale {% endif %}
+            </h2>
             <hr class="w-100 mb-3">
         </div>
     </div>
@@ -43,7 +47,7 @@
                 </div>
                 <div class="col-12 col-md-6 order-md-first">
                     <p class="text-muted mt-3 text-center">
-                        {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                        {{ products|length }} products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
                     </p>
                 </div>
             </div>
