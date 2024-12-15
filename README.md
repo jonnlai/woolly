@@ -79,12 +79,100 @@ Merriweather was used for the headings due to its readability and warm, and appr
 
 [Back to top ⇧](#woolly)
 
-
 ## Marketing
 
 ## Features
 
 ## Technologies Used
+
+### Languages Used
+
+### Languages used
+
+* [HTML5](https://en.wikipedia.org/wiki/HTML)
+
+* [CSS3](https://en.wikipedia.org/wiki/CSS)
+
+* [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+
+### Libraries and Frameworks used
+
+* [Django](https://www.djangoproject.com/) web framework was used to develop the site.
+   
+* [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) was used throughout the website to improve responsiveness and styling.
+
+* [jQuery](https://jquery.com/) was used as a JavaScript library to help writing less JavaScript code. 
+
+### Packages and Dependencies installed
+
+* [Django Allauth](https://django-allauth.readthedocs.io/en/latest/) was used for user authentication, registration, and account management.
+
+* [Django Crispy Form](https://django-crispy-forms.readthedocs.io/en/latest/) was used to control the rendering of the forms. 
+ 
+* [Gunicorn](https://gunicorn.org/) was used as the Python Web Server Gateway Interface (WSGI) HTTP server. 
+
+* [Django Countries](https://pypi.org/project/django-countries/) was used to provide country choices for use with forms, and a country field for models.
+
+* [Pillow](https://pypi.org/project/Pillow/) was used to add image processing capabilities.
+
+* [Django Storages](https://pypi.org/project/django-storages/) was used to provide a storage backend.
+
+### Database Management
+
+* [SQLite](https://www.sqlite.com/index.html) was used as a single-file database during development.
+
+* [Postgres](https://www.postgresql.org/) object-relational database system was used in production.
+
+### Payment Service
+
+   * [Stripe](https://stripe.com/en-gb-nl) was used to process all the transactions online.
+
+### Cloud Storage
+
+* [Amazon Web Service S3](https://aws.amazon.com/s3/) was used to store all static and media files in production.
+
+### Tools and Programmes
+
+* [Jinja](https://jinja.palletsprojects.com) was used as a templating engine.
+
+* [Git](https://git-scm.com) was used for version control.
+
+* [GitPod](https://gitpod.io/) was used for writing code, committing, and then pushing to GitHub.
+
+* [GitHub](https://github.com) was used to store the code.
+
+* [Heroku](https://www.heroku.com) was used to deploy the website.
+
+* [Tiny PNG](https://tinypng.com) was used to reduce the file size of the images.
+
+* [Pixelied](https://pixelied.com/convert/jpg-converter/jpg-to-webp) was used to convert images to WEBP format.
+
+* [Coolors](https://coolors.co) was used to create a color scheme for the website.
+
+* [Balsamiq](https://balsamiq.com/) was used to create the wireframes.
+
+* [Chrome DevTools](https://developer.chrome.com/docs/devtools/) were used during development process for code review and to test responsiveness.
+
+* [W3C Markup Validator](https://validator.w3.org/) was used to validate the HTML code.
+
+* [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) was used to validate the CSS code.
+
+* [JSHint](https://jshint.com/) was used to validate the site's JavaScript code.
+
+* [autopep8](https://pypi.org/project/autopep8/) was used to automatically validate the site's Python code.
+
+* [flake8](https://flake8.pycqa.org/en/latest/) was used to validate the site's Python code.
+
+* [Favicon.cc](https://www.favicon.cc/) was used to create the site favicon.
+
+* [Google Fonts](https://fonts.google.com) was used to import the fonts used.
+
+* [Font Awesome](https://fontawesome.com) was used to add icons such as social media icons..
+
+[Back to top](#woolly)
+
 
 ## Testing
 
