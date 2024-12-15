@@ -19,7 +19,7 @@
             <div class="col-12 col-lg-8 mb-5 mx-5 p-4">
                 <h6 class="mb-4">Wishlist</h6>
                     {% for item in wishlist %}
-                        <div class="row d-flex align-items-center text-center">
+                        <div class="row d-flex align-items-center">
                             <div class="d-none d-sm-block col-2 mb-1">
                                 <a href="{% url 'product_detail' item.wished_product.id %}">
                                     {% if item.wished_product.image %}
@@ -29,16 +29,19 @@
                                     {% endif %}
                                 </a>
                             </div>
-                            <div class="col-5 ">
-                                <p class="my-0"><strong>
-                                    <a href="{% url 'product_detail' item.wished_product.id %}" class="text-decoration-none text-link">{{ item.wished_product.name }}</a>
-                                </strong></p>
+                            <div class="col-5 fw-bold">
+                                <a href="{% url 'product_detail' item.wished_product.id %}" class="text-decoration-none text-link d-sm-none">
+                                    {{ item.wished_product.name|truncatechars:20 }}
+                                </a>
+                                <a href="{% url 'product_detail' item.wished_product.id %}" class="text-decoration-none text-link d-none d-sm-inline">
+                                    {{ item.wished_product.name }}
+                                </a>
                             </div>
-                            <div class="col-2 text-right">
+                            <div class="col-2">
                                 <p class="my-0 small text-muted">£{{ item.wished_product.product_price }}</p>
                             </div>
                             <!-- Go to product detail page to add the item to bag -->
-                            <div class="col-4 col-sm-2">
+                            <div class="col-4 col-sm-2 text-center">
                                 <a href="{% url 'product_detail' item.wished_product.id %}" class="btn button-paper my-2">Buy</a>
                             </div>
                             <!-- Remove the product from the wishlist -->
@@ -71,10 +74,10 @@
                         <h6 class="mb-4">My reviews</h6>
                         {% for review in reviews %}
                         <div class="row">
-                            <div class="col-4 col-sm-2">
-                                <strong>
-                                    <a href="{% url 'product_detail' review.product.id %}" class="text-decoration-none text-link">{{ review.product }}</a>
-                                </strong>
+                            <div class="col-4 col-sm-2 fw-bold">
+                                <a href="{% url 'product_detail' review.product.id %}" class="text-decoration-none text-link">
+                                    {{ review.product|truncatechars:20 }}
+                                </a>
                             </div>
                             <div class="col-4 col-sm-3">
                                 {{ review.created_on|date:'d M Y' }}
@@ -96,7 +99,7 @@
                     <h6 class="mb-4">Order History</h6>
                     {% for order in orders %}
                     <div class="row mb-3">
-                        <div class="col-3">
+                        <div class="col-4 col-sm-3">
                             <strong>
                                 <a href="{% url 'order_history' order.order_number %}" 
                                 title="{{ order.order_number }}"
@@ -105,10 +108,10 @@
                                 </a>
                             </strong>
                         </div>
-                        <div class="col-3">
+                        <div class="col-4 col-sm-3">
                             {{ order.date|date:'d M Y' }}
                         </div>
-                        <div class="col-4">
+                        <div class="d-none d-sm-inline col-4">
                             {% for item in order.lineitems.all %}
                                 <div class="small">
                                     {{ item.product.name }} x{{ item.quantity }} - 
@@ -116,7 +119,7 @@
                                 </div>
                             {% endfor %}
                         </div>
-                        <div class="col-2">
+                        <div class="col-4 col-sm-2">
                             £{{ order.grand_total }}
                         </div>
                     </div>

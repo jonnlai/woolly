@@ -35,7 +35,14 @@
                         <td class="mr-2">£{{ coupon.discount_amount }}</td>
                         <td class="mr-2">{% if coupon.active %}Yes{% else %}No{% endif %}</td>
                         {% if coupon.active %}
-                            <td class="mr-2"><a href="{% url 'deactivate' coupon.coupon_code %}" class="text-link text-decoration-none">Deactivate</a></td>
+                            <td class="mr-2 d-sm-none">
+                                <a href="{% url 'deactivate' coupon.coupon_code %}" class="text-link text-decoration-none" aria-label="deactivate coupon code">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </a>
+                            </td>
+                            <td class="mr-2 d-none d-sm-inline">
+                                <a href="{% url 'deactivate' coupon.coupon_code %}" class="text-link text-decoration-none">Deactivate</a>
+                            </td>
                         {% endif %}
                 {% endfor %}
             </table>
@@ -81,7 +88,7 @@
                             </a>
                         </td>
                         <td> {{ order.date|date:'d M Y' }}</td>
-                        <td>
+                        <td class="d-none d-sm-inline">
                             <ul class="list-unstyled">
                                 {% for item in order.lineitems.all %}
                                 <li class="small">

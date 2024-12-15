@@ -34,7 +34,12 @@
                                         {% endif %}
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0"><a href="{% url 'product_detail' item.item_id %}" class="text-decoration-none text-link"><strong>{{ item.product.name }}</strong></a></p>
+                                        <p class="my-0">
+                                            <a href="{% url 'product_detail' item.item_id %}" class="text-decoration-none text-link fw-bold d-sm-none">
+                                                {{ item.product.name|truncatechars:20 }}
+                                            </a>
+                                            <a href="{% url 'product_detail' item.item_id %}" class="text-decoration-none text-link fw-bold d-none d-sm-inline">{{ item.product.name}}</a>
+                                        </p>
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">£{{ item.product.product_price }}</p>

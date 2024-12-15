@@ -41,6 +41,7 @@ main {
     padding-top: 154px;
     /* Main section to take up any leftover space and to push footer down */
     flex: 1 0 auto;
+    width: 100vw;
 }
 
 header {
@@ -73,7 +74,9 @@ header {
 .delete-link:hover {
     color:#860d09 !important;
 }
+
 /* Footer */
+
 .footer {
     background-color: var(--background);
 }
@@ -91,7 +94,7 @@ header {
     cursor: pointer;
 }
 
-/* ----------------------------------------Buttons */
+/* Buttons */
 
 /* From https://codepen.io/fabiocberg/pen/wvqpXqg */
 .button-paper {
@@ -127,14 +130,14 @@ header {
     touch-action: manipulation;
   }
   
-  .button-paper:hover {
+.button-paper:hover {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
     transform: translate3d(0, 2px, 0);
-  }
-  
-  .button-paper:focus {
+}
+
+.button-paper:focus {
     box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-  }
+}
 
 /* Bootstrap toasts */
 
@@ -166,31 +169,40 @@ header {
     top: -10px;
     right: 36px;
 }
+
 /* Convenience classes - colors copied from Bootstrap */
 .arrow-primary {
     border-bottom-color: #007bff !important;
 }
+
 .arrow-secondary {
     border-bottom-color: #6c757d !important;
 }
+
 .arrow-success {
     border-bottom-color: #28a745 !important;
 }
+
 .arrow-danger {
     border-bottom-color: #dc3545 !important;
 }
+
 .arrow-warning {
     border-bottom-color: #ffc107 !important;
 }
+
 .arrow-info {
     border-bottom-color: #17a2b8 !important;
 }
+
 .arrow-light {
     border-bottom-color: #f8f9fa !important;
 }
+
 .arrow-dark {
     border-bottom-color: #343a40 !important;
 }
+
 .bag-notification-wrapper {
     height: 100px;
     overflow-x: hidden;
@@ -204,7 +216,6 @@ header {
     height: 80vh;
     position: relative;
     z-index: 1;
-    min-width: 100vw;
 }
 
 .jumbotron-content {
@@ -248,7 +259,7 @@ header {
 }
 
 
-/* ---------------------------------- Products */
+/* Products */
 
 .products-container {
     height: 600px;
@@ -302,6 +313,10 @@ header {
     width: 150px;;
 }
 
+.rating-icon {
+    color: var(--highlight-clay);
+}
+
 /* Product form */
 .product-form-field {
     color: #000;
@@ -329,10 +344,6 @@ header {
     cursor: pointer;
 }
 
-.rating-icon {
-    color: var(--highlight-clay);
-}
-
 /* Containers */
 
 .login-container,
@@ -345,7 +356,6 @@ header {
     padding-bottom: 30px;
     border-radius: 5px;
 }
-
 
 /* 404 page */
 
