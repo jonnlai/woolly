@@ -15,9 +15,9 @@
         </div>
         <!-- Display Wishlist if user has added items -->
         <div class="row d-flex justify-content-center">
-            {% if wishlist %}
             <div class="col-12 col-lg-8 mb-5 mx-5 p-4">
                 <h6 class="mb-4">Wishlist</h6>
+                    {% if wishlist %}
                     {% for item in wishlist %}
                         <div class="row d-flex align-items-center">
                             <div class="d-none d-sm-block col-2 mb-1">
@@ -52,8 +52,11 @@
                             </div>
                         </div>
                     {% endfor %}
-                </div>
-            {% endif %}
+                    {% else %}
+                    <p>There is nothing on your wishlist... yet!</p>
+                    <a class="btn button-paper text-uppercase" href="{% url 'products' %}" role="button">View Products</a>
+                    {% endif %}
+            </div>
         </div>
         <hr>
         <div class="row mt-2">
@@ -70,8 +73,8 @@
             <div class="col-12 col-lg-6 mb-5">
                 <!-- Display user's reviews if any -->
                 <div>
+                    <h6 class="mb-4">My reviews</h6>
                     {% if reviews %}
-                        <h6 class="mb-4">My reviews</h6>
                         {% for review in reviews %}
                         <div class="row">
                             <div class="col-4 col-sm-2 fw-bold">
@@ -91,6 +94,8 @@
                         </div>
                         <br>
                         {% endfor %}
+                    {% else %}
+                        <p>You have not yet reviewed any products.</p>
                     {% endif %}
                 </div>
                 <hr>

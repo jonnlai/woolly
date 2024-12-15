@@ -80,10 +80,6 @@ header {
     background-color: var(--background);
 }
 
-.footer h6 {
-    color: var(--accent-orange);
-}
-
 .footer i {
     color: var(--accent-orange);
     font-size: 26px;
@@ -211,7 +207,7 @@ header {
 /* Home page */
 
 .jumbotron {
-    background: url('/media/woollen-blanket.jpg') no-repeat center center/cover;
+    background: url('/media/woollen-blanket.webp') no-repeat center center/cover;
     height: 80vh;
     position: relative;
     z-index: 1;
@@ -373,6 +369,12 @@ header {
     }
     .sheep-404 {
         max-width: 300px;
+    }
+    .jumbotron {
+        padding: 0;
+    }
+    .profile-menu {
+        right: 100px;
     }
 }
 

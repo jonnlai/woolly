@@ -13,7 +13,7 @@
                 </div>
             </div>
             {% if grand_total and not on_profile_page and not on_checkout_page and not on_dashboard_page %}
-                <p class="bg-white text-black py-1">Your Bag ({{ product_count }}) - <a href="{% url 'view_bag' %}" class="text-decoration-none text-info">View bag</a></p>
+                <p class="bg-white text-black py-1">Your Bag ({{ product_count }}) - <a href="{% url 'view_bag' %}" class="text-decoration-none text-link">View bag</a></p>
                 <div class="bag-notification-wrapper">
                     {% for item in bag_items %}
                         <div class="row">
