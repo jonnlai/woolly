@@ -30,10 +30,10 @@
                 </div>
                 <!-- Price -->
                 {% if product.on_sale %}
-                    <p class="lead mb-0 pb-1 text-left font-weight-bold"><s>£{{ product.price }}</s>
+                    <p class="lead mb-0 pb-1 text-left fw-bold"><s class="fw-normal">£{{ product.price }}</s>
                         {% if product.sale_price %} £{{ product.sale_price }} {% else %} {{ product.price }} {% endif %}</p>
                 {% else %}
-                    <p class="lead mb-0 pb-1 text-left font-weight-bold">£{{ product.price }}</p>
+                    <p class="lead mb-0 pb-1 text-left fw-bold">£{{ product.price }}</p>
                 {% endif %}
                 <!-- Product rating -->
                 {% if product.avg_rating %}
