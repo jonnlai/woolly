@@ -13,8 +13,6 @@
     --background: #F7F6F3;
     --button: #F5F2E1;
     --highlight-clay: #D9A37E;
-    --highlight-gray: #B2A99A;
-    --accent-green: #7D7F47;
     --accent-orange: #C56F3A;
     --text-charcoal: #3C3C3C;
   }
@@ -35,6 +33,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    color: var(--text-charcoal);
 }
 
 main {
@@ -216,12 +215,13 @@ header {
     height: 80vh;
     position: relative;
     z-index: 1;
+    padding-right: 20px;
 }
 
 .jumbotron-content {
     color: var(--button);
     vertical-align: middle;
-    max-width: 80%;  
+    max-width: 80%;
 }
 
 .jumbotron-content > a {
