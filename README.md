@@ -81,6 +81,50 @@ Merriweather was used for the headings due to its readability and warm, and appr
 
 ## Marketing
 
+### Search Engine Optimisation (SEO)
+
+Keywork reseach was carried out using tools such as [Google search](https://www.google.com/) and [Wordtracker](https://www.wordtracker.com/) to identify the most relevant keywords for this e-commerce business. These keywords were then added in the header element't meta tags.
+
+As a result of the research conducted, the following short-tail and long-tail keywords were selected:
+
+* sustainable wool products
+* ethical clothing
+* high-quality Nordic design
+* Nordic wool blanket
+* minimalist wool blanket
+* warm woollen clothing
+* Nordic wool
+* handmade wool clothing
+
+The effectiveness of these keywords would be monitored using tools such as Google Analytics. Based on the results, the keywords would be adjusted to reflect on what keywords have resulted in most traffic to the site.
+
+### Business Model
+
+Woolly is an online Business to Customer (B2C) company that offers high-quality, ethically produced, and sustainable wool products, including blankets, hats, and scarves. Inspired by minimalist Nordic design, the products appeal to eco-conscious consumers seeking timeless, stylish, and durable items.
+
+#### Target Market
+
+Woolly target environmentally aware individuals aged 25-45, primarily in urban areas, who value sustainability, craftsmanship, and design aesthetics. These customers are willing to pay a premium for eco-friendly, ethically sourced products.
+
+#### Value Proposition
+
+* Sustainability: The wool used is sourced from ethical farms that prioritise animal welfare and environmental responsibility.
+* Craftsmanship: Each product is hand-made by skilled artisans, ensuring exceptional quality and attention to detail.
+* Minimalist Design: Woolly's Nordic-inspired aesthetic offers timeless pieces that complement modern, minimalist lifestyles.
+* Transparency: Woolly maintains clear communication about the sourcing, production, and environmental impact of our products.
+
+#### Revenue Model
+
+Woolly operates on a direct-to-consumer (D2C) e-commerce model, generating revenue through online sales.
+
+#### Marketing Strategy 
+
+Woolly leverages social media, influencer partnerships, and content marketing focused on sustainability to reach our target audience. Additionally, Woolly utilises email marketing and possibly in the future retargeting ads to boost conversions.
+
+As an example of Woolly's planned social media presence below a mockup image of Woolly's Facebook page:
+
+![Facebook mockup](assets/readme-files/fb-mockup.png)
+
 ## Features
 
 ## Technologies Used
@@ -419,5 +463,7 @@ Image by <a href="https://pixabay.com/users/skitterphoto-324082/?utm_source=link
 
 <a href="https://www.freepik.com/icon/wool_6651553#fromView=search&page=1&position=44&uuid=26393bc7-6cfc-4541-ba5e-43d6406f8774">Icon by PLANBSTUDIO</a>
 
+Facebook sheep: Photo by <a href="https://unsplash.com/@wildhoney?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">John Fowler</a> on <a href="https://unsplash.com/photos/brown-sheep-on-green-lawn-grasses-at-daytime-jmYJBQXvLNI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
 
 ## Known Bugs
