@@ -43,11 +43,11 @@ main {
 }
 
 .text-link {
-    color: var(--highlight-clay);
+    color: var(--accent-orange);
 }
 
 .text-link:hover {
-    color: var(--accent-orange);
+    color: var(--highlight-clay);
 }
 
 .delete-link:hover {
@@ -90,6 +90,7 @@ header {
 
 .footer i:hover {
     cursor: pointer;
+    color: var(--highlight-clay);
 }
 
 /* Buttons */
@@ -297,12 +298,12 @@ header {
 
 .wishlist-link,
 .review-link {
-    color: var(--highlight-clay);
+    color: var(--accent-orange);
 }
 
 .wishlist-link:hover,
 .review-link:hover {
-    color: var(--accent-orange);
+    color: var(--highlight-clay);
 }
 
 .qty-form {

@@ -10,8 +10,8 @@
         <a class="btn button-paper text-uppercase" href="{% url 'products' %}" role="button">View Products</a>
     </div>
     <div class="row text-center">
-        <a href="#about-us" class="text-decoration-none jumbotron-arrow">
-            <i class="fas fa-chevron-down"></i>
+        <a href="#about-us" class="text-decoration-none jumbotron-arrow" aria-label="scroll down to about us section">
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
         </a>
     </div>
 </div>
@@ -75,7 +75,8 @@
                         <div class="row">
                             <div class="col">
                                 {% if product.on_sale %}
-                                    <p class="lead mb-0 pb-1 text-left font-weight-bold"><s>£{{ product.price }}</s> £{{ product.sale_price }}</p>
+                                    <p class="lead mb-0 pb-1 text-left font-weight-bold"><s>£{{ product.price }}</s>
+                                    {% if product.sale_price %} £{{ product.sale_price }} {% else %} {{ product.price }} {% endif %}</p>
                                 {% else %}
                                     <p class="lead mb-0 pb-1 text-left font-weight-bold">£{{ product.price }}</p>
                                 {% endif %}
