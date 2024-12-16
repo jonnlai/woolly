@@ -20,13 +20,13 @@
     </div>
     <hr>
     <!-- List of coupon codes -->
-    <div class="row mt-5 text-center" id="coupons_list">
-        <h5>Coupon Codes</h5>
+    <div class="row mt-5 text-start" id="coupons_list">
+        <h5 class="text-center">Coupon Codes</h5>
         <div class="col-12">
             <table class="w-100 w-sm-75 w-md-50">
                 <tr>
                     <th class="mr-5"><small class="text-muted">Code:</small></th>
-                    <th class="mr-2"><small class="text-muted">Discount amount:</small></th>
+                    <th class="mr-2"><small class="text-muted">Discount:</small></th>
                     <th class="mr-2"><small class="text-muted">Valid:</small></th>
                 </tr>
                 {% for coupon in coupon_codes %}
@@ -50,8 +50,8 @@
     </div>
     <hr class="d-sm-none">
     <!-- List of all products -->
-    <div class="row mt-5 text-center" id="products_list">
-        <h5>Products</h5>
+    <div class="row mt-5 text-start" id="products_list">
+        <h5 class="text-center">Products</h5>
         <div class="col-12">
             <table class="w-100 w-sm-75 w-md-50">
                 <tr>
@@ -74,10 +74,16 @@
     </div>
     <hr class="d-sm-none">
     <!-- List of all orders -->
-    <div class="row my-5 text-center" id="orders_list">
-        <h5>Orders</h5>
+    <div class="row my-5 text-start" id="orders_list">
+        <h5 class="text-center">Orders</h5>
         <div class="col-12">
             <table class="w-100 w-sm-75 w-md-50">
+                <tr>
+                    <th class="mr-5"><small class="text-muted">Order #:</small></th>
+                    <th class="mr-2"><small class="text-muted">Date:</small></th>
+                    <th class="mr-2"><small class="text-muted">Products:</small></th>
+                    <th class="mr-2"><small class="text-muted">Total:</small></th>
+                </tr>
                 {% for order in orders %}
                     <tr>
                         <td>
@@ -101,6 +107,24 @@
                     </tr>
                 {% endfor %}
             </table>   
+        </div>
+        <!-- List of best selling products -->
+        <div class="row my-5 text-start">
+            <h5 class="text-center">Best selling products</h5>
+            <div class="col-12">
+                <table class="w-100 w-sm-75 w-md-50">
+                    <tr>
+                        <th class="mr-5"><small class="text-muted">Name:</small></th>
+                        <th class="mr-2"><small class="text-muted"># sold</small></th>
+                    </tr>
+                    {% for key, value in sold_amount.items %}
+                    <tr>
+                        <td class="mr-2">{{ key }}</td>
+                        <td class="mr-2">{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>      
+            </div>
         </div>
     </div>
 </div>

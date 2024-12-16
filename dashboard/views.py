@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
 from products.models import Product
 from checkout.models import Order
@@ -31,11 +32,24 @@ def admin_dashboard(request):
     orders = Order.objects.all().order_by('-date')
     coupon_codes = CouponCode.objects.all().order_by('-active')
 
+    # Create a dictionary of product names and amounts each product has sold
+    # How to use dictionary comprehension to achieve that taken from:
+    # https://stackoverflow.com/questions/42198558/
+    # django-query-to-list-the-count-of-field-values-distinctly
+    sold_amount = {
+        i["lineitems__product__name"]: i["count"]
+         for i in Order.objects.values(
+            'lineitems__product__name').annotate(
+                count=Count('lineitems__product__name')).order_by(
+                    "-count")
+    }
+
     context = {
         'products': products,
         'orders': orders,
         'coupon_codes': coupon_codes,
         'on_dashboard_page': True,
+        'sold_amount': sold_amount,
     }
 
     return render(request, 'dashboard/admin_dashboard.html', context)
