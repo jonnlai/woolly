@@ -86,6 +86,7 @@ header {
 .footer i {
     color: var(--accent-orange);
     font-size: 26px;
+    vertical-align: bottom;
 }
 
 .footer i:hover {

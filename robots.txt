@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /bag/
+Sitemap: https://woolly-5c60edcc9498.herokuapp.com/sitemap.xml
