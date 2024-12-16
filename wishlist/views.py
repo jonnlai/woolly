@@ -19,9 +19,6 @@ def wishlist(request, product_id):
     ``profile``
         Profile of the request user
         from :model:`profiles.UserProfile`
-
-    **Template**
-
     """
     product = get_object_or_404(Product, id=product_id)
     profile = request.user.userprofile

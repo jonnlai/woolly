@@ -28,6 +28,7 @@
                     <th class="mr-5"><small class="text-muted">Code:</small></th>
                     <th class="mr-2"><small class="text-muted">Discount:</small></th>
                     <th class="mr-2"><small class="text-muted">Valid:</small></th>
+                    <th class="mr-2"></th>
                 </tr>
                 {% for coupon in coupon_codes %}
                     <tr>
@@ -35,15 +36,16 @@
                         <td class="mr-2">£{{ coupon.discount_amount }}</td>
                         <td class="mr-2">{% if coupon.active %}Yes{% else %}No{% endif %}</td>
                         {% if coupon.active %}
-                            <td class="mr-2 d-sm-none">
-                                <a href="{% url 'deactivate' coupon.coupon_code %}" class="text-link text-decoration-none" aria-label="deactivate coupon code">
+                            <td class="mr-2">
+                                <a href="{% url 'deactivate' coupon.coupon_code %}" class="text-link text-decoration-none d-sm-none" aria-label="deactivate coupon code">
                                     <i class="fa-regular fa-trash-can"></i>
                                 </a>
+                                <a href="{% url 'deactivate' coupon.coupon_code %}" class="text-link text-decoration-none d-none d-sm-inline">Deactivate</a>
                             </td>
-                            <td class="mr-2 d-none d-sm-inline">
-                                <a href="{% url 'deactivate' coupon.coupon_code %}" class="text-link text-decoration-none">Deactivate</a>
-                            </td>
+                            {% else %}
+                            <td class="mr-2"></td>
                         {% endif %}
+                    </tr>
                 {% endfor %}
             </table>
         </div>
@@ -59,6 +61,7 @@
                     <th class="mr-2"><small class="text-muted"># in stock:</small></th>
                     <th class="mr-2"><small class="text-muted">Price:</small></th>
                     <th class="mr-2"><small class="text-muted">On sale?:</small></th>
+                    <th class="mr-2"></th>
                 </tr>
                 {% for product in products %}
                     <tr>
@@ -68,6 +71,7 @@
                         <td class="mr-2">£{{ product.product_price }}</td>
                         <td class="mr-2">{% if product.on_sale %}Yes{% else %}No{% endif %}</td>
                         <td class="mr-2"><a href="{% url 'edit_product' product.id %}" class="text-decoration-none text-link">Edit</a></td>
+                    </tr>
                 {% endfor %}
             </table>
         </div>

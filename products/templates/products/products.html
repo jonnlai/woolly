@@ -21,25 +21,25 @@
                     <div class="sort-select-wrapper">
                         <select id="sort-selector"
                             class="custom-select custom-select-sm mr-5 rounded border {% if current_sorting != 'None_None' %}border-blue{% endif %}">
-                            <option value="reset" aria-label="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>
+                            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>
                                 Sort by...
                             </option>
-                            <option value="price_asc" aria-label="price low to high" {% if current_sorting == 'price_asc' %}selected{% endif %}>
+                            <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>
                                 Price (low to high)
                             </option>
-                            <option value="price_desc" aria-label="price high to low" {% if current_sorting == 'price_desc' %}selected{% endif %}>
+                            <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>
                                 Price (high to low)
                             </option>
-                            <option value="name_asc" aria-label="name ordered A to Z" {% if current_sorting == 'name_asc' %}selected{% endif %}>
+                            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>
                                 Name (A-Z)
                             </option>
-                            <option value="name_desc" aria-label="name ordered Z to A" {% if current_sorting == 'name_desc' %}selected{% endif %}>
+                            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>
                                 Name (Z-A)
                             </option>
-                            <option value="category_asc" aria-label="category ordered A to Z" {% if current_sorting == 'category_asc' %}selected{% endif %}>
+                            <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>
                                 Category (A-Z)
                             </option>
-                            <option value="category_desc" aria-label="category ordered Z to A" {% if current_sorting == 'category_desc' %}selected{% endif %}>
+                            <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>
                                 Category (Z-A)
                             </option>
                         </select>
@@ -91,7 +91,7 @@
                                     {% endif %}
                                     <!-- Average rating -->
                                     {% if product.avg_rating %}
-                                        <small class="text-muted"><i class="fas fa-star rating-icon"></i>&nbsp {{ product.avg_rating|floatformat:1 }} / 5 </small>
+                                        <small class="text-muted"><i class="fas fa-star rating-icon"></i>&nbsp; {{ product.avg_rating|floatformat:1 }} / 5 </small>
                                     {% else %}
                                         <small class="text-muted">No Rating</small>
                                     {% endif %}
@@ -138,6 +138,6 @@
                     currentUrl.searchParams.delete("direction");
                     window.location.replace(currentUrl);
                 }
-            })
+            });
         </script>
 {% endblock %}
