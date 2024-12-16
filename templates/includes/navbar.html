@@ -36,7 +36,7 @@
         </li>
         <!-- Shopping bag -->
         <li class="list-inline-item">
-          <a class="{% if grand_total %}text-link fw-bold{% else %}text-dark{% endif %} nav-link px-1 px-sm-3" href="{% url 'view_bag' %}">
+          <a class="{% if grand_total %}text-link fw-bold{% else %}text-dark{% endif %} nav-link px-1 px-sm-3" href="{% url 'view_bag' %}" aria-label="view shopping bag">
             <div class="text-center">
                 <div class="d-none d-sm-block"><i class="fa-solid fa-cart-shopping fa-lg"></i></div>
                 <p class="my-0">
@@ -61,20 +61,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'home' %} active" aria-current="page{% endif %}" href="{% url 'home' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'products' %}">All Products</a>
+          <a class="nav-link {% if request.resolver_match.url_name == 'products' and '?' not in request.get_full_path %} active" aria-current="page{% endif %}" 
+              href="{% url 'products' %}">All Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'products' %}?category=Clothing">Clothing</a>
+          <a class="nav-link {% if 'Clothing' in request.get_full_path %} active" aria-current="page{% endif %}" href="{% url 'products' %}?category=Clothing">Clothing</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'products' %}?category=Homeware">Homeware</a>
+          <a class="nav-link {% if 'Homeware' in request.get_full_path %} active" aria-current="page{% endif %}" href="{% url 'products' %}?category=Homeware">Homeware</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'products' %}?on_sale">Sale</a>
+          <a class="nav-link {% if 'on_sale' in request.get_full_path %} active" aria-current="page{% endif %}" href="{% url 'products' %}?on_sale">Sale</a>
         </li>
       </ul>
     </div>
