@@ -97,7 +97,7 @@ You can visit the deployed site [here](https://woolly-5c60edcc9498.herokuapp.com
 
 ## Code Validation
 
-The [W3C Markup Validator](https://validator.w3.org/), [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) and [JSHint](https://jshint.com/) were used to validate the HTML, CSS and JS code to ensure that the project meets the current Web Standards and is free from any unintended syntax errors and mistakes that could cause issues with accessibility and usability.
+The [W3C Markup Validator](https://validator.w3.org/), [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) and [JSHint](https://jshint.com/) were used to validate the HTML, CSS and JS code to ensure that the project meets the current Web Standards and is free from any unintended syntax errors and mistakes that could cause issues with accessibility and usability. [autopep8](https://pypi.org/project/autopep8/), [Flake8](https://flake8.pycqa.org/en/latest/) and [CI Python Linter](https://pep8ci.herokuapp.com/#) were used to validate the Python code.
 
 ### HTML
 
@@ -136,6 +136,20 @@ Several whitespace and indentation errors as well as errors regarding unused imp
 
 ## Performance and Accessibility
 
+Chrome DevTool Lighthouse was used to assess the project's performance and accessibility. The reports confirmed that the page performs well and is accessible. The recommendations relating to Best Practice noted that, because of AWS and Stripe, the site is using third party cookies, which lowers the Best Practices score. Some of the recommendation to improve Performace relate to AWS and Stripe and render-blocking resources. 
+
+| Page tested       | Report                                                                                |
+| ---               | ---                                                                                   |
+| Home              | ![Home](assets/readme-files/testing/lighthouse/lh-home.png)                           |
+| Products          | ![Products](assets/readme-files/testing/lighthouse/lh-products.png)                   |
+| Product detail    | ![Product detail](assets/readme-files/testing/lighthouse/lh-product-detail.png)       |
+| Shopping bag      | ![Bag](assets/readme-files/testing/lighthouse/lh-bag.png)                             |
+| Checkout          | ![Checkout](assets/readme-files/testing/lighthouse/lh-checkout.png)                   |
+| Checkout success  | ![Checkout success](assets/readme-files/testing/lighthouse/lh-checkout-success.png)   |
+| Profile           | ![Profile](assets/readme-files/testing/lighthouse/lh-profile.png)                     |
+| Admin Dashboard   | ![Dashboard](assets/readme-files/testing/lighthouse/lh-dashboard.png)                 |
+
+
 ## Responsiveness
 
 
@@ -143,18 +157,71 @@ Several whitespace and indentation errors as well as errors regarding unused imp
 
 ## Manual Testing
 
-    | Page          | Feedback                                                                      |
-    | ---           | ---                                                                           |
-    | Home          |       |
-    | Products      |       |
-    | Product detail|       |
-    | Profile       |       |
-    | Bag           |       |
-    | Checkout      |       |
-    | 404           |       |
-    | Dashboard     |       |
-    | Add Product   |       |
-    | Edit Product  |       |
+#### Browser compatibility
+
+| Browser          | Outcome                                                  | Pass/Fail |
+| ---              | ---                                                      | ---       |
+| Google Chrome    | No appearance, responsiveness nor functionality issues.  | Pass      |
+| Mozilla Firefox  | No appearance, responsiveness nor functionality issues.  | Pass      |
+| Microsoft Edge   | No appearance, responsiveness nor functionality issues.  | Pass      |
+| Samsung Internet | No appearance, responsiveness nor functionality issues.  | Pass      |
+
+#### Device compatibility
+
+| Device                 | Outcome                                                 | Pass/Fail |
+| ---------------------- | ------------------------------------------------------- | --------- |
+| Sony Xperia 10 III     | No appearance, responsiveness nor functionality issues. | Pass      |
+| Samsung Galaxy A55     | No appearance, responsiveness nor functionality issues. | Pass      |
+| Lenovo Yoga s730       | No appearance, responsiveness nor functionality issues. | Pass      |
+| Sony VAIO 15"          | No appearance, responsiveness nor functionality issues. | Pass      |
+| Dell P2419H 24" screen | No appearance, responsiveness nor functionality issues. | Pass      |
+| Samsung Galaxy Tab S4  | No appearance, responsiveness nor functionality issues. | Pass      |
+
+#### Common Elements Testing
+
+* **Navigation bar**
+
+    | Feature               | Outcome                                                                                                           | Pass/Fail |
+    | ---                   | ---                                                                                                               | ---       |
+    | Brand name            | Redirects to the home page                                                                                        | Pass      |
+    | Home link             | Redirects to the main page/hikes list. When the page is active, the font colour turns darker.                     | Pass      |
+    | All Products link     | Redirects to the all products page. When active, the link is darker.                                              | Pass      |
+    | Clothing link         | Redirects to the page that displays all products filtered by 'clothing category'. When active, the link is darker.| Pass      |
+    | Homeware link         | Redirects to the page that displays all products filtered by 'homeware category'. When active, the link is darker.| Pass      |
+    | Sale link             | Redirects to the page that displays all products filtered by 'on_sale' field. When active, the link is darker.    | Pass      |
+    | Account dropdown      | The word 'account' is hidden on small screens, icon is always displayed. Dropdown works as expected.              | Pass      |
+    | Logout                | Only displayed when logged in. Redirects to the logout page.                                                      | Pass      |
+    | Login                 | Only displayed when not logged in. Redirects to the login page.                                                   | Pass      |
+    | Register              | Only displayed when not logged in. Redirects to the registration page.                                            | Pass      |
+    | Profile link          | Only displayed to registered users. Takes the user to their own profile page.                                     | Pass      |
+    | Shopping cart link    | Displays the current total. Cart icon is hidden on small screens. Clicking the cart takes the user to their bag.  | Pass      |
+    | Admin Dashboard link  | Only displayed to site admins/superusers. Takes the site admin to the admin dashboard                             | Pass      |
+    | Hamburger menu        | Navigation menu works as expected on smaller devices. Hidden on larger devices.                                   | Pass      |
+    | Search bar            | Search bar is displayed below brand name. Inputting a search term returns a list of relevat products.             | Pass      |
+
+* **Footer**
+
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+    | Facebook icon         | Opens Facebook on a separate tab.                                                                                                     | Pass      |
+    | Privacy Policy        | Opens the privacy policy on a separate tab.                                                                                           | Pass      |
+    | Newsletter sign up    | User is able to input an email address. The email is added to the database and user receives a welcome email and a confirmation toast.| Pass      |
+
+* **Home Page**
+
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+    | View products button  | Clicking the button takes the user to the all products page                                                                           | Pass      |
+    | Chevron               | Clicking the chevron takes the user to the about us section.                                                                          | Pass      |
+    | IWTO logo             | Clicking the logo, open IWTO's website on a new tab.                                                                                  | Pass      |
+    | Woolmark logo         | Clicking the logo, open Woolmarks's website on a new tab.                                                                             | Pass      |
+    | Featured products     | Three on sale products are displayed under the Featured products heading.                                                             | Pass      |
+
+* **Products Page**
+
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+
 
 ## Unit Testing
 
