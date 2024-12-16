@@ -97,6 +97,42 @@ You can visit the deployed site [here](https://woolly-5c60edcc9498.herokuapp.com
 
 ## Code Validation
 
+The [W3C Markup Validator](https://validator.w3.org/), [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) and [JSHint](https://jshint.com/) were used to validate the HTML, CSS and JS code to ensure that the project meets the current Web Standards and is free from any unintended syntax errors and mistakes that could cause issues with accessibility and usability.
+
+### HTML
+
+* W3C Markup Validator highlighted the following errors that were corrected.
+
+| Error                                                                 | Action taken                           |
+| ---                                                                   | ---                                    |
+| ![&nbsp error](assets/readme-files/testing/html-error-nbsp.png)       | The missing semicolon was added        |
+| ![unclosed div](assets/readme-files/testing/profile-unclosed-div.png) | The missing div was added              |
+| ![table rows](assets/readme-files/testing/dashboard-tr.png)           | This missing table rows were added     |
+| ![strong element](assets/readme-files/testing/strong-element.png)     | The strong element was removed         |
+
+### CSS
+
+All CSS files was validated using [W3C CSS Validator](https://jigsaw.w3.org/css-validator/). No error were found.
+
+![CSS validator](assets/readme-files/testing/css-main.png)
+
+### Python
+
+[autopep8](https://pypi.org/project/autopep8/), [Flake8](https://flake8.pycqa.org/en/latest/) and [CI Python Linter](https://pep8ci.herokuapp.com/#) were used throghout development to validate the Python code for PEP8 requirements.
+
+Several whitespace and indentation errors as well as errors regarding unused imports were identified and these were rectified where possible.
+
+* Some issues highlighted by Flake8, some of which are shown below, were ignored as they related to migration files, settings, .env and .vscode files only. The developer is currently studying how to ignore those files when using Flake8 to validate code.
+* As the developer was new to using Flake8, all the Python code was also validated using CI Python Linter to ensure PEP8 compliance. No errors were found, an example of below.
+
+![Flake8](assets/readme-files/testing/flake8.png)
+![CI Python Linter](assets/readme-files/testing/ci-python-linter.png)
+
+### Javascript
+
+* [JSHint](https://jshint.com/) warned about missing semicolons, these were added. JSHint also showed warning about certain features are only available in ES6.
+
+![JSHint](assets/readme-files/testing/js-product-detail.png)
 
 ## Performance and Accessibility
 
@@ -107,6 +143,18 @@ You can visit the deployed site [here](https://woolly-5c60edcc9498.herokuapp.com
 
 ## Manual Testing
 
+    | Page          | Feedback                                                                      |
+    | ---           | ---                                                                           |
+    | Home          |       |
+    | Products      |       |
+    | Product detail|       |
+    | Profile       |       |
+    | Bag           |       |
+    | Checkout      |       |
+    | 404           |       |
+    | Dashboard     |       |
+    | Add Product   |       |
+    | Edit Product  |       |
 
 ## Unit Testing
 
