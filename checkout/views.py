@@ -1,4 +1,10 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render,
+    redirect,
+    reverse,
+    get_object_or_404,
+    HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -47,7 +53,7 @@ def checkout(request):
     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-    
+
     # Get the coupon_code of current session. Comes from coupons.views.py
     # Inspiration taken from https://medium.com/@ayoubennaoui20/
     # integrating-a-coupon-system-into-our-e-commerce-website-700a9e699f2a
@@ -128,7 +134,8 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-        # Attempt to prefill the form with any info the user maintains in their profile
+        # Attempt to prefill the form with any info
+        # the user maintains in their profile
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -163,6 +170,7 @@ def checkout(request):
          }
         )
 
+
 def checkout_success(request, order_number):
     """
     Returns the checkout
@@ -190,9 +198,9 @@ def checkout_success(request, order_number):
             profile_data = {
                 'default_phone_number': order.phone_number,
                 'default_street_address1': order.street_address1,
-                'default_street_address2': order.street_address2,  
+                'default_street_address2': order.street_address2,
                 'default_postcode': order.postcode,
-                'default_town_or_city': order.town_or_city,                              
+                'default_town_or_city': order.town_or_city,
                 'default_country': order.country,
             }
             user_profile_form = UserProfileForm(profile_data, instance=profile)
@@ -211,5 +219,5 @@ def checkout_success(request, order_number):
     return render(
         request,
         'checkout/checkout_success.html',
-        {'order': order,}
+        {'order': order, }
     )

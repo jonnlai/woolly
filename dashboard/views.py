@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
@@ -7,11 +7,12 @@ from products.models import Product
 from checkout.models import Order
 from coupons.models import CouponCode
 
+
 @login_required
 def admin_dashboard(request):
     """
     Admin dashboard to view products and orders.
-    
+
     **Context**
 
     ``orders``
@@ -24,8 +25,10 @@ def admin_dashboard(request):
     :template:`dashboard/admin_dashboard.html`
     """
     if not request.user.is_superuser:
-        messages.error(request,
-        'Sorry, only store owners can access this page')
+        messages.error(
+            request,
+            'Sorry, only store owners can access this page'
+        )
         return redirect('home')
 
     products = Product.objects.all().order_by('name')
@@ -37,11 +40,11 @@ def admin_dashboard(request):
     # https://stackoverflow.com/questions/42198558/
     # django-query-to-list-the-count-of-field-values-distinctly
     sold_amount = {
-        i["lineitems__product__name"]: i["count"]
-         for i in Order.objects.values(
-            'lineitems__product__name').annotate(
-                count=Count('lineitems__product__name')).order_by(
-                    "-count")
+        i[
+            "lineitems__product__name"]: i[
+                "count"] for i in Order.objects.values(
+                'lineitems__product__name').annotate(count=Count(
+                    'lineitems__product__name')).order_by("-count")
     }
 
     context = {

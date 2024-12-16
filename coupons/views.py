@@ -15,7 +15,7 @@ def apply_coupon(request):
     if request.method == 'POST':
         code = request.POST.get('coupon-code')
         try:
-            #Check whether the code is a valid, active code
+            # Check whether the code is a valid, active code
             code = CouponCode.objects.get(coupon_code=code, active=True)
             discount_amount = code.discount_amount
             coupon_code = code.coupon_code
@@ -33,12 +33,14 @@ def apply_coupon(request):
 
 @login_required
 def deactivate_coupon(request, coupon_code):
-    """ 
+    """
     View to allow admin to deactive a coupon
     """
     if not request.user.is_superuser:
-        messages.error(request,
-        'Sorry, only store owners can access this page')
+        messages.error(
+            request,
+            'Sorry, only store owners can access this page'
+        )
         return redirect('home')
 
     try:
@@ -53,30 +55,30 @@ def deactivate_coupon(request, coupon_code):
 
 @login_required
 def add_coupon(request):
-    """ 
+    """
     View to allow admin to create new coupon codes
     """
     if not request.user.is_superuser:
-        messages.error(request,
-        'Sorry, only store owners can access this page')
+        messages.error(
+            request,
+            'Sorry, only store owners can access this page'
+        )
         return redirect('home')
 
     form = CouponForm(data=request.POST or None)
 
     if request.method == 'POST':
         if form.is_valid():
-            added_coupon = form.save()
+            form.save()
             messages.success(request, 'Coupon successfully added.')
             return redirect('dashboard')
         else:
             messages.error(
                 request,
                 'Coupon could not be added. Please try again.')
-        
+
     return render(
         request,
         'coupons/add_coupon.html',
         {'form': form}
     )
-    
-

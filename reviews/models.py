@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 from products.models import Product
 from django.contrib.auth.models import User
@@ -13,8 +12,9 @@ STAR_RATING = (
     (5, "★★★★★ (Great)")
 )
 
+
 class Review(models.Model):
-    """ 
+    """
     Stores a single product review
     """
     product = models.ForeignKey(
@@ -24,8 +24,8 @@ class Review(models.Model):
     )
     review_author = models.ForeignKey(
         User,
-    on_delete=models.CASCADE,
-    related_name='client_reviews'
+        on_delete=models.CASCADE,
+        related_name='client_reviews'
     )
     review_title = models.CharField(max_length=150)
     review_content = models.TextField()

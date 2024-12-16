@@ -2,7 +2,7 @@ from .forms import SubscribeForm
 
 
 def subscriber_form(request):
-    """ 
+    """
     Render subscribe form
     """
 

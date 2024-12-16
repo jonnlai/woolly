@@ -94,3 +94,19 @@ You can visit the deployed site [here](https://woolly-5c60edcc9498.herokuapp.com
     * The avarage rating is displayed on the product detail page and the product list.
 
 [Back to top ⇧](#woolly-testing)
+
+## Code Validation
+
+
+## Performance and Accessibility
+
+## Responsiveness
+
+
+
+
+## Manual Testing
+
+
+## Unit Testing
+

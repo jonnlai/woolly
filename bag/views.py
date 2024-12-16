@@ -1,4 +1,10 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.shortcuts import (
+    render,
+    redirect,
+    reverse,
+    HttpResponse,
+    get_object_or_404,
+)
 from django.contrib import messages
 from products.models import Product
 
@@ -19,7 +25,7 @@ def view_bag(request):
 
 def add_to_bag(request, item_id):
     """
-     Adds a quantity of the specified product to the shopping bag 
+     Adds a quantity of the specified product to the shopping bag
      """
     product = get_object_or_404(Product, pk=item_id)
 
@@ -40,18 +46,18 @@ def add_to_bag(request, item_id):
         else:
             quantity = quantity
             messages.error(
-            request,
-            f'Unable to process your request. \
-                Only  {stock_amount} x {product.name} left in stock')          
+                request,
+                f'Unable to process your request. \
+                    Only  {stock_amount} x {product.name} left in stock')
     else:
-        if quantity <= stock_amount:       
+        if quantity <= stock_amount:
             bag[item_id] = quantity
             messages.success(request, f'Added {product.name} to your bag')
         else:
             messages.error(
-            request,
-            f'Unable to process your request. \
-                Only {stock_amount} x {product.name} left in stock')
+                request,
+                f'Unable to process your request. \
+                    Only {stock_amount} x {product.name} left in stock')
 
     request.session['bag'] = bag
 
@@ -79,9 +85,9 @@ def adjust_bag(request, item_id):
         else:
             quantity = quantity
             messages.error(
-            request,
-            f'Unable to process your request. \
-                Only  {stock_amount} x {product.name} left in stock')
+                request,
+                f'Unable to process your request. \
+                    Only  {stock_amount} x {product.name} left in stock')
     else:
         bag.pop(item_id)
         messages.success(request, f'Removed {product.name} from your bag')

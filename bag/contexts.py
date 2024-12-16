@@ -19,7 +19,7 @@ def bag_contents(request):
     # integrating-a-coupon-system-into-our-e-commerce-website-700a9e699f2a
     discount_amount = request.session.get('discount_amount')
     coupon_code = request.session.get('coupon_code')
-    
+
     for item_id, item_data in bag.items():
         product = get_object_or_404(Product, pk=item_id)
         total += item_data * product.product_price
@@ -33,7 +33,7 @@ def bag_contents(request):
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
-    else: 
+    else:
         delivery = 0
         free_delivery_delta = 0
 
@@ -44,10 +44,9 @@ def bag_contents(request):
 
     # Delete discount_amount and coupon_code
     # if total is less than discount_amount + 10
-    if 'discount_amount' in request.session \
-        and total < discount_amount + 10:
-            del request.session['discount_amount']
-            del request.session['coupon_code']
+    if 'discount_amount' in request.session and total < discount_amount + 10:
+        del request.session['discount_amount']
+        del request.session['coupon_code']
 
     context = {
         'bag_items': bag_items,

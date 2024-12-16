@@ -86,12 +86,12 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                'django.template.context_processors.request',  # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-                'bag.contexts.bag_contents', # makes bag_contents available across all apps
-                'newsletter.contexts.subscriber_form', # makes newsletter form available across all apps
+                'bag.contexts.bag_contents',  # makes bag_contents available across all apps
+                'newsletter.contexts.subscriber_form',  # makes newsletter form available across all apps
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
@@ -204,7 +204,7 @@ if 'USE_AWS' in os.environ:
 
     # Override static and media URLs in production
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/' 
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
 
 # Default primary key field type

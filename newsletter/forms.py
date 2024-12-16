@@ -1,8 +1,9 @@
 from django import forms
 from .models import Subscriber
 
+
 class SubscribeForm(forms.ModelForm):
-    """ 
+    """
     Form class for user to subscribe to the newsletter
     """
     class Meta:

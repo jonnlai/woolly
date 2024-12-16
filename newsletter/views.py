@@ -1,11 +1,9 @@
-from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 
-from .models import Subscriber
 from .forms import SubscribeForm
 
 
@@ -19,7 +17,7 @@ def subscribe(request):
         An instance of of :form:`newsletter.SubscriberForm`
     """
     # Inspiration taken from:
-    # Codemy - https://www.youtube.com/watch?v=xNqnHmXIuzU and 
+    # Codemy - https://www.youtube.com/watch?v=xNqnHmXIuzU and
     # Joshyvibes - https://www.youtube.com/watch?v=LL6qXu8FmVo
     subscribe_form = SubscribeForm(data=request.POST or None)
 
@@ -27,7 +25,7 @@ def subscribe(request):
         if subscribe_form.is_valid():
             subscriber = subscribe_form.save()
             messages.success(
-                request, 
+                request,
                 f"{subscriber.email} has been added! \
                     Check your emails for some woolly good news!"
             )
@@ -35,7 +33,7 @@ def subscribe(request):
             email_subject = 'Welcome to Woolly family!'
             recipient = subscriber.email
             content = render_to_string(
-            'newsletter/confirmation_emails/welcome_email.txt')
+                'newsletter/confirmation_emails/welcome_email.txt')
 
             send_mail(
                 email_subject,

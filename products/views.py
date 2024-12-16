@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
-from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Product, Category
 from .forms import ProductForm
@@ -36,7 +35,7 @@ def all_products(request):
     on_sale = None
     sort = None
     direction = None
-    
+
     if request.GET:
         # Sort results
         if 'sort' in request.GET:
@@ -67,7 +66,8 @@ def all_products(request):
             if not query:
                 messages.error(request, "Please enter search criteria")
                 return redirect(reverse('products'))
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(name__icontains=query) | Q(
+                description__icontains=query)
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -85,7 +85,7 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ 
+    """
     Display an individual :model:`products.Product`
 
     **Context**
@@ -151,6 +151,7 @@ def product_detail(request, product_id):
          "orders": orders}
     )
 
+
 @login_required
 def add_product(request):
     """
@@ -166,8 +167,10 @@ def add_product(request):
     :template:`products/add_product.html`
     """
     if not request.user.is_superuser:
-        messages.error(request,
-            'Sorry, only store owners can access this page')
+        messages.error(
+            request,
+            'Sorry, only store owners can access this page'
+        )
         return redirect(reverse('home'))
     if request.method == 'POST':
         product_form = ProductForm(request.POST, request.FILES)
@@ -205,21 +208,30 @@ def edit_product(request, product_id):
     :template:`products/edit_product.html`
     """
     if not request.user.is_superuser:
-        messages.error(request,
-            'Sorry, only store owners can access this page')
+        messages.error(
+            request,
+            'Sorry, only store owners can access this page'
+        )
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
 
     if request.method == 'POST':
-        product_form = ProductForm(request.POST, request.FILES, instance=product)
+        product_form = ProductForm(
+            request.POST,
+            request.FILES,
+            instance=product
+            )
         if product_form.is_valid():
             product_form.save()
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
-    else:    
+            messages.error(
+                request,
+                'Failed to update product. Please ensure the form is valid.'
+            )
+    else:
         product_form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
 
@@ -243,14 +255,16 @@ def delete_product(request, product_id):
         An instance of :model:`products.Product`
     """
     if not request.user.is_superuser:
-        messages.error(request,
-            'Sorry, only store owners can access this page')
+        messages.error(
+            request,
+            'Sorry, only store owners can access this page'
+        )
         return redirect(reverse('home'))
-    
+
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted!')
-    
+
     return redirect(reverse('products'))
 
 
@@ -260,7 +274,6 @@ def delete_review(request, product_id, review_id):
     Delete a review
     """
     review = get_object_or_404(Review, pk=review_id)
-    product = get_object_or_404(Product, pk=product_id)
 
     if review.review_author == request.user:
         review.delete()

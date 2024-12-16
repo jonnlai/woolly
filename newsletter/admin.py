@@ -9,13 +9,13 @@ class SubscriberAdmin(admin.ModelAdmin):
 
     ordering = ('-date_subscribed',)
 
+
 class NewsletterAdmin(SummernoteModelAdmin):
 
     list_display = ('subject', 'date_created')
     search_fields = ['subject']
-    
-    ordering = ('-date_created',)
 
+    ordering = ('-date_created',)
 
 
 admin.site.register(Subscriber, SubscriberAdmin)

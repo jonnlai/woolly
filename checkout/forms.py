@@ -3,8 +3,8 @@ from .models import Order
 
 
 class OrderForm(forms.ModelForm):
-    """ 
-    Form class for user to input their contact 
+    """
+    Form class for user to input their contact
     details for their order
     """
 
@@ -32,7 +32,7 @@ class OrderForm(forms.ModelForm):
         }
 
         self.fields['full_name'].widget.attrs['autofocus'] = True
-        
+
         for field in self.fields:
             if field != 'country':
                 if self.fields[field].required:

@@ -5,7 +5,7 @@ from products.models import Product
 
 
 class Wishlist(models.Model):
-    """ 
+    """
     Stores a single user's wishlist related to :model:`profiles.UserProfile`
     and :model:`products.Product`
     """
@@ -23,4 +23,3 @@ class Wishlist(models.Model):
     date_added_on = models.DateTimeField(
         auto_now_add=True
     )
-

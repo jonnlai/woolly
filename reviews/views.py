@@ -1,7 +1,5 @@
-from django.shortcuts import render, reverse, redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
 from django.contrib import messages
 
 from .models import Review
@@ -9,6 +7,7 @@ from .forms import ReviewForm
 from products.models import Product
 
 
+@login_required
 def edit_review(request, product_id, review_id):
     """
     Edit a selected instance of :model:`reviews.Review`
@@ -42,9 +41,10 @@ def edit_review(request, product_id, review_id):
         else:
             messages.error(request, 'Error updating review!')
 
-
-    return render(request,
-            "reviews/edit_review.html",
-            {"review": review,
-            "product": product,
-            "review_form": review_form})
+    return render(
+        request,
+        "reviews/edit_review.html",
+        {"review": review,
+         "product": product,
+         "review_form": review_form, }
+    )

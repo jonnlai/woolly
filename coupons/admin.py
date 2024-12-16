@@ -9,4 +9,5 @@ class CouponAdmin(admin.ModelAdmin):
         'active',
     )
 
+
 admin.site.register(CouponCode, CouponAdmin)

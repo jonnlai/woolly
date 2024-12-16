@@ -24,7 +24,11 @@ class Product(models.Model):
     """
     Stores a single product related to :model:`products.Category`
     """
-    category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(
+        'Category',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
     sku = models.CharField(max_length=254, null=True, blank=True)
     description = models.TextField()
@@ -36,13 +40,16 @@ class Product(models.Model):
         decimal_places=2, max_digits=6, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     in_stock = models.BooleanField(default=True)
-    stock_amount = models.IntegerField(default=1, validators=[MinValueValidator(0), MaxValueValidator(500)])
+    stock_amount = models.IntegerField(
+        default=1,
+        validators=[MinValueValidator(0), MaxValueValidator(500)])
 
     def __str__(self):
         return self.name
 
     # How to use property decorator taken from:
-    #https://stackoverflow.com/questions/58558989/what-does-djangos-property-do
+    # https://stackoverflow.com/questions/
+    # 58558989/what-does-djangos-property-do
     @property
     def product_price(self):
         """
@@ -55,26 +62,25 @@ class Product(models.Model):
         else:
             return self.price
 
-
     @property
     def avg_rating(self):
-        """ 
+        """
         Get the avarage rating for the selected product
 
         Related name `product_reviews` from :model:`reviews.Review`
         """
-        # Check whether the product has been reviewed 
+        # Check whether the product has been reviewed
         # using the related name 'product_reviews'
-        
+
         product_reviews = self.product_reviews.all()
 
         if product_reviews:
             # How to calculate average taken from
             # https://stackoverflow.com/questions/28607727/
             # how-to-calculate-average-in-django?rq=3
-            avg_rating = self.product_reviews.all().aggregate(Avg("product_rating"))
+            avg_rating = self.product_reviews.all().aggregate(
+                Avg("product_rating"))
             avg_rating_num = float(avg_rating['product_rating__avg'])
             return avg_rating_num
         else:
             return False
-

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from products.views import Product
 
+
 def index(request):
     """
     Returns the home page.
@@ -23,5 +24,5 @@ def index(request):
         request,
         'home/index.html',
         {"products": products,
-         "featured_products": featured_products,
-        })
+         "featured_products": featured_products, }
+    )

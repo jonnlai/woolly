@@ -36,8 +36,7 @@ def profile(request):
     wishlist = list(Wishlist.objects.filter(user_profile=profile))
     form = UserProfileForm(instance=profile)
     orders = profile.orders.all().order_by('-date')
-    reviews = Review.objects.filter(review_author = request.user)
-
+    reviews = Review.objects.filter(review_author=request.user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -45,12 +44,12 @@ def profile(request):
             form.save()
             messages.success(request, 'Profile updated successfully')
         else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Update failed. Please ensure the form is valid.'
+            )
     else:
         form = UserProfileForm(instance=profile)
-    
-
-
 
     template = 'profiles/profile.html'
     context = {'profile': profile,
@@ -79,15 +78,16 @@ def order_history(request, order_number):
 
     """
     order = get_object_or_404(Order, order_number=order_number)
-    
-    messages.info(request, (
-        f'This is a past confirmation for order number {order_number}. '
-        'A confirmation email was sent on the order date.'
-    ))
+
+    messages.info(
+        request,
+        f'This is a past confirmation for order number {order_number}. \
+            A confirmation email was sent on the order date.'
+    )
 
     return render(
         request,
         'checkout/checkout_success.html',
         {'order': order,
-        'from_profile': True,}
+         'from_profile': True, }
     )
