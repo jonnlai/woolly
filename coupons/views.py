@@ -47,7 +47,7 @@ def deactivate_coupon(request, coupon_code):
         coupon = get_object_or_404(CouponCode, coupon_code=coupon_code)
         coupon.active = False
         coupon.save()
-        messages.success(request, 'This coupon has been deleted.')
+        messages.success(request, 'This coupon has been deactivated.')
     except ObjectDoesNotExist:
         messages.error(request, 'This code does not exist')
     return HttpResponseRedirect(reverse('dashboard'))
