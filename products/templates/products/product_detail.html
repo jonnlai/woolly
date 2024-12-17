@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <!-- Product image -->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6">
                 <div class="image-container my-5 d-flex">
                     {% if product.image %}
                         <img class="product-img" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <!-- Product details -->
-            <div class="col-12 col-md-6 mb-5 mt-md-5 d-flex flex-column align-items-center align-items-lg-start">
+            <div class="col-12 col-lg-6 mb-5 mt-md-5 d-flex flex-column align-items-center align-items-lg-start">
                 <div class="d-flex gap-5 mb-3">
                     <h4 class="mb-0 d-inline mr-4">{{ product.name }}</h4>
                     <!-- Check whether the user is authenticated -->
@@ -146,6 +146,7 @@
                         {% if not forloop.last %}<hr class="w-50 m-auto">{% endif %}
                     {% endfor %}
                 {% else %}
+                    <br>
                     <p>This product has not been reviewed yet.</p>
                 {% endif %}
             </div>
@@ -180,7 +181,7 @@
                     {% endif %}
                 <!-- If not logged in, ask the user to login in to review the product-->
                 {% else %}
-                    <p class="p-2 text-center">Please <a href="{% url 'account_login' %}">login</a> to review this product.</p>
+                    <p class="p-2 text-center">Please <a href="{% url 'account_login' %}" class="text-decoration-none text-link">login</a> to review this product.</p>
                 {% endif %}
             </div>
         </div>
@@ -200,7 +201,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn button-paper" data-bs-dismiss="modal">Cancel</button>
-                        <a id="deleteConfirm" href="{% url 'delete_product' product.id %}" class="btn button-paper">Delete</a>
+                        <a id="deleteConfirm" href="{% url 'delete_product' product.id %}" class="btn button-paper bg-danger text-light">Delete</a>
                     </div>
                 </div>
             </div>
@@ -220,8 +221,8 @@
                         This action cannot be undone.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a id="deleteReviewConfirm" href="" class="btn btn-danger">Delete</a>
+                        <button type="button" class="btn button-paper" data-bs-dismiss="modal">Close</button>
+                        <a id="deleteReviewConfirm" href="" class="btn button-paper bg-danger text-light">Delete</a>
                     </div>
                 </div>
             </div>
