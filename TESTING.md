@@ -6,6 +6,12 @@ You can visit the deployed site [here](https://woolly-5c60edcc9498.herokuapp.com
 
 ## Table of Contents
 
+1. [Testing User Stories](#testing-user-stories)
+2. [Code Validation](#code-validation)
+3. [Performance and Accessibility](#performance-and-accessibility)
+4. [Responsiveness](#responsiveness)
+5. [Manual Testing](#manual-testing)
+6. [Unit Testing](#unit-testing)
 
 ## Testing User Stories
 
@@ -72,7 +78,7 @@ You can visit the deployed site [here](https://woolly-5c60edcc9498.herokuapp.com
 19. As a **customer**, I can **add products to my Wishlist** so that **if I am not ready to purchase an item yet, I can find these products easily when I decide to come back to make a purchase**.
     * Registered users can add products to their wishlist by clicking a heart icon on the product detail page. They view products on their wishlist and remove products from their wishlist through their user profile page. If product is on the users wishlist, this is indicated on the product detail page and the heart icon is hidden.
 
-### Marketing
+### Epic 4 - Marketing
 
 20. As a **customer**, I can **sign up to receive a newsletter** so that **I can receive news and offers via email**.
     * Any customers or potential customers can sign up to receive a newsletter by adding their email address to the newsletter mailing list.
@@ -82,7 +88,7 @@ You can visit the deployed site [here](https://woolly-5c60edcc9498.herokuapp.com
     * There is a link to Facebook in the footer element encouraging the site users to stay in touch with the company through social media.
     * Mockup of the company's Facebook page has been included in the README.md file.
 
-### Rating and Comments
+### Epic 5 - Rating and Comments
 
 22. As a **registered customer**, I can **leave a review of the product** so that **I can share my opinion with other potential buyers**
     * Registered customers who have purchased the product can and are encouraged to leave a review of the product.
@@ -109,6 +115,8 @@ The [W3C Markup Validator](https://validator.w3.org/), [W3C CSS Validator](https
 | ![unclosed div](assets/readme-files/testing/profile-unclosed-div.png) | The missing div was added              |
 | ![table rows](assets/readme-files/testing/dashboard-tr.png)           | This missing table rows were added     |
 | ![strong element](assets/readme-files/testing/strong-element.png)     | The strong element was removed         |
+| ![Duplicate ID](assets/readme-files/testing/checkout-email-error.png) | The issue was caused by having two crispy forms on the same page. The duplicate ids were created by crispy forms. The issue was solved by not using crispy to render the newsletter form which only consisted of an email input field. |
+| ![JS Type attribute](assets/readme-files/testing/html-js-type-attr.png)| This was left unresolved as it is a warning rather than an error and the code comes from the CI boutique ago walkthrough project |
 
 ### CSS
 
@@ -130,9 +138,15 @@ Several whitespace and indentation errors as well as errors regarding unused imp
 
 ### Javascript
 
-* [JSHint](https://jshint.com/) warned about missing semicolons, these were added. JSHint also showed warning about certain features are only available in ES6.
+[JSHint](https://jshint.com/) warned about missing semicolons, these were added. Two undefined variables 'size' were also noted. These removed as they were unnecessary.
 
-![JSHint](assets/readme-files/testing/js-product-detail.png)
+![JSHint size](assets/readme-files/testing/jshint-size.png)
+
+JSHint also highlighted variables that it considered undefined. These variables (Stripe, bootstrap) from head element of the base.html file and therefore these were ignored.
+
+![Stripe variable undefined](assets/readme-files/testing/jshint-stripe.png)
+
+[Back to top ⇧](#woolly-testing)
 
 ## Performance and Accessibility
 
@@ -149,15 +163,17 @@ Chrome DevTool Lighthouse was used to assess the project's performance and acces
 | Profile           | ![Profile](assets/readme-files/testing/lighthouse/lh-profile.png)                     |
 | Admin Dashboard   | ![Dashboard](assets/readme-files/testing/lighthouse/lh-dashboard.png)                 |
 
+[Back to top ⇧](#woolly-testing)
 
 ## Responsiveness
 
+In addition to manual checks, responsiveness was tested further using [Chrome DevTools](https://developer.chrome.com/docs/devtools/) during the development process to test the responsiveness.
 
-
+[Back to top ⇧](#woolly-testing)
 
 ## Manual Testing
 
-#### Browser compatibility
+### Browser compatibility
 
 | Browser          | Outcome                                                  | Pass/Fail |
 | ---              | ---                                                      | ---       |
@@ -166,7 +182,7 @@ Chrome DevTool Lighthouse was used to assess the project's performance and acces
 | Microsoft Edge   | No appearance, responsiveness nor functionality issues.  | Pass      |
 | Samsung Internet | No appearance, responsiveness nor functionality issues.  | Pass      |
 
-#### Device compatibility
+### Device compatibility
 
 | Device                 | Outcome                                                 | Pass/Fail |
 | ---------------------- | ------------------------------------------------------- | --------- |
@@ -177,7 +193,7 @@ Chrome DevTool Lighthouse was used to assess the project's performance and acces
 | Dell P2419H 24" screen | No appearance, responsiveness nor functionality issues. | Pass      |
 | Samsung Galaxy Tab S4  | No appearance, responsiveness nor functionality issues. | Pass      |
 
-#### Common Elements Testing
+### Common Elements Testing
 
 * **Navigation bar**
 
@@ -291,24 +307,44 @@ Chrome DevTool Lighthouse was used to assess the project's performance and acces
     | ---                       | ---                                                                                 | ---       |
     | Shop more products link   | Clicking the link takes the user to the all products page                           | Pass      |
 
-
 * **Profile Page**
 
     | Feature               | Outcome                                                                                                                               | Pass/Fail |
     | ---                   | ---                                                                                                                                   | ---       |
-
+    | Wishlist              | Wishlist is displayed if any producted have been added to the wishlist. If user has not added any products, a link to products is displayed |Pass |
+    | Wishlist - 'Buy' btn  | Clicking 'buy' takes the user to the product detail page.                                                                             | Pass      |
+    | Wishlist - bin icon   | Clicking the icon removes the product from the wishlist. No confirmation modal is available as the user is not deleting anything.     | Pass      |
+    | Wishlist - name link  | Clicking the product name takes the user to the product page.                                                                         | Pass      |
+    | Delivery info form    | The user is able to update their default delivery information. Clicking 'save' stores their information on their profile.             | Pass      |
+    | Reviews               | User's reviews are displayed if they have left any. Otherwise, a text to inform the user they have not reviewed any products is shown | Pass      |
+    | Reviews - name link   | Clicking the name of the product takes the user to the product detail page.                                                           | Pass      |
+    | Order history         | Order history is displayed if the user has bought any products. Otherwise, they are encouraged to view the products.                  | Pass      |
+    | Order history - review link | On larger screens a 'review' link is displayed next to each product purchased. Clicking the link takes the user to the product detail page where they can leave a product review                                                                                                                            | Pass     |
+    | Order history - order number | Clicking the number takes the user to the order confirmation page.                                                              | Pass     |
 
 * **Admin Dashboard**
 
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+    | Add a product button  | Clicking the button takes the superuser to the add product page. An error message is shown if someone else tries to access the page.  | Pass      |
+    | Add coupon code button| Clicking the button takes the superuser to the add coupon page. An error message is shown if someone without admin credential attempts to access the page.                                                                                                                                                       | Pass      |
+    | Deactivate link       | Clicking the 'deactivate' link deactivates the coupon code. No confirmation modal was added as no information is being deleted.       | Pass      |
+    | Products - name link  | Clicking the link takes the user to the product detail page.                                                                          | Pass      |
+    | Products - edit link  | Clicking 'edit' takes the user to the 'edit product' page.                                                                            | Pass      |
+    | Orders - order number | Clicking the order number takes the user to the order confirmation page.                                                              | Pass      |
 
 * **Create a Coupon Page**
 
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+    | Form validation       | The form cannot submitted without coupon code and amount being added.                                                                 | Pass      |
+    | Add button            | Clicking 'add coupon' created a new coupon code.                                                                                      | Pass      |
+    | Cancel button         | Clicking 'cancel' takes the user back to the admin dashboard                                                                          | Pass      |
 
-* **Edit a Coupon Page**
-
-
-
-
+[Back to top ⇧](#woolly-testing)
 
 ## Unit Testing
+
+
+[Back to top ⇧](#woolly-testing)
 
