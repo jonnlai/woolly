@@ -221,6 +221,93 @@ Chrome DevTool Lighthouse was used to assess the project's performance and acces
 
     | Feature               | Outcome                                                                                                                               | Pass/Fail |
     | ---                   | ---                                                                                                                                   | ---       |
+    | Sort function         | Selecting a sort value from the dropdown, orders the products as expected in the requested order                                      | Pass      |
+    | Back to top button    | Clicking the bottom takes the user to the top of the page.                                                                            | Pass      |
+    | Product list          | Products are displayed correctly, depending on the screen size 1-4 products per row.                                                  | Pass      |
+
+* **Product detail Page**
+
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+    | Wishlist icon         | Icon is only displayed if the user is logged in. Clicking the icon add the product to their wishlist and the icon disappears.         | Pass      |
+    | Wishlist link         | Wishlist link is displayed if the product is on the user's wishlist. The link takes the user to their profile page                    | Pass      |
+    | Adjust qty buttons    | Clicking the buttons adjust the quantity as expected. Negative values are shown but they cannot be selected.                          | Pass      |
+    | Adjust qty input      | The quantity input field works as expected. An error message is shown if the user tries to add quantity that is < 0 or > 99.          | Pass      |
+    | Stock amount          | The stock amount is displayed correctly.                                                                                              | Pass      |
+    | Add to bag button     | Clicking the button adds the requested amount in the bag. If the requested amount is above the stock amount an error message is shown. If the product is not in stock or stock amount is zero, the add to bag button is disabled                                                                              | Pass      |
+    | Keeping shopping btn  | Clicking the button takes the user back to the all products page.                                                                     | Pass      |
+    | Reviews               | If there are any reviews, they are displayed below the product detail section. If there are no reviews, that is stated instead.       | Pass      |
+    | Edit review link      | Edit link is displayed below the review if the user is the author of the review. Clicking the link takes them to edit review form     | Pass      |
+    | Delete review link    | Works as the edit review link. Clicking 'delete' opens a modal. Clicking 'delete' on the modal, deletes the review.                   | Pass      |
+    | Product rating        | Product rating is displayed below the price. The rating updates based on the ratings users give.                                      | Pass      |
+    | Review form           | Review form is displayed only if the user is logged in and has purchased the product. If they are not logged in or have not purchased the product, they are advised to login or leave a review should decide to purchase the product.                                                                              | Pass      |
+    | Sale price            | If the product is on sale, the sale price is displayed next to the original price that has been crossed over.                         | Pass      |
+    | Edit product link     | Edit link is displayed if the user is a superuser. Clicking the buttons takes them to edit product form                               | Pass      |
+    | Delete product link    | Works as the edit product link. Clicking 'delete' opens a modal. Clicking 'delete' on the modal, deletes the product.                | Pass      |
+
+* **Add Product Page**
+
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+    | Form validation       | The form cannot be submitted without name, description, price and stock amount added.                                                 | Pass      |
+    | Select image button   | Lets the site admin to add an image                                                                                                   | Pass      |
+    | Cancel button         | Clicking the button takes the admin user back to the admin dashboard.                                                                 | Pass      |
+    | Add product button    | If the form is valid, clicking the button, add the product to the database and displays it on the website.                            | Pass      |
+
+* **Edit Product Page**
+
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+    | Remove image tickbox  | Selecting 'remove', removes the image when the form is submitted. The default no-image image is displayed on the product page.        | Pass      |
+    | Update product button | If the form is valid, clicking the button, updates the database and displays the updated information on the website                   | Pass      |
+    | Cancel button         | Clicking the button takes the admin user back to the admin dashboard.                                                                 | Pass      |
+
+* **Shopping Bag Page**
+
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+    | Adjust qty buttons    | Clicking the buttons adjust the quantity as expected. Negative values are shown but they cannot be selected.                          | Pass      |
+    | Adjust qty input      | The quantity input field works as expected. An error message is shown if the user tries to add quantity that is < 0 or > 99.          | Pass      |
+    | Update qty link       | Clicking the link updates the amount. If the requested amount is above the stock amount an error message is shown.                    | Pass      |
+    | Remove link           | Clicking 'remove' removes the product from the shopping bag.                                                                          | Pass      |
+    | Keeping shopping btn  | Clicking the button takes the user back to the all products page.                                                                     | Pass      |
+    | Secure checkout button| Clicking the button takes the user to the checkout pag.                                                                               | Pass      |
+    | Product name link     | Clicking the product name takes the user back to the product page.                                                                    | Pass      |
+
+* **Secure Checkout Page**
+
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+    | Checkout form         | An order gets created on Stripe and the database when a valid form is submitted. Errors are highlighted to the user.                  | Pass      |
+    | Coupon code form      | A message is displayed to inform whether the code is valid. If a code is valid and the order total is above the minimum amount, the discount amount is displayed and the order total is updated accordingly.                                                                                                 | Pass      |
+    | Login link            | Clicking the link takes the user to the sign in page.                                                                                 | Pass      |
+    | Register link         | Clicking the link takes the user to the account sign up page.                                                                         | Pass      |
+    | Save Info checkbox    | Checking the box saves the delivery and contact information in the user's user profile.                                               | Pass      |
+    | Adjust Bag link       | Clicking the link takes the user back to their shopping bag.                                                                          | Pass      |
+
+* **Checkout Success Page**
+
+    | Feature                   | Outcome                                                                             | Pass/Fail |
+    | ---                       | ---                                                                                 | ---       |
+    | Shop more products link   | Clicking the link takes the user to the all products page                           | Pass      |
+
+
+* **Profile Page**
+
+    | Feature               | Outcome                                                                                                                               | Pass/Fail |
+    | ---                   | ---                                                                                                                                   | ---       |
+
+
+* **Admin Dashboard**
+
+
+* **Create a Coupon Page**
+
+
+* **Edit a Coupon Page**
+
+
+
 
 
 ## Unit Testing
