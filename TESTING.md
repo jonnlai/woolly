@@ -341,6 +341,17 @@ In addition to manual checks, responsiveness was tested further using [Chrome De
     | Add button            | Clicking 'add coupon' created a new coupon code.                                                                                      | Pass      |
     | Cancel button         | Clicking 'cancel' takes the user back to the admin dashboard                                                                          | Pass      |
 
+* **Authentication**
+
+    | Feature               |   Outcome                                                                         | Pass/Fail |
+    | ---                   |  ---                                                                              | ---       |
+    | Login                 | Works as expected.                                                                | Pass      |
+    | Register              | Works as expected. Sends the user a confirmation email                            | Pass      |
+    | Logout                | Works as expected.                                                                | Pass      |
+    | Confirm email button  | Clicking the confirm button, confirms the email address.                          | Pass      |
+    | Forgot password button| Clicking the button takes the user to password reset page.                        | Pass      |
+    | Reset password        | Works as expected. The user receives an password reset email.                     | Pass      |
+
 [Back to top ⇧](#woolly-testing)
 
 ## Unit Testing
