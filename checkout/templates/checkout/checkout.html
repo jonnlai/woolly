@@ -71,7 +71,7 @@
                     <form action="{% url 'apply_coupon' %}" method="POST">
                         {% csrf_token %}
                         <label for="coupon-code" class="small">Coupon code</label>
-                        <input class="w-50" type="text" name="coupon-code" id="coupon-code">
+                        <input class="w-50 coupon-input" type="text" name="coupon-code" id="coupon-code">
                         <div class="text-center mt-3 d-sm-inline mx-sm-3">
                             <button type="submit" class="btn button-paper" aria-label="apply coupon code">Apply</button>
                         </div>
