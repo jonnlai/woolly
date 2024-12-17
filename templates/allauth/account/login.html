@@ -12,7 +12,7 @@
     <div class="col-md-8 mt-5 offset-md-2">
         <h3>{% trans "Login" %}</h3>
         <p>{% blocktrans %}Welcome back to Woolly. To view your profile, please log in. If
-            you have not created an account yet, then <a class="link" href="{{ signup_url }}">register</a>
+            you have not created an account yet, then <a class="link text-decoration-none text-link" href="{{ signup_url }}">register</a>
             first.{% endblocktrans %}</p>
     </div>
 </div>
@@ -24,7 +24,7 @@
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
-            <button class="btn button-paper" type="submit">{% trans "Sign In" %}</button>
+            <button class="btn button-paper mt-3" type="submit">{% trans "Sign In" %}</button>
         </form>
     </div>
 </div>
