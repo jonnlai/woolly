@@ -100,15 +100,32 @@ header {
     color: var(--highlight-clay);
 }
 
+/* Form input fields */
 .newsletter-email-input,
-.coupon-input {
+.coupon-input,
+.input-orange
+.profile-form-input,
+#coupon-form input,
+.review-form-input,
+.signup input,
+.login input,
+.password_reset .textinput {
     padding: 5px;
     border: 1px solid #000;
+    color: #000;
 }
 
 .newsletter-email-input:focus,
-.coupon-input:focus {
+.coupon-input:focus,
+.input-orange:focus,
+.profile-form-input:focus,
+#coupon-form input:focus,
+.review-form-input:focus,
+.signup input:focus,
+.login input:focus,
+.password_reset .textinput:focus {
     outline: none;
+    border: 1px solid #000;
     box-shadow: 0 0 5px var(--accent-orange);
 }
 
@@ -287,8 +304,6 @@ header {
     justify-items: center;
   }
 
-
-
 .badge {
     position: absolute;
     top: 0.5rem;
@@ -341,6 +356,12 @@ header {
     border: 1px solid #000;
     margin-bottom: 10px;
     border-radius: 0px;
+}
+
+.product-form-field:focus {
+    outline: none;
+    border: 1px solid #000;
+    box-shadow: 0 0 5px var(--accent-orange);
 }
 
 .modal-dialog {

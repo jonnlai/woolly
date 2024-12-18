@@ -102,33 +102,38 @@
                 <!-- Order history -->
                 <div>
                     <h6 class="mb-4">Order History</h6>
-                    {% for order in orders %}
-                    <div class="row mb-3">
-                        <div class="col-4 col-sm-3">
-                            <strong>
-                                <a href="{% url 'order_history' order.order_number %}" 
-                                title="{{ order.order_number }}"
-                                class="text-link text-decoration-none">
-                                {{ order.order_number|truncatechars:6 }}
-                                </a>
-                            </strong>
+                    {% if orders %}
+                        {% for order in orders %}
+                        <div class="row mb-3">
+                            <div class="col-4 col-sm-3">
+                                <strong>
+                                    <a href="{% url 'order_history' order.order_number %}" 
+                                    title="{{ order.order_number }}"
+                                    class="text-link text-decoration-none">
+                                    {{ order.order_number|truncatechars:6 }}
+                                    </a>
+                                </strong>
+                            </div>
+                            <div class="col-4 col-sm-3">
+                                {{ order.date|date:'d M Y' }}
+                            </div>
+                            <div class="d-none d-sm-inline col-4">
+                                {% for item in order.lineitems.all %}
+                                    <div class="small">
+                                        {{ item.product.name }} x{{ item.quantity }} - 
+                                        <a href="{% url 'product_detail' item.product.id %}" class="text-decoration-none text-link">Review</a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-4 col-sm-2">
+                                £{{ order.grand_total }}
+                            </div>
                         </div>
-                        <div class="col-4 col-sm-3">
-                            {{ order.date|date:'d M Y' }}
-                        </div>
-                        <div class="d-none d-sm-inline col-4">
-                            {% for item in order.lineitems.all %}
-                                <div class="small">
-                                    {{ item.product.name }} x{{ item.quantity }} - 
-                                    <a href="{% url 'product_detail' item.product.id %}" class="text-decoration-none text-link">Review</a>
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <div class="col-4 col-sm-2">
-                            £{{ order.grand_total }}
-                        </div>
-                    </div>
-                    {% endfor %}
+                        {% endfor %}
+                    {% else %}
+                        <p>You have not yet bought any products.</p>
+                        <a class="btn button-paper text-uppercase" href="{% url 'products' %}" role="button">View Products</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
