@@ -7,7 +7,6 @@ The project was built using HTML, CSS, Python, Django, Javascript, AWS and Strip
 
 Visit the deployed site [here](https://woolly-5c60edcc9498.herokuapp.com/).
 
-
 ## Table of Contents
 
 ## User Experience
@@ -127,6 +126,105 @@ As an example of Woolly's planned social media presence below a mockup image of 
 
 ## Features
 
+### General
+
+* The website was designed following mobile first and responsive design principles.
+
+#### Navigation bar
+
+The navigation bar is consistent across all the pages allowing the user to navigate the site easily. The navigation bar contains the brank name and links to all the sections that the user has access to. When using a smaller device, dropdown hamburger menu is displayed.
+
+| Navbar                        | Image                                                                          |
+| ---                           | ---                                                                            |
+| User logged in                | ![Navbar logged in](assets/readme-files/features/navbar-logged-in.png)         |
+| User not logged in            | ![Navbar not logged in](assets/readme-files/features/navbar-logged-out.png)    |
+| Logged in as admin            | ![Navbar admin](assets/readme-files/features/navbar-admin.png)                 |
+| Mobiles - burger menu closed  | ![Burger menu closed](assets/readme-files/features/navbar-mobile-closed.png)   |
+| Mobile - burger menu open     | ![Burger menu open](assets/readme-files/features/navbar-mobile-open.png)       |
+
+#### Footer
+
+The footer also is the same on all the pages and allows users to easily access Woolly's Facebook page and to sign up for the newsletter.
+
+|                      | Desktop                                                                        | Mobile                                                              |
+| ---                  | ---                                                                            | ---                                                                 |
+| Footer               | ![Footer - desktop](assets/readme-files/features/footer-desktop.png)           | ![Footer - mobile](assets/readme-files/features/footer-mobile.png)  |
+
+
+#### Buttons
+
+One type of button was used throughout the site. The colour of most buttons is Soft Wool Cream (#F5F2E1) but red was used for 'delete' buttons to warn the user that they are about to delete or remove something. When the button is hovered, it moves down slightly and a shadow effect appears to create an effect minimicking a button being pressed.
+
+| Button            | Normal                                                        | Hover                                                                     |
+| ---               | ---                                                           | ---                                                                       |
+| Main              | ![Button](assets/readme-files/features/button.png)            | ![Button hover](assets/readme-files/features/button-hover.png)            |
+| Delete            | ![Delete button](assets/readme-files/features/red-button.png) | ![Delete button hover](assets/readme-files/features/button-red-hover.png) |
+
+### Authentication pages
+
+* The registration page allows new users to sign up and create a profile for the site.
+* The login page allows registered users to sign in using their login details.
+* The logout page allows registered users to sign out.
+* Password reset page allows registered users to reset their passwords.
+
+| Register                                                  | Login                                             | Logout                                                | Password reset        |
+| ---                                                       | ---                                               | ---                                                   | --- |
+| ![Register](assets/readme-files/features/register.png)    | ![Login](assets/readme-files/features/login.png)  | ![Logout](assets/readme-files/features/signout.png)   | ![Password reset](assets/readme-files/features/password-reset.png) |
+
+### Home Page
+
+On the home page, a jumbotron with an image of warm and comfortable wool blanket in front of a fire place is displayed to create a sense of cosiness and set the tone. There is a 'view products' button on the jumbotron as well as a chevron to indicate that the content continues below the jumbotron image. Clicking the chevron takes the user to the 'why wool is ethical and sustainable' section. On the home, a user can also find information about the company and links to external resources regarding wool sustainability. Three featured products are also shown.
+
+| Feature                   | Image     |
+| ---                       | ---       |
+| Jumbotron                 | ![Jumbotron](assets/readme-files/features/jumbotron.png)                  |
+| Chevron                   | ![Chevron](assets/readme-files/features/chevron.png)                      |
+| Wool sustainability       | ![About wool](assets/readme-files/features/about.png)                     |
+| Featured products         | ![Featured products](assets/readme-files/features/featured-products.png)  |
+
+### Sorting, filtering and searching products
+
+When the user accesses one of the product pages, the page that they are on is highlighted on the navigation bar. The page header is also updated to reflect the page the user is on. The user has access to sort function that allows them to sort the products by name, category or price. The user can search for products and the products that include their search term in their name or product description are displayed.
+
+![Filtered results](assets/readme-files/features/page-user-on.png)
+
+| Feature   | Function                                                           | Results                                                               |
+| ---       | ---                                                                | ---                                                                   |
+| Sort      | ![sort function](assets/readme-files/features/sort-function.png)   | ![sorted results](assets/readme-files/features/sorted-results.png)    |
+| Search    | ![search function](assets/readme-files/features/search-bar.png)    | ![search results](assets/readme-files/features/search-results.png)    |
+
+### Product reviews
+
+All site users can see reviews and rating that the product has been given but only registered users who have bought the product can leave a review or rate the product. The product rating displayed under the product name is the avarage of all user ratings for that particular product.
+
+| Review form       |  Review left      | Not logged in         | Not bought    |
+| ---               | ---               | ---                   | ---           |
+| ![review form](assets/readme-files/features/review-form.png)| ![review left](assets/readme-files/features/reviews.png) | ![not logged in](assets/readme-files/features/review-not-loggedin.png) | ![product not bought](assets/readme-files/features/reviews-not-bought.png) |
+
+The user who is the review author can also edit or delete their own reviews. Before the review is deleted the user is asked to confirm that they intend to delete their review.
+
+|  Edit review                                                  |  Delete review                                                    |
+| ---                                                           | ---                                                               |
+| ![Edit review](assets/readme-files/features/edit-review.png)  | ![Delete review](assets/readme-files/features/delete-review.png)  |
+
+### Wishlist
+
+If the user is locked they are able to add products to their wishlist by clicking the heart icon next to the product name. If the product is already on their wishlist, the user is informed of this and link to their wishlist on their profile page is added to the product detail page. The user can remove products from their wishlist by clicking the bin icon. A confirmation modal was added as the user is not deleting any data.
+
+| Add to wishlist                                          | On wishlist                                               | Wishlist                                               | Remove from wishlist      |
+| ---                                                      | ---                                                       | ---                                                    | ---                   |
+| ![add](assets/readme-files/features/wishlist-heart.png)  | ![added](assets/readme-files/features/added-wishlist.png) | ![wishlist](assets/readme-files/features/wishlist.png) | ![remove](assets/readme-files/features/wishlist-remove.png)  |
+
+### Stock amount
+
+When the selects a quantity they want to purchase or adjust the current quantity, it is checked whether there is sufficient amount of product in stock. The stock amount is shown on the product detail page.
+
+| Stock amount              |  Error message    |
+| ---                       | ---               |
+| ![stock amount](assets/readme-files/features/adjust-qty.png)  |  ![not enough stock](assets/readme-files/features/not-enough-stock.png) |
+
+[Back to top ⇧](#woolly)
+
 ## Technologies Used
 
 ### Languages used
@@ -217,6 +315,8 @@ As an example of Woolly's planned social media presence below a mockup image of 
 
 
 ## Testing
+
+[Back to top ⇧](#woolly)
 
 ## Deployment
 
@@ -451,6 +551,8 @@ This website was deployed on Heroku as follows:
 
 ## Finished Product
 
+[Back to top ⇧](#woolly)
+
 ## Credits
 
 <a href="https://www.flaticon.com/free-icons/no-photo" title="no photo icons">No photo icons created by Those Icons - Flaticon</a>
@@ -464,6 +566,7 @@ Image by <a href="https://pixabay.com/users/skitterphoto-324082/?utm_source=link
 <a href="https://www.freepik.com/icon/wool_6651553#fromView=search&page=1&position=44&uuid=26393bc7-6cfc-4541-ba5e-43d6406f8774">Icon by PLANBSTUDIO</a>
 
 Facebook sheep: Photo by <a href="https://unsplash.com/@wildhoney?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">John Fowler</a> on <a href="https://unsplash.com/photos/brown-sheep-on-green-lawn-grasses-at-daytime-jmYJBQXvLNI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-      
+
+[Back to top ⇧](#woolly)
 
 ## Known Bugs
