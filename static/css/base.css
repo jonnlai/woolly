@@ -113,6 +113,7 @@ header {
     padding: 5px;
     border: 1px solid #000;
     color: #000;
+    border-radius: 0;
 }
 
 .newsletter-email-input:focus,
@@ -127,6 +128,17 @@ header {
     outline: none;
     border: 1px solid #000;
     box-shadow: 0 0 5px var(--accent-orange);
+}
+
+/* remove autocomplete background colour */
+/* from https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+input[data-autocompleted] {
+    background-color: transparent !important;
 }
 
 /* Buttons */
@@ -404,7 +416,7 @@ header {
 #signup_form label,
 .login label[for=id_password],
 .login label[for=id_login],
-.password_reset label
+.password_reset label,
 .password_change label {
     display: none;
 }
