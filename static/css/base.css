@@ -130,6 +130,15 @@ header {
     box-shadow: 0 0 5px var(--accent-orange);
 }
 
+select option:checked {
+    background: var(--button);
+}
+
+.checkboxinput:checked {
+    background-color: var(--accent-orange);
+    border: none;
+}
+
 /* remove autocomplete background colour */
 /* from https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete */
 input:-webkit-autofill,
