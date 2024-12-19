@@ -47,6 +47,17 @@ select option[value=""] {
   color: #aab7c4 !important;
 }
 
+#id-save-info:focus {
+  outline: none;
+  border: 1px solid #000;
+  box-shadow: 0 0 5px var(--accent-orange);
+}
+
+#id-save-info:checked {
+  background-color: var(--accent-orange);
+  border: none;
+}
+
 /* Loading overlay */
 #loading-overlay {
 	display: none;

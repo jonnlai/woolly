@@ -1,5 +1,6 @@
 # Woolly
 
+![Mockup image](assets/readme-files/mockup.png)
 
 Woolly is a fictional e-commerce website selling sustainable, hand-made woollen products with Nordic-inspired designs.
 
@@ -74,7 +75,7 @@ Red was used for the 'delete' buttons to highlight the danger to avoid hikes bei
 
 ### Typography
 
-Merriweather was used for the headings due to its readability and warm, and approachable feel with its rounded serifs. Poppins was used for the body due give the site a bit of modern sophistication while remaining easy to read. Its slightly rounded structure gives it a soft, friendly feel.
+Merriweather was used for the headings due to its readability and warm, and approachable feel with its rounded serifs. Poppins was used for the body due give the site a bit of modern sophistication while remaining easy to read. Its slightly rounded structure gives it a soft, friendly feel. Quicksand was used for the buttons due to its modern and friendly with rounded edges that give it a soft, approachable aesthetic. It pairs well with the other fonts selected and adds a contemporary, casual touch.
 
 [Back to top ⇧](#woolly)
 
@@ -184,24 +185,32 @@ On the home page, a jumbotron with an image of warm and comfortable wool blanket
 
 ### Sorting, filtering and searching products
 
-When the user accesses one of the product pages, the page that they are on is highlighted on the navigation bar. The page header is also updated to reflect the page the user is on. The user has access to sort function that allows them to sort the products by name, category or price. The user can search for products and the products that include their search term in their name or product description are displayed.
+When the user accesses one of the product pages, the page that they are on is highlighted on the navigation bar. The page header is also updated to reflect the page the user is on. 
 
-![Filtered results](assets/readme-files/features/page-user-on.png)
+| All products  | Clothing          | Homeware      | Sale              |
+| ---           | ---               | ---           | ---               |
+|![All](assets/readme-files/features/filter-all.png)|![Clothing](assets/readme-files/features/filter-clothing.png)|![Filtered results](assets/readme-files/features/filter-homeware.png)|![Sale](assets/readme-files/features/filter-sale.png)|
 
-| Feature   | Function                                                           | Results                                                               |
+The user has access to sort function that allows them to sort the products by name, category or price. The user can search for products and the products that include their search term in their name or product description are displayed.
+
+| Feature   | Sort                                                               | Search                                                                |
 | ---       | ---                                                                | ---                                                                   |
-| Sort      | ![sort function](assets/readme-files/features/sort-function.png)   | ![sorted results](assets/readme-files/features/sorted-results.png)    |
-| Search    | ![search function](assets/readme-files/features/search-bar.png)    | ![search results](assets/readme-files/features/search-results.png)    |
+| Function  | ![sort function](assets/readme-files/features/sort-function.png)   | ![search function](assets/readme-files/features/search-bar.png)       |
+| Results   | ![sorted results](assets/readme-files/features/sorted-results.png) | ![search results](assets/readme-files/features/search-results.png)    |
 
 ### Product reviews
 
-All site users can see reviews and rating that the product has been given but only registered users who have bought the product can leave a review or rate the product. The product rating displayed under the product name is the avarage of all user ratings for that particular product.
+All site users can see reviews and rating that the product has been given but only registered users who have bought the product can leave a review or rate the product. The product rating displayed under the product name is the avarage of all user ratings for that particular product. The rating updates automatically when a new review is left.
 
-| Review form       |  Review left      | Not logged in         | Not bought    |
-| ---               | ---               | ---                   | ---           |
-| ![review form](assets/readme-files/features/review-form.png)| ![review left](assets/readme-files/features/reviews.png) | ![not logged in](assets/readme-files/features/review-not-loggedin.png) | ![product not bought](assets/readme-files/features/reviews-not-bought.png) |
+| Review form                                                   |  Review left                                              |
+| ---                                                           | ---                                                       |
+| ![review form](assets/readme-files/features/review-form.png)  | ![review left](assets/readme-files/features/reviews.png)  | 
 
-The user who is the review author can also edit or delete their own reviews. Before the review is deleted the user is asked to confirm that they intend to delete their review.
+| Not logged in                                                             | Not bought                                                                    |
+| ---                                                                       | ---                                                                           |
+| ![not logged in](assets/readme-files/features/review-not-loggedin.png)    | ![product not bought](assets/readme-files/features/reviews-not-bought.png)    |
+
+The user who is the review author has access to the full CRUD functionality. In addition to being able to create and read reviews, they can also update or delete their own reviews. Before the review is deleted the user is asked to confirm that they intend to delete their review.
 
 |  Edit review                                                  |  Delete review                                                    |
 | ---                                                           | ---                                                               |
@@ -217,11 +226,56 @@ If the user is locked they are able to add products to their wishlist by clickin
 
 ### Stock amount
 
-When the selects a quantity they want to purchase or adjust the current quantity, it is checked whether there is sufficient amount of product in stock. The stock amount is shown on the product detail page.
+When the selects a quantity they want to purchase or adjust the current quantity, it is checked whether there is sufficient amount of product in stock. The stock amount is shown on the product detail page. The admin user can adjust the stock amount using the 'edit product' form. If the product stock amount has been recorded as 0 or 'in stock' checkbox has not been checked, the 'add to bag' is disabled. 
 
-| Stock amount              |  Error message    |
-| ---                       | ---               |
-| ![stock amount](assets/readme-files/features/adjust-qty.png)  |  ![not enough stock](assets/readme-files/features/not-enough-stock.png) |
+| Stock amount              |  Error message    |  Button disabled      |  Update stock amount  |
+| ---                       | ---               | ---                   | ---                   |
+| ![stock amount](assets/readme-files/features/adjust-qty.png)  | ![not enough stock](assets/readme-files/features/not-enough-stock.png) | ![button disabled](assets/readme-files/features/stock-button-disabled.png) | ![update stock amount](assets/readme-files/features/stock-update-qty.png) |
+
+### Admin Dashboard
+
+An admin user can access an admin dashboard that allows them to manage products and coupon codes as well as view orders and best selling products.
+
+![Admin Dashboard](assets/readme-files/features/dashboard.png)
+
+### Add, Edit and Delete Products
+
+An admin users have access to the full CRUD functionality and can add, edit and delete products. New products can be added through 'add product' link on the admin dashboard. Products can be edited and deleted via a link on the product detail page. Only admin users can access these pages, all other users receive an error message advising that only store owners can that page if they try to access it via a direct link for example.
+
+![Error](assets/readme-files/features/products-error.png)
+
+| Functionality      |  Add product       |  Edit product    |  Delete product |
+| ---                | ---                | ---              | ---             |
+| Link or Button     | ![Add button](assets/readme-files/features/products-add-button.png) | ![Edit link](assets/readme-files/features/products-edit-delete-links.png) | ![Delete link](assets/readme-files/features/products-edit-delete-links.png) |
+| Page/Modal         | ![Add product page](assets/readme-files/features/products-add.png)! | ![Edit product page](assets/readme-files/features/products-edit.png) | ![Delete product page](assets/readme-files/features/products-delete.png) |
+
+### Coupon Codes
+
+An admin user can create coupon codes that give customers discounts. The coupon codes cannot be deleted but can be deactivated via the admin dashboard. 
+
+| Create a coupon  | List of coupon codes   |
+| ---              | ---                    |
+| ![Add coupon](assets/readme-files/features/coupon-add.png) | ![List of coupon codes](assets/readme-files/features/coupon-list.png) |
+
+Customers can apply a valid coupon code at the checkout to receive a discount. The discounts are not applied if the order total is less than £10 + value of the coupon. An error message is displayed if the user adds an invalid code.
+
+| Code applied      | Code not applied              | Code not valid    |
+| ---               | ---                           | ---               |
+| ![Code applied](assets/readme-files/features/coupon-code-applied.png) | ![Code not applied](assets/readme-files/features/coupon-not-applied.png) | ![Code not valid](assets/readme-files/features/coupon-invalid.png) |
+
+### Checkout
+
+Client can checkout using secure Stripe checkout. The card details and contact details are validated before the form can be submitted. 
+
+| Checkout form     | Checkout loading spinner                  |   Checkout success    | 
+| ---               |   ---                                     |   ---                 |
+| ![Checkout](assets/readme-files/features/checkout-form.png)   | ![Loader](assets/readme-files/features/checkout-loader.png) | ![Success](assets/readme-files/features/checkout-success.png) |
+
+### Profile
+
+Users who have registered an account can access a user profile page view their past orders, wishlist and reviews as well as to edit and store their default delivery and contact information.
+
+![Profile](assets/readme-files/features/profile.png)
 
 [Back to top ⇧](#woolly)
 
@@ -313,8 +367,9 @@ When the selects a quantity they want to purchase or adjust the current quantity
 
 [Back to top](#woolly)
 
-
 ## Testing
+
+Please find testing documentation [here](https://github.com/jonnlai/woolly/blob/main/TESTING.md)
 
 [Back to top ⇧](#woolly)
 
@@ -551,6 +606,13 @@ This website was deployed on Heroku as follows:
 
 ## Finished Product
 
+| Page              | Desktop               | Mobile            |
+| ---               | ---                   | ---               |
+
+[Back to top ⇧](#woolly)
+
+## Fixed Bugs
+
 [Back to top ⇧](#woolly)
 
 ## Credits
@@ -569,4 +631,3 @@ Facebook sheep: Photo by <a href="https://unsplash.com/@wildhoney?utm_content=cr
 
 [Back to top ⇧](#woolly)
 
-## Known Bugs
