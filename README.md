@@ -382,11 +382,11 @@ This project is deployed on Heroku with static and media files stored on AWS S3.
 ### Stripe setup
 
 * Log in to [Stripe](https://stripe.com/en-ie)
-* Navigate to developers section (link located at the top right)
+* Navigate to developers section (link located at the bottom left)
 * Go to API keys tab and copy the values of PUBLIC_KEY and SECRET_KEY and add them to your env.py file
 * Once your application has been deployed, navigate to the Webhooks page from the tab in the menu at the top and click on add endpoint. The link should look like this https://your_website.herokuapp.com/checkout/wh/ 
 * Choose the events the webhook should recieve and add endpoint. Add SIGNING SECRET as STRIPE_WH_SECRET to your Heroku Config vars. 
-* When the application is deployed, run a test transaction to ensure the webhooks are working. The events chan be checked in the webhooks page.
+* When the application is deployed, run a test transaction to ensure the webhooks are working. The events can be checked in the webhooks page.
 
 ### AWS setup
 * Log in to [AWS](https://aws.amazon.com/)
@@ -533,7 +533,7 @@ This project is deployed on Heroku with static and media files stored on AWS S3.
 
    Also remove the COLLECTSTATIC variable from the Config Vars.   
 
-4. We then want to tell Django that in production we want to use S3 to store our static files whenever someone runs collectstatic, and that we sent any uploaded images to go there as well. Create a custom_storages.py file in your project's root directory, and inside it, include the Static and Media Storage locations: 
+4. We then want to tell Django that in production we want to use S3 to store our static files whenever collectstatic is run, and that we sent any uploaded images to go there as well. Create a custom_storages.py file in your project's root directory, and inside it, include the Static and Media Storage locations: 
    ```
    from django.conf import settings
    from storages.backends.s3boto3 import S3Boto3Storage
@@ -606,28 +606,66 @@ This website was deployed on Heroku as follows:
 
 ## Finished Product
 
-| Page              | Desktop               | Mobile            |
-| ---               | ---                   | ---               |
+| Page              | Desktop                                                                   | Mobile                                                                        |
+| ---               | ---                                                                       | ---                                                                           |
+| Home              | ![Home DT](assets/readme-files/finished-product/home-desktop.png)         | ![Home Mobile](assets/readme-files/finished-product/home-mobile.png)          |
+| Products          | ![Products DT](assets/readme-files/finished-product/products-desktop.png) | ![Producst Mobile](assets/readme-files/finished-product/products-mobile.png)  |
+| Product detail    | ![Product detail DT](assets/readme-files/finished-product/product-detail-desktop.png) | ![Product detail Mobile](assets/readme-files/finished-product/product-detail-mobile.png) |
+| Shopping Bag      | ![Bag DT](assets/readme-files/finished-product/bag-desktop.png)           | ![Bag Mobile](assets/readme-files/finished-product/bag-mobile.png)            |
+| Checkout          | ![Checkout DT](assets/readme-files/finished-product/checkout-desktop.png) | ![Checkout Mobile](assets/readme-files/finished-product/checkout-mobile.png)  |
+| Profile           | ![Profile DT](assets/readme-files/finished-product/profile-desktop.png)   | ![Profile Mobile](assets/readme-files/finished-product/profile-mobile.png)    |
+| Admin Dashboard   | ![Dashboard DT](assets/readme-files/finished-product/dashboard-desktop.png) | ![Dashboard Mobile](assets/readme-files/finished-product/dashboard-mobile.png) |
 
 [Back to top ⇧](#woolly)
 
 ## Fixed Bugs
 
+* When adjusting the quantity of a product in the bag template, the amount requested was added to the existing amount instead of the amount being updated to the new value. This was fixed by changing the `bag[item_id] += quantity` to `bag[item_id] = quantity` in the adjust_bag view.
+
+* Sale price can be left blank when the product has been marked as being on sale. This caused an issue with the `product_price` function due the sale price being set to `NoneType`. The sale price displayed to the user was also 'None'. This was fixed by adjusting the product templates and `product_price` function to check that a sale price has been set for any products marked as 'on sale', and if no sale price has been set, the normal price is being displayed.
+
+* The bottom part of the Account dropdown menu in the navigation bar was hidden behind the jumbotron. This meant that admin users were not able to access the Admin Dashboard dropdown option easily on all screen sizes. This was fixed by setting the dropdown's position to 'fixed' and increasing its and its parent element's z-index to ensure that it shown above the jumbotron at all times.
+
+* Clicking the brand logo link was not working on smaller devices due to the brand logo element being positioned behind other elements on small screens. This was fixed by reducing the width of the brand logo link div and increasing its z-index.
+
+* Adding the jumbotron image caused a horizontal scrollbar to appear on the Home page and that caused usability issues. This was fixed by adding `overflow-x: hidden` to the main element.
+
+* The review form was continued to displayed on the product detail page until the page was reloaded after the user had submitted their review which resulted in some reviews being submitted twice. This was fixed by adding `return redirect('product_detail', product_id)` after a successful POST request in the product_detail view.
+
+* The newsletter confirmation emails were not going through to the email address provided. This was due to `recipient_email` having been put in quotation marks in `send_mail`.
+
 [Back to top ⇧](#woolly)
 
 ## Credits
 
-<a href="https://www.flaticon.com/free-icons/no-photo" title="no photo icons">No photo icons created by Those Icons - Flaticon</a>
+### Content
 
-Image by <a href="https://pixabay.com/users/skitterphoto-324082/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1822137">Rudy and Peter Skitterians</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1822137">Pixabay</a>
+* [ChatGPT](https://chatgpt.com/) was utilised to write product descriptions and 'Why wool is ethical and sustainable?' section.
+* Reviews were written by the developer.
 
-<a href="https://www.freepik.com/icon/ball_12768162#fromView=search&page=1&position=51&uuid=26393bc7-6cfc-4541-ba5e-43d6406f8774">Icon by Ylivdesign</a>
+### Media
 
-<a href="https://www.freepik.com/icon/thread_17166503#fromView=search&page=1&position=57&uuid=26393bc7-6cfc-4541-ba5e-43d6406f8774">Icon by Adury5711</a>
+* All product images and the jumbotron image were created using [Leonardo.ai](https://leonardo.ai/).
 
-<a href="https://www.freepik.com/icon/wool_6651553#fromView=search&page=1&position=44&uuid=26393bc7-6cfc-4541-ba5e-43d6406f8774">Icon by PLANBSTUDIO</a>
+* The no photo icon: [No photo icons created by Those Icons - Flaticon](https://www.flaticon.com/free-icons/no-photo)
 
-Facebook sheep: Photo by <a href="https://unsplash.com/@wildhoney?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">John Fowler</a> on <a href="https://unsplash.com/photos/brown-sheep-on-green-lawn-grasses-at-daytime-jmYJBQXvLNI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+* 3 balls of wool are from [Freepik](https://www.freepik.com/)
+    * [Icon by Ylivdesign](https://www.freepik.com/icon/ball_12768162#fromView=search&page=1&position=51&uuid=26393bc7-6cfc-4541-ba5e-43d6406f8774)
+    * [Icon by Adury5711](https://www.freepik.com/icon/thread_17166503#fromView=search&page=1&position=57&uuid=26393bc7-6cfc-4541-ba5e-43d6406f8774)
+    * [Icon by PLANBSTUDIO](https://www.freepik.com/icon/wool_6651553#fromView=search&page=1&position=44&uuid=26393bc7-6cfc-4541-ba5e-43d6406f8774)
+
+* A photo of a sheep for the Facebook mockup page: by [John Fowler](https://unsplash.com/@wildhoney?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) from [Unsplash](https://unsplash.com/photos/brown-sheep-on-green-lawn-grasses-at-daytime-jmYJBQXvLNI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+
+* 404 page sheep image: [Rudy and Peter Skitterians](https://pixabay.com/users/skitterphoto-324082/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1822137) from [Pixabay](https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1822137)
+
+* Favicon is from [favicon.io](https://favicon.io/)
+
+### Code
+
+* Code Institute's Boutique Ado walkthrough project was used as a templates and the main reference point on how to set up an e-commerce website using HTML, CSS, Javascript, Python, Django, PostgreSQL database, Stripe, and AWS S3.
+* [Stackoverflow](https://stackoverflow.com/) was consulted regularly for ideas.
+* [Codemy](https://www.youtube.com/@Codemycom)'s tutorials regarding developing an e-commerce website were also for ideas and to improve understanding.
+* The button style is by Fabio Bergmann from [Codepen](https://codepen.io/fabiocberg/pen/wvqpXqg)
 
 [Back to top ⇧](#woolly)
 
