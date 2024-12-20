@@ -669,3 +669,22 @@ This website was deployed on Heroku as follows:
 
 [Back to top ⇧](#woolly)
 
+## Features not implemented
+
+The following features were considered during the development of this project, but were not in scope as it was not feasible to implement them in the first release of the project. The following features were left for the second phase:
+
+1. Update stock amount automatically
+    * Currently, an admin user needs to update the stock amount manually after a client has made a purchase. This was considered sufficient for the first release considering that the business is a small, new business and is not expecting the initial sales to be that high. 
+    * However, it would be necessary to add functionality in the second phase to deduct automatically from the current stock amount the products purchased.
+2. Check that product in shopping bag has not sold out before the purchase is made.
+    * Currently, whether the product is in stock is only checked when the client attempts to add the product to their shopping bag. In the second phase, functionality to check that the product has not sold out between the user adding the product in their bag and making the payment.
+3. Check whether coupon code has been used
+    * Currently, clients can use the same coupon code repeatedly until the code has been deactivated.
+    * In the second phase, logic would be added to check whether the user has already used the code.
+4. Create newsletters
+    * Users can currently signup to receive the newsletter but the admin user has no functionality to create newsletters. The functionality to create and send newsletters to the subscribers would be added in the next phase.
+5. Improve useability of admin dashboard
+    * In the second phase, functionality would be added to allow the admin user to record which orders have seen paid/posted/returned/cancelled.
+    * The useability would also be improved by adding an accordion to allow the list of products and orders to be hidden when needed. Sorting functionality would also be added to allow admin user to sort, for example, based on whether the order is waiting to be shipped.
+
+[Back to top ⇧](#woolly)
