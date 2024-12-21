@@ -80,9 +80,8 @@
                                 {% else %}
                                     <p class="lead mb-0 pb-1 text-left font-weight-bold">£{{ product.price }}</p>
                                 {% endif %}
-                                {% if product.rating %}
-                                    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} /
-                                        5.0</small>
+                                {% if product.avg_rating %}
+                                    <small class="text-muted"><i class="fas fa-star rating-icon"></i>&nbsp; {{ product.avg_rating|floatformat:1 }} / 5.0 </small>
                                 {% else %}
                                     <small class="text-muted">No Rating</small>
                                 {% endif %}
