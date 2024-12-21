@@ -116,7 +116,10 @@ The [W3C Markup Validator](https://validator.w3.org/), [W3C CSS Validator](https
 | ![table rows](assets/readme-files/testing/dashboard-tr.png)           | This missing table rows were added     |
 | ![strong element](assets/readme-files/testing/strong-element.png)     | The strong element was removed         |
 | ![Duplicate ID](assets/readme-files/testing/checkout-email-error.png) | The issue was caused by having two crispy forms on the same page. The duplicate ids were created by crispy forms. The issue was solved by not using crispy to render the newsletter form which only consisted of an email input field. |
+| ![Button product_id attribute](assets/readme-files/testing/button-product-id.png) | This was resolved by replacing `product_id` with `data-product-id` |
 | ![JS Type attribute](assets/readme-files/testing/html-js-type-attr.png)| This was left unresolved as it is a warning rather than an error and the code comes from the CI boutique ago walkthrough project |
+| ![Checkout label error](assets/readme-files/testing/checkout-label.png) | This code comes from the CI Walkthrough Project. The error was solved by replacing the label tag with a div tag within {% else %} tag where all the form controls are hidden due to the client not being logged in.  |
+| ![Edit product - duplicate image ID](assets/readme-files/testing/edit-product-duplicate-id.png) | This code comes from the CI Walkthrough project's custom_clearable_file_input.html file. The 'Select Image' input tag contained two id attributes, `id="new-image"` and `id="id_image"` that came from `{% include "django/forms/widgets/attrs.html" %}`. The error was resolved removing `id="new-image"` attribute. |
 
 ### CSS
 
@@ -130,10 +133,15 @@ All CSS files was validated using [W3C CSS Validator](https://jigsaw.w3.org/css-
 
 Several whitespace and indentation errors as well as errors regarding unused imports were identified and these were rectified where possible.
 
-* Some issues highlighted by Flake8, some of which are shown below, were ignored as they related to migration files, settings, .env and .vscode files only. The developer is currently studying how to ignore those files when using Flake8 to validate code.
+* Some issues highlighted by Flake8, some of which are shown below, were ignored as they related to migration files, settings, .env and .vscode files only. The developer is currently studying how to ignore those files when using Flake8 to validate code. Flake8 also raised the F811 error and F841 error below. These was ignored as they are part of the 404 page set up process and webhook code from the CI Boutique Ado Walkthrough Project.
 * As the developer was new to using Flake8, all the Python code was also validated using CI Python Linter to ensure PEP8 compliance. No errors were found, an example of below.
 
+![Flake8 F811 error](assets/readme-files/testing/flake-8-handler404.png)
+
+![Flake8 F841 error](assets/readme-files/testing/webhook-error.png)
+
 ![Flake8](assets/readme-files/testing/flake8.png)
+
 ![CI Python Linter](assets/readme-files/testing/ci-python-linter.png)
 
 ### Javascript
@@ -170,6 +178,12 @@ Chrome DevTool Lighthouse was used to assess the project's performance and acces
 In addition to manual checks, responsiveness was tested further using [Chrome DevTools](https://developer.chrome.com/docs/devtools/) during the development process to test the responsiveness.
 
 [Back to top ⇧](#woolly-testing)
+
+## Stripe
+
+Once the project was deployed, it was confirmed that Stripe webhook is working and is receiving events correctly.
+
+![Stripe Webhook](assets/readme-files/testing/stripe-wh.png)
 
 ## Manual Testing
 
