@@ -3,9 +3,8 @@ from .forms import SubscribeForm
 
 def subscriber_form(request):
     """
-    Render subscribe form
+    Render subscriber form
     """
-
     subscriber_form = SubscribeForm()
 
     context = {

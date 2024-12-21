@@ -99,8 +99,7 @@
           <form method="POST" action="{% url 'subscribe' %}"
             enctype="multipart/form-data">
             {% csrf_token %}
-            <input class="w-100 newsletter-email-input" type="text" name="subscribe" placeholder="Email address" 
-                    aria-label="Add your email address to subscribe to our newsletter">
+            {{ subscriber_form }}
             <div class="my-2">
                 <button class="btn button-paper" type="submit">Subscribe!</button>
             </div>
