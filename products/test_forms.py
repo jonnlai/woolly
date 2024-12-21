@@ -4,7 +4,7 @@ from .models import Category
 
 
 class TestProductForm(TestCase):
-
+    """ Test product form is valid """
     def setUp(self):
         self.category = Category.objects.create(
             name="Homeware",
@@ -26,7 +26,7 @@ class TestProductForm(TestCase):
         self.assertTrue(
             product_form.is_valid(),
             msg="Form is invalid")
-    
+
     def test_name_is_required(self):
         product_form = ProductForm({
             'category': self.category,
@@ -43,7 +43,7 @@ class TestProductForm(TestCase):
         self.assertFalse(
             product_form.is_valid(),
             msg="Name is missing but form is valid")
-    
+
     def test_description_is_required(self):
         product_form = ProductForm({
             'category': self.category,

@@ -92,14 +92,16 @@ def product_detail(request, product_id):
 
         ``product``
             An instance of :model:`products.Product`
-        ``profile``
-            An instance of :model:`profiles.UserProfile`
         ``wishlist``
             An instance of :model:`wishlist.Wishlist`
         ``reviews``
             A list of reviews relating to ``product``
         ``review_form``
             A instance of :form:`reviews.ReviewForm`
+        ``review_authors``
+            A list of users who have left a review
+        ``orders``
+            A list of request.user's orders
 
     **Template**
 

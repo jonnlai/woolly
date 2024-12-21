@@ -4,6 +4,7 @@ from .views import edit_review
 
 
 class TestUrls(TestCase):
+    """ Test URL resolves """
 
     def test_edit_review_resolves(self):
         url = reverse('edit_review', args=['1', '2'])

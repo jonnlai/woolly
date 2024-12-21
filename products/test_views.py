@@ -3,10 +3,10 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Product
 from reviews.models import Review
-from .views import all_products, product_detail
 
 
 class TestProductViews(TestCase):
+    """ Test product views """
     def setUp(self):
         self.user = User.objects.create_user(
             username="testUserName",
@@ -31,6 +31,7 @@ class TestProductViews(TestCase):
         )
 
     def test_render_all_products_page(self):
+        """ Test Products page is displayed correctly """
         response = self.client.get(reverse(
             'products'))
         self.assertEqual(response.status_code, 200)
@@ -38,6 +39,7 @@ class TestProductViews(TestCase):
         self.assertIn(b"25", response.content)
 
     def test_render_product_detail_page(self):
+        """ Test Product detail page is displayed correctly """
         response = self.client.get(reverse(
             'product_detail',
             args=[self.product.id]))

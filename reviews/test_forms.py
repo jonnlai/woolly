@@ -3,6 +3,9 @@ from .forms import ReviewForm
 
 
 class TestReviewForm(TestCase):
+    """
+    Check review is valid when submitted
+    """
 
     def test_form_is_valid(self):
         review_form = ReviewForm({
@@ -13,7 +16,7 @@ class TestReviewForm(TestCase):
         self.assertTrue(
             review_form.is_valid(),
             msg="Form is invalid")
-    
+
     def test_title_is_required(self):
         review_form = ReviewForm({
             'review_title': '',
