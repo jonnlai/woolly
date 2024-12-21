@@ -10,11 +10,21 @@ Visit the deployed site [here](https://woolly-5c60edcc9498.herokuapp.com/).
 
 ## Table of Contents
 
+1. [User Experience](#user-experience)
+2. [Marketing](#marketing)
+3. [Features](#features)
+4. [Technologies Used](#technologies-used)
+5. [Testing](#testing)
+6. [Deployment](#deployment)
+7. [Finished Product](#fixed-bugs)
+8. [Credits](#credits)
+9. [Features Not Implemented](#features-not-implemented)
+
 ## User Experience
 
 ### Project goals
 
-* The website creates a sense of trust-worthiness and high-quality.
+* The website creates a sense of trustworthiness and high-quality.
 * The website is responsive and can easily be used on different devices.
 * The style and structure of the website is consistent and intuitive to allow user to navigate the website easily.
 * Users are able to create a profile to store their shipping information and view information about their past orders.
@@ -22,7 +32,7 @@ Visit the deployed site [here](https://woolly-5c60edcc9498.herokuapp.com/).
 
 ### User Stories
 
-An Excel spreadsheet was used to collect Epics and User Stories before development was started. Six Epics were identified to help to organise the work: 1. User Profiles, 2. Products, 3. Bag and 4. Checkout 5.Marketing 6. Comments and Ratings. These Epics were broken down into user stories with clearly defined Acceptance Criteria, Tasks, Story Points and MoSCoW prioritisation.
+An Excel spreadsheet was used to collect Epics and User Stories before development was started. Six Epics were identified to help to organise the work: 1. User Profiles, 2. Products, 3. Bag and 4. Checkout 5. Marketing 6. Comments and Ratings. These Epics were broken down into user stories with clearly defined Acceptance Criteria, Tasks, Story Points and MoSCoW prioritisation.
 
 ![User Stories - Products](assets/readme-files/user-stories/user-stories-products.png)
 ![User Stories - Bag and Checkout](assets/readme-files/user-stories/user-stories-bag-checkout.png)
@@ -65,9 +75,9 @@ The site allows for effortless and intuitive navigation due clear structure and 
 
 ### Colour Scheme
 
-Colours that evoke warmth, comfort, and natural beauty i.e earthy colours ad soft neutrals that suggest coziness and handmade craftsmanship were used across this site.
+Colours that evoke warmth, comfort, and natural beauty i.e earthy colours ad soft neutrals that suggest coziness and handmade artisanry were used across this site.
 
-White Smoke (#F7F6F3) is used for light background areas to keep the site feeling fresh and airy. Soft Wool Cream (#F5F2E1) which is a warm, off-white color reminiscent of natural wool, was used for all the buttons. Hearty Clay (#D9A37E) was used for links to bring a rustic, cozy feel that is grounded and earthy. Autumn Maple (#C56F3A) was used mainly for hover effects. Its deep, warm orange-brown colour resembles autumn leaves or rich caramel, and evokes a sense of warmth. Deep Charcoal (#3C3C3C) was used for text.
+White Smoke (#F7F6F3) is used for light background areas to keep the site feeling fresh and airy. Soft Wool Cream (#F5F2E1) which is a warm, off-white colour reminiscent of natural wool, was used for all the buttons. Hearty Clay (#D9A37E) was used for links to bring a rustic, cozy feel that is grounded and earthy. Autumn Maple (#C56F3A) was used mainly for hover effects. Its deep, warm orange-brown colour resembles autumn leaves or rich caramel, and evokes a sense of warmth. Deep Charcoal (#3C3C3C) was used for text.
 
 Red was used for the 'delete' buttons to highlight the danger to avoid hikes being deleted accidently.
 
@@ -83,7 +93,7 @@ Merriweather was used for the headings due to its readability and warm, and appr
 
 ### Search Engine Optimisation (SEO)
 
-Keywork reseach was carried out using tools such as [Google search](https://www.google.com/) and [Wordtracker](https://www.wordtracker.com/) to identify the most relevant keywords for this e-commerce business. These keywords were then added in the header element't meta tags.
+Keywork research was carried out using tools such as [Google search](https://www.google.com/) and [Wordtracker](https://www.wordtracker.com/) to identify the most relevant keywords for this e-commerce business. These keywords were then added in the header element's meta tags.
 
 As a result of the research conducted, the following short-tail and long-tail keywords were selected:
 
@@ -104,7 +114,7 @@ Woolly is an online Business to Customer (B2C) company that offers high-quality,
 
 #### Target Market
 
-Woolly target environmentally aware individuals aged 25-45, primarily in urban areas, who value sustainability, craftsmanship, and design aesthetics. These customers are willing to pay a premium for eco-friendly, ethically sourced products.
+Woolly target environmentally aware individuals aged 25-45, primarily in urban areas, who value sustainability, artisanry, and design aesthetics. These customers are willing to pay a premium for eco-friendly, ethically sourced products.
 
 #### Value Proposition
 
@@ -121,9 +131,11 @@ Woolly operates on a direct-to-consumer (D2C) e-commerce model, generating reven
 
 Woolly leverages social media, influencer partnerships, and content marketing focused on sustainability to reach our target audience. Additionally, Woolly utilises email marketing and possibly in the future retargeting ads to boost conversions.
 
-As an example of Woolly's planned social media presence below a mockup image of Woolly's Facebook page:
+As an example of Woolly's planned social media presence, below can be seen a mockup image of Woolly's planned Facebook page:
 
 ![Facebook mockup](assets/readme-files/fb-mockup.png)
+
+[Back to top ⇧](#woolly)
 
 ## Features
 
@@ -133,7 +145,7 @@ As an example of Woolly's planned social media presence below a mockup image of 
 
 #### Navigation bar
 
-The navigation bar is consistent across all the pages allowing the user to navigate the site easily. The navigation bar contains the brank name and links to all the sections that the user has access to. When using a smaller device, dropdown hamburger menu is displayed.
+The navigation bar is consistent across all the pages allowing the user to navigate the site easily. The navigation bar contains the brand name and links to all the sections that the user has access to. When using a smaller device, dropdown hamburger menu is displayed.
 
 | Navbar                        | Image                                                                          |
 | ---                           | ---                                                                            |
@@ -154,7 +166,7 @@ The footer also is the same on all the pages and allows users to easily access W
 
 #### Buttons
 
-One type of button was used throughout the site. The colour of most buttons is Soft Wool Cream (#F5F2E1) but red was used for 'delete' buttons to warn the user that they are about to delete or remove something. When the button is hovered, it moves down slightly and a shadow effect appears to create an effect minimicking a button being pressed.
+One type of button was used throughout the site. The colour of most buttons is Soft Wool Cream (#F5F2E1) but red was used for 'delete' buttons to warn the user that they are about to delete or remove something. When the button is hovered, it moves down slightly and a shadow effect appears to create an effect mimicking a button being pressed.
 
 | Button            | Normal                                                        | Hover                                                                     |
 | ---               | ---                                                           | ---                                                                       |
@@ -191,7 +203,7 @@ When the user accesses one of the product pages, the page that they are on is hi
 | ---           | ---               | ---           | ---               |
 |![All](assets/readme-files/features/filter-all.png)|![Clothing](assets/readme-files/features/filter-clothing.png)|![Filtered results](assets/readme-files/features/filter-homeware.png)|![Sale](assets/readme-files/features/filter-sale.png)|
 
-The user has access to sort function that allows them to sort the products by name, category or price. The user can search for products and the products that include their search term in their name or product description are displayed.
+The user has access to sort function that allows them to sort the products by name, category, or price. The user can search for products and the products that include their search term in their name or product description are displayed.
 
 | Feature   | Sort                                                               | Search                                                                |
 | ---       | ---                                                                | ---                                                                   |
@@ -200,7 +212,7 @@ The user has access to sort function that allows them to sort the products by na
 
 ### Product reviews
 
-All site users can see reviews and rating that the product has been given but only registered users who have bought the product can leave a review or rate the product. The product rating displayed under the product name is the avarage of all user ratings for that particular product. The rating updates automatically when a new review is left.
+All site users can see reviews and rating that the product has been given but only registered users who have bought the product can leave a review or rate the product. The product rating displayed under the product name is the average of all user ratings for that particular product. The rating updates automatically when a new review is left.
 
 | Review form                                                   |  Review left                                              |
 | ---                                                           | ---                                                       |
@@ -210,7 +222,7 @@ All site users can see reviews and rating that the product has been given but on
 | ---                                                                       | ---                                                                           |
 | ![not logged in](assets/readme-files/features/review-not-loggedin.png)    | ![product not bought](assets/readme-files/features/reviews-not-bought.png)    |
 
-The user who is the review author has access to the full CRUD functionality. In addition to being able to create and read reviews, they can also update or delete their own reviews. Before the review is deleted the user is asked to confirm that they intend to delete their review.
+The user who is the review author has access to full CRUD functionality. In addition to being able to create and read reviews, they can also update or delete their own reviews. Before the review is deleted the user is asked to confirm that they intend to delete their review.
 
 |  Edit review                                                  |  Delete review                                                    |
 | ---                                                           | ---                                                               |
@@ -218,15 +230,15 @@ The user who is the review author has access to the full CRUD functionality. In 
 
 ### Wishlist
 
-If the user is locked they are able to add products to their wishlist by clicking the heart icon next to the product name. If the product is already on their wishlist, the user is informed of this and link to their wishlist on their profile page is added to the product detail page. The user can remove products from their wishlist by clicking the bin icon. A confirmation modal was added as the user is not deleting any data.
+If the user has logged in, they are able to add products to their Wishlist by clicking the heart icon next to the product name. If the product is already on their Wishlist, the user is informed of this and link to their Wishlist on their profile page is added to the product detail page. The user can remove products from their wishlist by clicking the bin icon. A confirmation modal was added as the user is not deleting any data.
 
-| Add to wishlist                                          | On wishlist                                               | Wishlist                                               | Remove from wishlist      |
+| Add to Wishlist                                          | On Wishlist                                               | Wishlist                                               | Remove from Wishlist      |
 | ---                                                      | ---                                                       | ---                                                    | ---                   |
 | ![add](assets/readme-files/features/wishlist-heart.png)  | ![added](assets/readme-files/features/added-wishlist.png) | ![wishlist](assets/readme-files/features/wishlist.png) | ![remove](assets/readme-files/features/wishlist-remove.png)  |
 
 ### Stock amount
 
-When the selects a quantity they want to purchase or adjust the current quantity, it is checked whether there is sufficient amount of product in stock. The stock amount is shown on the product detail page. The admin user can adjust the stock amount using the 'edit product' form. If the product stock amount has been recorded as 0 or 'in stock' checkbox has not been checked, the 'add to bag' is disabled. 
+When the selects a quantity, they want to purchase or adjust the current quantity, it is checked whether there is sufficient amount of product in stock. The stock amount is shown on the product detail page. The admin user can adjust the stock amount using the 'edit product' form. If the product stock amount has been recorded as 0 or 'in stock' checkbox has not been checked, the 'add to bag' is disabled. 
 
 | Stock amount              |  Error message    |  Button disabled      |  Update stock amount  |
 | ---                       | ---               | ---                   | ---                   |
@@ -234,13 +246,13 @@ When the selects a quantity they want to purchase or adjust the current quantity
 
 ### Admin Dashboard
 
-An admin user can access an admin dashboard that allows them to manage products and coupon codes as well as view orders and best selling products.
+An admin user can access an admin dashboard that allows them to manage products and coupon codes as well as view orders and best-selling products.
 
 ![Admin Dashboard](assets/readme-files/features/dashboard.png)
 
 ### Add, Edit and Delete Products
 
-An admin users have access to the full CRUD functionality and can add, edit and delete products. New products can be added through 'add product' link on the admin dashboard. Products can be edited and deleted via a link on the product detail page. Only admin users can access these pages, all other users receive an error message advising that only store owners can that page if they try to access it via a direct link for example.
+An admin users have access to full CRUD functionality and can add, edit and delete products. New products can be added through 'add product' link on the admin dashboard. Products can be edited and deleted via a link on the product detail page. Only admin users can access these pages, all other users receive an error message advising that only store owners can that page if they try to access it via a direct link for example.
 
 ![Error](assets/readme-files/features/products-error.png)
 
@@ -273,7 +285,7 @@ Client can checkout using secure Stripe checkout. The card details and contact d
 
 ### Profile
 
-Users who have registered an account can access a user profile page view their past orders, wishlist and reviews as well as to edit and store their default delivery and contact information.
+Users who have registered an account can access a user profile page view their past orders, Wishlist and reviews as well as to edit and store their default delivery and contact information.
 
 ![Profile](assets/readme-files/features/profile.png)
 
@@ -385,7 +397,7 @@ This project is deployed on Heroku with static and media files stored on AWS S3.
 * Navigate to developers section (link located at the bottom left)
 * Go to API keys tab and copy the values of PUBLIC_KEY and SECRET_KEY and add them to your env.py file
 * Once your application has been deployed, navigate to the Webhooks page from the tab in the menu at the top and click on add endpoint. The link should look like this https://your_website.herokuapp.com/checkout/wh/ 
-* Choose the events the webhook should recieve and add endpoint. Add SIGNING SECRET as STRIPE_WH_SECRET to your Heroku Config vars. 
+* Choose the events the webhook should receive and add endpoint. Add SIGNING SECRET as STRIPE_WH_SECRET to your Heroku Config vars. 
 * When the application is deployed, run a test transaction to ensure the webhooks are working. The events can be checked in the webhooks page.
 
 ### AWS setup
@@ -435,7 +447,7 @@ This project is deployed on Heroku with static and media files stored on AWS S3.
             5. Actions: GetObject
             6. Amazon arn: your arn from the previous page
 
-        * Click on add statement and then generate policy.Copy the policy
+        * Click on add statement and then generate policy. Copy the policy.
         * Paste the policy into the bucket policy editor.
         * Add "/*" to the end of the resource key to allow access to all resources in this bucket.
         * Navigate and Click Save changes.
@@ -624,13 +636,13 @@ This website was deployed on Heroku as follows:
 
 * Sale price can be left blank when the product has been marked as being on sale. This caused an issue with the `product_price` function due the sale price being set to `NoneType`. The sale price displayed to the user was also 'None'. This was fixed by adjusting the product templates and `product_price` function to check that a sale price has been set for any products marked as 'on sale', and if no sale price has been set, the normal price is being displayed.
 
-* The bottom part of the Account dropdown menu in the navigation bar was hidden behind the jumbotron. This meant that admin users were not able to access the Admin Dashboard dropdown option easily on all screen sizes. This was fixed by setting the dropdown's position to 'fixed' and increasing its and its parent element's z-index to ensure that it shown above the jumbotron at all times.
+* The bottom part of the Account dropdown menu in the navigation bar was hidden behind the jumbotron. This meant that admin users were not able to access the Admin Dashboard dropdown option easily on all screen sizes. This was fixed by setting the dropdown's position to 'fixed' and increasing its and its parent element's z-index to ensure that it is shown above the jumbotron at all times.
 
 * Clicking the brand logo link was not working on smaller devices due to the brand logo element being positioned behind other elements on small screens. This was fixed by reducing the width of the brand logo link div and increasing its z-index.
 
 * Adding the jumbotron image caused a horizontal scrollbar to appear on the Home page and that caused usability issues. This was fixed by adding `overflow-x: hidden` to the main element.
 
-* The review form was continued to displayed on the product detail page until the page was reloaded after the user had submitted their review which resulted in some reviews being submitted twice. This was fixed by adding `return redirect('product_detail', product_id)` after a successful POST request in the product_detail view.
+* The review form was still displayed on the product detail page after the user had submitted their review which resulted in some reviews being submitted twice. This was fixed by adding `return redirect('product_detail', product_id)` after a successful POST request in the product_detail view.
 
 * The newsletter confirmation emails were not going through to the email address provided. This was due to `recipient_email` having been put in quotation marks in `send_mail`.
 
@@ -671,7 +683,7 @@ This website was deployed on Heroku as follows:
 
 ## Features not implemented
 
-The following features were considered during the development of this project, but were not in scope as it was not feasible to implement them in the first release of the project. The following features were left for the second phase:
+The following features were considered during the development of this project but were not in scope as it was not feasible to implement them in the first release of the project. The following features were left for the second phase:
 
 1. Update stock amount automatically
     * Currently, an admin user needs to update the stock amount manually after a client has made a purchase. This was considered sufficient for the first release considering that the business is a small, new business and is not expecting the initial sales to be that high. 

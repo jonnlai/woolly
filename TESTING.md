@@ -370,6 +370,8 @@ Once the project was deployed, it was confirmed that Stripe webhook is working a
 
 ## Unit Testing
 
+The developer is new to automated testing, but some unit tests were created and run to improve the developer's knowledge of unit testing. 11 tests relating to the products and reviews apps were run successfully.
+
+![Unit tests](assets/readme-files/testing/unittests.png)
 
 [Back to top ⇧](#woolly-testing)
-
